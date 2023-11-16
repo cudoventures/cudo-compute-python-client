@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "cudo-compute-python-client"
+name = "cudo-compute"
 version = "0.0.1"
 authors = [
   { name="Cudo Ventures", email="dev@cudoventures.com" },
