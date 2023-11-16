@@ -142,3 +142,5 @@ from src.cudo_compute.models.vm_data_center_storage_class import VMDataCenterSto
 from src.cudo_compute.models.vm_monitoring_item import VMMonitoringItem
 from src.cudo_compute.models.vmnic import VMNIC
 from src.cudo_compute.models.v_router_size import VRouterSize
+import src.cudo_compute.auth_config as AuthConfig
+import src.cudo_compute.cudo_client as CudoClient
