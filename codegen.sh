@@ -7,5 +7,5 @@ cd swagger-codegen
 ./run-in-docker.sh generate -i public.swagger.json \
     -l python -o /gen/out -DpackageName=src.cudo_compute
 cd ..
-cp -r swagger-codegen/out/* .
+cp -r swagger-codegen/out/src src
 
