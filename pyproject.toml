@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "cudo-compute"
-version = "0.0.5"
+version = "0.0.6"
 authors = [
     { name = "Cudo Ventures", email = "dev@cudoventures.com" },
 ]
@@ -20,8 +20,8 @@ classifiers = [
 dependencies = [
     "six>=1.0.0",
     "urllib3>=1.10.0",
-    "certifi>=2023.0.0",
-    "yaml>=0.2.0"
+    "certifi>=2021.10.8",
+    "pyyaml>=6.0",
 ]
 
 [project.urls]
