@@ -1,7 +1,7 @@
 import src.cudo_compute as cudo
 def get_client():
     configuration = cudo.Configuration()
-    key, err = cudo.AuthConfig.get_api_key()
+    key, err = cudo.config.get_api_key()
 
     if err != None:
         return None, err
