@@ -11,8 +11,10 @@ runs:
   - ${{ inputs.action }}
   - '-i'
   - ${{ inputs.input }}
-  - '-l'
-  - ${{ inputs.language }}
+  - '-l python'
+  - '-o'
+  - ${{ inputs.output }}
+  - '-DpackageName=src.cudo_compute'
 inputs:
   language:
     description: Swagger language
