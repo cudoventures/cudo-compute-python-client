@@ -1,4 +1,4 @@
-import yaml
+import ruamel.yaml
 import os
 
 home = os.path.expanduser("~")
@@ -10,7 +10,7 @@ def load_config(path, context_name):
     error = None
 
     with open(path, 'r') as file:
-        config_data = yaml.safe_load(file)
+        config_data = ruamel.yaml.safe_load(file)
 
     if config_data['configVersion'] != "v0":
         error = Exception("Only config version v0 is supported")
