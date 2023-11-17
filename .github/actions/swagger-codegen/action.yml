@@ -1,0 +1,25 @@
+# action.yml
+name: 'Swagger Codegen CLI'
+description: 'Run Swagger Codegen with Github Actions'
+branding:
+    icon: code
+    color: green
+runs:
+  using: 'docker'
+  image: 'docker://swaggerapi/swagger-codegen-cli-v3'
+  args:
+  - ${{ inputs.action }}
+  - '-i'
+  - ${{ inputs.input }}
+  - '-l'
+  - ${{ inputs.language }}
+inputs:
+  language:
+    description: Swagger language
+    required: true
+  input:
+    description: Swagger file
+    required: true
+  action:
+    description: swagger-codegen-cli action
+    required: true
