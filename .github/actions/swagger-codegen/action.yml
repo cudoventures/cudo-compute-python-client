@@ -16,14 +16,15 @@ runs:
   - ${{ inputs.output }}
   - '-DpackageName=src.cudo_compute'
 inputs:
-  language:
-    description: Swagger language
-    required: true
   input:
     description: Swagger file
     required: true
   action:
     description: swagger-codegen-cli action
     required: true
+  output:
+    description: output directory
+    required: true
+
 
 
