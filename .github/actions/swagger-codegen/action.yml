@@ -11,7 +11,8 @@ runs:
   - ${{ inputs.action }}
   - '-i'
   - ${{ inputs.input }}
-  - '-l python'
+  - '-l'
+  - 'python'
   - '-o'
   - ${{ inputs.output }}
   - '-DpackageName=src.cudo_compute'
