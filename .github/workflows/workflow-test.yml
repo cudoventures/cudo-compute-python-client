@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Run Swagger Codegen
-      - uses: ./.github/actions/swagger-codegen
+        uses: ./.github/actions/swagger-codegen
         with:
           language: python
           input: swagger/public.swagger.json
