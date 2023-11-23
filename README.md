@@ -4,3 +4,6 @@ six
 
 
  conda install -c conda-forge six
+ 
+
+auth_settings

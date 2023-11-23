@@ -12,5 +12,5 @@ def get_client():
     configuration.host = "https://rest.compute.cudo.org"
 
     client = cudo.ApiClient(configuration)
-    vms_api_client = cudo.VirtualMachinesApi(client)
-    return vms_api_client, None
+    return client, None
+

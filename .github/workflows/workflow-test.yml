@@ -9,6 +9,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
       - name: Run Swagger Codegen
         uses: ./.github/actions/swagger-codegen
         with:
@@ -22,10 +26,7 @@ jobs:
           cp helpers/* src/cudo_compute
           echo "import cudo_compute.auth_config as AuthConfig" >> src/cudo_compute/__init__.py
           echo "import cudo_compute.cudo_client as CudoClient" >> src/cudo_compute/__init__.py
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.x"
+          python3 tools/authfix.py
       - name: Install pypa/build
         run: >-
           python3 -m

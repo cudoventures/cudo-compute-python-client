@@ -1,0 +1,8 @@
+    def auth_settings(self):
+        """Gets Auth Settings dict for api client.
+
+        :return: The Auth Settings information dict.
+        """
+        return {
+
+        }
