@@ -15,7 +15,7 @@ runs:
   - 'python'
   - '-o'
   - ${{ inputs.output }}
-  - '-DpackageName=src.cudo_compute'
+  - '-DpackageName=cudo_compute'
 inputs:
   input:
     description: Swagger file
