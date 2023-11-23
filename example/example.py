@@ -12,6 +12,8 @@ def machine_types(gpu_model, mem_gib, vcpu_count, gpu_count):
 
 print(machine_types("",4,4,0))
 
+project_id, e = cudo.AuthConfig.get_project()
+print(project_id, e)
 
 def list_instances():
     try:
