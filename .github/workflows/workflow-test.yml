@@ -22,6 +22,7 @@ jobs:
       - name: Copy files
         run: |
           rm -rf src
+          mkdir src
           cp -r out src
           cp helpers/* src/cudo_compute
           echo "import cudo_compute.auth_config as AuthConfig" >> src/cudo_compute/__init__.py
