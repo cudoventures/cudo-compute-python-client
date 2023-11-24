@@ -1,7 +1,7 @@
 # Cudo Compute
 To use this client install cudoctl and run ``./cudoctl init`` follow the steps to enter your API key and choose your project.  
 
-Then when you call CudoClient in python it will grab your API key from the yaml file created by cudoctl.
+Then when you call cudo_api in python it will grab your API key from the yaml file created by cudoctl.
 
 ```bash
 pip install cudo-compute
