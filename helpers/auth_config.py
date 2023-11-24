@@ -44,17 +44,4 @@ def load_config(path, context_name):
     return key_config, context_config, error
 
 
-def get_api_key():
-    key_config, context_config, error = load_config(home + '/.config/cudo/cudo.yml', "")
-    if not error:
-        return key_config['key'], None
-    else:
-        return None, error
 
-
-def get_project():
-    key_config, context_config, error = load_config(home + '/.config/cudo/cudo.yml', "")
-    if not error:
-        return context_config['project'], None
-    else:
-        return None, error
