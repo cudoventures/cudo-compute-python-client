@@ -8,10 +8,10 @@ pip install cudo-compute
 ```
 
 ```python
-import cudo_compute as cudo
+from cudo_compute import cudo_api
 
-client, e = cudo.CudoClient.get_client()
-api = cudo.VirtualMachinesApi(client)
+api = cudo_api.virtual_machines()
+vms = api.list_vms(cudo_api.project_id())
 ```
 
 A more complete example of various api calls can be seen in the example in ``examples/example.py`` demonstrates how to use it. 

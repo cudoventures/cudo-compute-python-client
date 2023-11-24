@@ -42,8 +42,9 @@ def project_id():
         return p
     return ''
 
+
 # APIs
-def apikeys():
+def api_keys():
     c, err = client()
     if err:
         raise Exception(err)
@@ -64,7 +65,7 @@ def networks():
     return cudo.NetworksApi(c)
 
 
-def objectstorage():
+def object_storage():
     c, err = client()
     if err:
         raise Exception(err)
@@ -85,7 +86,7 @@ def projects():
     return cudo.ProjectsApi(c)
 
 
-def sshkeys():
+def ssh_keys():
     c, err = client()
     if err:
         raise Exception(err)
@@ -106,7 +107,7 @@ def user():
     return cudo.UserApi(c)
 
 
-def virtualmachines():
+def virtual_machines():
     c, err = client()
     if err:
         raise Exception(err)
