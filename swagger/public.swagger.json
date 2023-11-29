@@ -4351,12 +4351,6 @@
         "ipRange": {
           "type": "string"
         },
-        "oneLcmState": {
-          "type": "string"
-        },
-        "oneState": {
-          "type": "string"
-        },
         "priceHr": {
           "$ref": "#/definitions/Decimal"
         },
