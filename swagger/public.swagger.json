@@ -226,6 +226,237 @@
         }
       }
     },
+    "/v1/billing-accounts": {
+      "get": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "List billing accounts",
+        "operationId": "ListBillingAccounts",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "pageToken",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int32",
+            "name": "pageSize",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListBillingAccountsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Status"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Create a billing account",
+        "operationId": "CreateBillingAccount",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateBillingAccountRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/BillingAccount"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Status"
+            }
+          }
+        }
+      }
+    },
+    "/v1/billing-accounts/invoices": {
+      "get": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Get invoices",
+        "operationId": "GetBillingAccountStripeInvoices",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "id",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "format": "int32",
+            "name": "pageSize",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "startingAfter",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "status",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetBillingAccountStripeInvoicesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Status"
+            }
+          }
+        }
+      }
+    },
+    "/v1/billing-accounts/invoices/outstanding": {
+      "get": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Get outstanding invoices",
+        "operationId": "ListOutstandingStripeInvoices",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListOutstandingStripeInvoicesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Status"
+            }
+          }
+        }
+      }
+    },
+    "/v1/billing-accounts/{billingAccount.id}": {
+      "patch": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Update billing account",
+        "operationId": "UpdateBillingAccount",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "billingAccount.id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "updateMask"
+              ],
+              "properties": {
+                "billingAccount": {
+                  "type": "object",
+                  "properties": {
+                    "billingThreshold": {
+                      "$ref": "#/definitions/Decimal",
+                      "readOnly": true
+                    },
+                    "createBy": {
+                      "type": "string",
+                      "readOnly": true
+                    },
+                    "createTime": {
+                      "type": "string",
+                      "format": "date-time",
+                      "readOnly": true
+                    },
+                    "demandEnabled": {
+                      "type": "boolean",
+                      "readOnly": true
+                    },
+                    "displayName": {
+                      "type": "string"
+                    },
+                    "invoiceTime": {
+                      "type": "string",
+                      "format": "date-time",
+                      "readOnly": true
+                    },
+                    "monthlySpend": {
+                      "type": "string"
+                    },
+                    "stripeRef": {
+                      "type": "string"
+                    },
+                    "supplyEnabled": {
+                      "type": "boolean",
+                      "readOnly": true
+                    },
+                    "taxIds": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "$ref": "#/definitions/TaxId"
+                      }
+                    }
+                  }
+                },
+                "updateMask": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/BillingAccount"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Status"
+            }
+          }
+        }
+      }
+    },
     "/v1/billing-accounts/{billingAccountId}/add-user-permission": {
       "post": {
         "tags": [
@@ -340,6 +571,411 @@
         }
       }
     },
+    "/v1/billing-accounts/{billingAccountId}/spend/details": {
+      "get": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Get spend details",
+        "operationId": "GetBillingAccountSpendDetails",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "billingAccountId",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "format": "date-time",
+            "name": "startTime",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "string",
+            "format": "date-time",
+            "name": "endTime",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetBillingAccountSpendDetailsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Status"
+            }
+          }
+        }
+      }
+    },
+    "/v1/billing-accounts/{id}": {
+      "get": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Get a billing account",
+        "operationId": "GetBillingAccount",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/BillingAccount"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Status"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Delete billing account",
+        "operationId": "DeleteBillingAccount",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Status"
+            }
+          }
+        }
+      }
+    },
+    "/v1/billing-accounts/{id}/details": {
+      "get": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Get billing account details",
+        "operationId": "GetBillingAccountDetails",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetBillingAccountDetailsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Status"
+            }
+          }
+        }
+      }
+    },
+    "/v1/billing-accounts/{id}/payment-methods": {
+      "get": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Get payment methods",
+        "operationId": "GetBillingAccountPaymentMethods",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/BillingAccountPaymentMethods"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Status"
+            }
+          }
+        }
+      }
+    },
+    "/v1/billing-accounts/{id}/payment-methods/{paymentMethodId}": {
+      "delete": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Remove payment method",
+        "operationId": "RemoveBillingAccountPaymentMethod",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "paymentMethodId",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/RemoveBillingAccountPaymentMethodResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Status"
+            }
+          }
+        }
+      }
+    },
+    "/v1/billing-accounts/{id}/payment-methods/{paymentMethodId}/set-default": {
+      "post": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Set default payment method",
+        "operationId": "SetBillingAccountDefaultPaymentMethod",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "paymentMethodId",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/SetBillingAccountDefaultPaymentMethodResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Status"
+            }
+          }
+        }
+      }
+    },
+    "/v1/billing-accounts/{id}/setup-intent": {
+      "get": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Get setup intent",
+        "operationId": "GetBillingAccountSetupIntent",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/BillingAccountSetupIntent"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Status"
+            }
+          }
+        }
+      }
+    },
+    "/v1/data-centers": {
+      "get": {
+        "description": "Returns the data centers in an organization",
+        "tags": [
+          "DataCenters"
+        ],
+        "summary": "List data centers",
+        "operationId": "ListDataCenters",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "pageToken",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int32",
+            "name": "pageSize",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListDataCentersResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Status"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Creates a new data center",
+        "tags": [
+          "DataCenters"
+        ],
+        "summary": "Create data center",
+        "operationId": "CreateDataCenter",
+        "parameters": [
+          {
+            "name": "dataCenter",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DataCenter"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/DataCenter"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Status"
+            }
+          }
+        }
+      }
+    },
+    "/v1/data-centers/{dataCenter.id}": {
+      "patch": {
+        "description": "Updates a data center",
+        "tags": [
+          "DataCenters"
+        ],
+        "summary": "Update data center",
+        "operationId": "UpdateDataCenter",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "dataCenter.id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "dataCenter",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "oneFrontendId"
+              ],
+              "properties": {
+                "createBy": {
+                  "type": "string",
+                  "readOnly": true
+                },
+                "lngLat": {
+                  "$ref": "#/definitions/Point"
+                },
+                "oneFrontendId": {
+                  "type": "string"
+                },
+                "regionId": {
+                  "type": "string"
+                },
+                "renewableEnergy": {
+                  "type": "boolean"
+                },
+                "supplierName": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/DataCenter"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Status"
+            }
+          }
+        }
+      }
+    },
     "/v1/data-centers/{dataCenterId}/add-user-permission": {
       "post": {
         "tags": [
@@ -397,6 +1033,207 @@
         }
       }
     },
+    "/v1/data-centers/{dataCenterId}/clusters": {
+      "get": {
+        "description": "Returns the clusters in a data center",
+        "tags": [
+          "DataCenters"
+        ],
+        "summary": "List clusters",
+        "operationId": "ListClusters",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "dataCenterId",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListClustersResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Status"
+            }
+          }
+        }
+      }
+    },
+    "/v1/data-centers/{dataCenterId}/host-count": {
+      "get": {
+        "description": "Returns the number of hosts in a data center",
+        "tags": [
+          "DataCenters"
+        ],
+        "summary": "Get host count",
+        "operationId": "CountHosts",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "dataCenterId",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CountHostsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Status"
+            }
+          }
+        }
+      }
+    },
+    "/v1/data-centers/{dataCenterId}/hosts": {
+      "get": {
+        "description": "Returns the hosts in a data center",
+        "tags": [
+          "DataCenters"
+        ],
+        "summary": "List hosts",
+        "operationId": "ListHosts",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "dataCenterId",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListHostsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Status"
+            }
+          }
+        }
+      }
+    },
+    "/v1/data-centers/{dataCenterId}/machine-types": {
+      "get": {
+        "tags": [
+          "MachineTypes"
+        ],
+        "summary": "Get",
+        "operationId": "ListMachineTypes",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "dataCenterId",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListMachineTypesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Status"
+            }
+          }
+        }
+      }
+    },
+    "/v1/data-centers/{dataCenterId}/machine-types/{machineType}": {
+      "get": {
+        "tags": [
+          "MachineTypes"
+        ],
+        "summary": "Get",
+        "operationId": "GetMachineType",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "dataCenterId",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "machineType",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetMachineTypeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Status"
+            }
+          }
+        }
+      }
+    },
+    "/v1/data-centers/{dataCenterId}/machine-types/{machineType}/live-utilization": {
+      "get": {
+        "tags": [
+          "MachineTypes"
+        ],
+        "summary": "Get",
+        "operationId": "GetMachineTypeLiveUtilization",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "dataCenterId",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "machineType",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetMachineTypeLiveUtilizationResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Status"
+            }
+          }
+        }
+      }
+    },
     "/v1/data-centers/{dataCenterId}/remove-user-permission": {
       "post": {
         "tags": [
@@ -443,6 +1280,205 @@
             "description": "A successful response.",
             "schema": {
               "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Status"
+            }
+          }
+        }
+      }
+    },
+    "/v1/data-centers/{id}": {
+      "get": {
+        "description": "Returns a data center",
+        "tags": [
+          "DataCenters"
+        ],
+        "summary": "Get data center",
+        "operationId": "GetDataCenter",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/DataCenter"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Status"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Deletes a data center",
+        "tags": [
+          "DataCenters"
+        ],
+        "summary": "Delete data center",
+        "operationId": "DeleteDataCenter",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Status"
+            }
+          }
+        }
+      }
+    },
+    "/v1/data-centers/{id}/live-utilization": {
+      "get": {
+        "description": "Returns the live utilization of a data center",
+        "tags": [
+          "DataCenters"
+        ],
+        "summary": "Get live utilization",
+        "operationId": "GetDataCenterLiveUtilization",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetDataCenterLiveUtilizationResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Status"
+            }
+          }
+        }
+      }
+    },
+    "/v1/data-centers/{id}/revenue": {
+      "get": {
+        "description": "Returns the revenue of a data center over time",
+        "tags": [
+          "DataCenters"
+        ],
+        "summary": "Get revenue time series",
+        "operationId": "GetDataCenterRevenueTimeSeries",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "format": "date-time",
+            "name": "startTime",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "string",
+            "format": "date-time",
+            "name": "endTime",
+            "in": "query",
+            "required": true
+          },
+          {
+            "enum": [
+              "INTERVAL_UNKNOWN",
+              "INTERVAL_DAY",
+              "INTERVAL_WEEK",
+              "INTERVAL_MONTH"
+            ],
+            "type": "string",
+            "default": "INTERVAL_UNKNOWN",
+            "name": "interval",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetDataCenterRevenueTimeSeriesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Status"
+            }
+          }
+        }
+      }
+    },
+    "/v1/data-centers/{id}/revenue-by-resource": {
+      "get": {
+        "description": "Returns the revenue of a data center by resource (CPU, Memory, Storage, etc.)",
+        "tags": [
+          "DataCenters"
+        ],
+        "summary": "Get revenue by resource",
+        "operationId": "GetDataCenterRevenueByResource",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "format": "date-time",
+            "name": "startTime",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "string",
+            "format": "date-time",
+            "name": "endTime",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetDataCenterRevenueByResourceResponse"
             }
           },
           "default": {
@@ -2369,6 +3405,138 @@
         }
       }
     },
+    "/v1/projects/{projectId}/vm/{id}/metadata": {
+      "post": {
+        "tags": [
+          "Virtual Machines"
+        ],
+        "summary": "Update VM metadata",
+        "operationId": "UpdateVMMetadata",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "projectId",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "This is a request variable of the map type. The query format is \"map_name[key]=value\", e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\"bob\"]=18",
+            "name": "metadata",
+            "in": "query"
+          },
+          {
+            "type": "boolean",
+            "name": "merge",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UpdateVMMetadataResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Status"
+            }
+          }
+        }
+      }
+    },
+    "/v1/projects/{projectId}/vm/{id}/security-group/attach": {
+      "patch": {
+        "tags": [
+          "Virtual Machines"
+        ],
+        "summary": "Attach security group to VM",
+        "operationId": "AttachSecurityGroup",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "projectId",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "securityGroupId",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/AttachSecurityGroupResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Status"
+            }
+          }
+        }
+      }
+    },
+    "/v1/projects/{projectId}/vm/{id}/security-group/detach": {
+      "patch": {
+        "tags": [
+          "Virtual Machines"
+        ],
+        "summary": "Attach security group to VM",
+        "operationId": "DetachSecurityGroup",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "projectId",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "securityGroupId",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/DetachSecurityGroupResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Status"
+            }
+          }
+        }
+      }
+    },
     "/v1/projects/{projectId}/vms": {
       "get": {
         "tags": [
@@ -3260,8 +4428,259 @@
         }
       }
     },
+    "AttachSecurityGroupResponse": {
+      "type": "object"
+    },
     "AttachStorageDiskResponse": {
       "type": "object"
+    },
+    "BillingAccount": {
+      "type": "object",
+      "properties": {
+        "billingThreshold": {
+          "$ref": "#/definitions/Decimal",
+          "readOnly": true
+        },
+        "createBy": {
+          "type": "string",
+          "readOnly": true
+        },
+        "createTime": {
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "demandEnabled": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string",
+          "readOnly": true
+        },
+        "invoiceTime": {
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "monthlySpend": {
+          "type": "string"
+        },
+        "stripeRef": {
+          "type": "string"
+        },
+        "supplyEnabled": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "taxIds": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/TaxId"
+          }
+        }
+      }
+    },
+    "BillingAccountPaymentMethod": {
+      "type": "object",
+      "properties": {
+        "card": {
+          "$ref": "#/definitions/PaymentMethodCard"
+        },
+        "id": {
+          "type": "string"
+        },
+        "isDefault": {
+          "type": "boolean"
+        },
+        "paypal": {
+          "$ref": "#/definitions/PaymentMethodPaypal"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+    "BillingAccountPaymentMethods": {
+      "type": "object",
+      "properties": {
+        "paymentMethods": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/BillingAccountPaymentMethod"
+          }
+        }
+      }
+    },
+    "BillingAccountSetupIntent": {
+      "type": "object",
+      "required": [
+        "id",
+        "clientSecret"
+      ],
+      "properties": {
+        "clientSecret": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "BillingAccountSpendRow": {
+      "type": "object",
+      "required": [
+        "projectId",
+        "description",
+        "quantity",
+        "unit",
+        "unitAmount",
+        "amount"
+      ],
+      "properties": {
+        "amount": {
+          "$ref": "#/definitions/Decimal"
+        },
+        "description": {
+          "type": "string"
+        },
+        "projectId": {
+          "type": "string"
+        },
+        "quantity": {
+          "type": "number",
+          "format": "float"
+        },
+        "unit": {
+          "$ref": "#/definitions/Unit"
+        },
+        "unitAmount": {
+          "$ref": "#/definitions/Decimal"
+        }
+      }
+    },
+    "Cluster": {
+      "type": "object",
+      "required": [
+        "machineType",
+        "cpuModel",
+        "vcpuPerCpuThread",
+        "vcpuPriceHr",
+        "memoryGibPriceHr",
+        "gpuModel",
+        "gpuModelPciTypes",
+        "gpuPriceHr",
+        "minVcpuPerMemoryGib",
+        "maxVcpuPerMemoryGib",
+        "minVcpuPerGpu",
+        "maxVcpuPerGpu",
+        "createTime",
+        "updateTime",
+        "hostCount",
+        "hostProblemCount",
+        "vmCount",
+        "vcpuFree",
+        "vcpuUsed",
+        "memoryGibFree",
+        "memoryGibUsed",
+        "gpuFree",
+        "gpuUsed"
+      ],
+      "properties": {
+        "cpuModel": {
+          "type": "string"
+        },
+        "createTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "gpuFree": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "gpuModel": {
+          "type": "string"
+        },
+        "gpuModelPciTypes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "gpuPriceHr": {
+          "$ref": "#/definitions/Decimal"
+        },
+        "gpuUsed": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "hostCount": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "hostProblemCount": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "machineType": {
+          "type": "string"
+        },
+        "maxVcpuPerGpu": {
+          "type": "number",
+          "format": "double"
+        },
+        "maxVcpuPerMemoryGib": {
+          "type": "number",
+          "format": "double"
+        },
+        "memoryGibFree": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "memoryGibPriceHr": {
+          "$ref": "#/definitions/Decimal"
+        },
+        "memoryGibUsed": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "minVcpuPerGpu": {
+          "type": "number",
+          "format": "double"
+        },
+        "minVcpuPerMemoryGib": {
+          "type": "number",
+          "format": "double"
+        },
+        "updateTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "vcpuFree": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "vcpuPerCpuThread": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "vcpuPriceHr": {
+          "$ref": "#/definitions/Decimal"
+        },
+        "vcpuUsed": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "vmCount": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
     },
     "ConnectVMResponse": {
       "type": "object",
@@ -3275,6 +4694,18 @@
         },
         "token": {
           "type": "string"
+        }
+      }
+    },
+    "CountHostsResponse": {
+      "type": "object",
+      "required": [
+        "count"
+      ],
+      "properties": {
+        "count": {
+          "type": "integer",
+          "format": "int32"
         }
       }
     },
@@ -3307,6 +4738,35 @@
         },
         "name": {
           "type": "string"
+        }
+      }
+    },
+    "CreateBillingAccountRequest": {
+      "type": "object",
+      "required": [
+        "displayName",
+        "invoiceName",
+        "email"
+      ],
+      "properties": {
+        "displayName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "invoiceName": {
+          "type": "string"
+        },
+        "referral": {
+          "type": "string"
+        },
+        "taxIds": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/TaxId"
+          }
         }
       }
     },
@@ -3369,6 +4829,37 @@
         }
       }
     },
+    "DataCenter": {
+      "type": "object",
+      "required": [
+        "id",
+        "oneFrontendId"
+      ],
+      "properties": {
+        "createBy": {
+          "type": "string",
+          "readOnly": true
+        },
+        "id": {
+          "type": "string"
+        },
+        "lngLat": {
+          "$ref": "#/definitions/Point"
+        },
+        "oneFrontendId": {
+          "type": "string"
+        },
+        "regionId": {
+          "type": "string"
+        },
+        "renewableEnergy": {
+          "type": "boolean"
+        },
+        "supplierName": {
+          "type": "string"
+        }
+      }
+    },
     "DataCenterCategory": {
       "type": "object",
       "required": [
@@ -3390,6 +4881,49 @@
         },
         "renewableEnergy": {
           "type": "boolean"
+        }
+      }
+    },
+    "DataCenterRevenueResource": {
+      "type": "object",
+      "required": [
+        "resourceType",
+        "resourceId",
+        "quantity",
+        "unit",
+        "revenueUsd"
+      ],
+      "properties": {
+        "quantity": {
+          "$ref": "#/definitions/Decimal"
+        },
+        "resourceId": {
+          "type": "string"
+        },
+        "resourceType": {
+          "type": "string"
+        },
+        "revenueUsd": {
+          "$ref": "#/definitions/Decimal"
+        },
+        "unit": {
+          "type": "string"
+        }
+      }
+    },
+    "DataCenterTimeRevenue": {
+      "type": "object",
+      "required": [
+        "time",
+        "revenueUsd"
+      ],
+      "properties": {
+        "revenueUsd": {
+          "$ref": "#/definitions/Decimal"
+        },
+        "time": {
+          "type": "string",
+          "format": "date-time"
         }
       }
     },
@@ -3422,6 +4956,9 @@
       "type": "object"
     },
     "DeleteStorageDiskResponse": {
+      "type": "object"
+    },
+    "DetachSecurityGroupResponse": {
       "type": "object"
     },
     "DetachStorageDiskResponse": {
@@ -3537,6 +5074,157 @@
         }
       }
     },
+    "GetBillingAccountDetailsResponse": {
+      "type": "object",
+      "required": [
+        "billingAccount",
+        "stripeCustomer"
+      ],
+      "properties": {
+        "billingAccount": {
+          "$ref": "#/definitions/BillingAccount"
+        },
+        "stripeCustomer": {
+          "$ref": "#/definitions/StripeCustomer"
+        }
+      }
+    },
+    "GetBillingAccountSpendDetailsResponse": {
+      "type": "object",
+      "required": [
+        "spend"
+      ],
+      "properties": {
+        "spend": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/BillingAccountSpendRow"
+          }
+        }
+      }
+    },
+    "GetBillingAccountStripeInvoicesResponse": {
+      "type": "object",
+      "required": [
+        "invoices",
+        "hasMore"
+      ],
+      "properties": {
+        "hasMore": {
+          "type": "boolean"
+        },
+        "invoices": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/Invoice"
+          }
+        }
+      }
+    },
+    "GetDataCenterLiveUtilizationResponse": {
+      "type": "object",
+      "required": [
+        "utilization",
+        "vcpuUsed",
+        "vcpuFree",
+        "vcpuTotal",
+        "cpuUtilization",
+        "memoryGibUsed",
+        "memoryGibFree",
+        "memoryGibTotal",
+        "memoryUtilization",
+        "gpuUsed",
+        "gpuFree",
+        "gpuTotal",
+        "gpuUtilization"
+      ],
+      "properties": {
+        "cpuUtilization": {
+          "type": "number",
+          "format": "float"
+        },
+        "gpuFree": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "gpuTotal": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "gpuUsed": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "gpuUtilization": {
+          "type": "number",
+          "format": "float"
+        },
+        "memoryGibFree": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "memoryGibTotal": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "memoryGibUsed": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "memoryUtilization": {
+          "type": "number",
+          "format": "float"
+        },
+        "utilization": {
+          "type": "number",
+          "format": "float"
+        },
+        "vcpuFree": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "vcpuTotal": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "vcpuUsed": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "GetDataCenterRevenueByResourceResponse": {
+      "type": "object",
+      "required": [
+        "resources"
+      ],
+      "properties": {
+        "resources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/DataCenterRevenueResource"
+          }
+        }
+      }
+    },
+    "GetDataCenterRevenueTimeSeriesResponse": {
+      "type": "object",
+      "required": [
+        "timeRevenue"
+      ],
+      "properties": {
+        "timeRevenue": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/DataCenterTimeRevenue"
+          }
+        }
+      }
+    },
     "GetDiskResponse": {
       "type": "object",
       "properties": {
@@ -3549,6 +5237,171 @@
             "type": "object",
             "$ref": "#/definitions/Snapshot"
           }
+        }
+      }
+    },
+    "GetMachineTypeLiveUtilizationResponse": {
+      "type": "object",
+      "required": [
+        "utilization",
+        "vcpuUsed",
+        "vcpuFree",
+        "vcpuTotal",
+        "cpuUtilization",
+        "memoryGibUsed",
+        "memoryGibFree",
+        "memoryGibTotal",
+        "memoryUtilization",
+        "gpuUsed",
+        "gpuFree",
+        "gpuTotal",
+        "gpuUtilization"
+      ],
+      "properties": {
+        "cpuUtilization": {
+          "type": "number",
+          "format": "float"
+        },
+        "gpuFree": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "gpuTotal": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "gpuUsed": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "gpuUtilization": {
+          "type": "number",
+          "format": "float"
+        },
+        "memoryGibFree": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "memoryGibTotal": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "memoryGibUsed": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "memoryUtilization": {
+          "type": "number",
+          "format": "float"
+        },
+        "utilization": {
+          "type": "number",
+          "format": "float"
+        },
+        "vcpuFree": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "vcpuTotal": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "vcpuUsed": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "GetMachineTypeResponse": {
+      "type": "object",
+      "required": [
+        "dataCenterId",
+        "machineType",
+        "cpuModels",
+        "gpuModels",
+        "minVcpuPriceHr",
+        "maxVcpuPriceHr",
+        "minMemoryGibPriceHr",
+        "maxMemoryGibPriceHr",
+        "minGpuPriceHr",
+        "maxGpuPriceHr",
+        "minVcpuPerMemoryGib",
+        "maxVcpuPerMemoryGib",
+        "minVcpuPerGpu",
+        "maxVcpuPerGpu",
+        "countClusters",
+        "countHosts",
+        "countHostsActive",
+        "countHostsInactive"
+      ],
+      "properties": {
+        "countClusters": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "countHosts": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "countHostsActive": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "countHostsInactive": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "cpuModels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "dataCenterId": {
+          "type": "string"
+        },
+        "gpuModels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "machineType": {
+          "type": "string"
+        },
+        "maxGpuPriceHr": {
+          "$ref": "#/definitions/Decimal"
+        },
+        "maxMemoryGibPriceHr": {
+          "$ref": "#/definitions/Decimal"
+        },
+        "maxVcpuPerGpu": {
+          "type": "number",
+          "format": "double"
+        },
+        "maxVcpuPerMemoryGib": {
+          "type": "number",
+          "format": "double"
+        },
+        "maxVcpuPriceHr": {
+          "$ref": "#/definitions/Decimal"
+        },
+        "minGpuPriceHr": {
+          "$ref": "#/definitions/Decimal"
+        },
+        "minMemoryGibPriceHr": {
+          "$ref": "#/definitions/Decimal"
+        },
+        "minVcpuPerGpu": {
+          "type": "number",
+          "format": "double"
+        },
+        "minVcpuPerMemoryGib": {
+          "type": "number",
+          "format": "double"
+        },
+        "minVcpuPriceHr": {
+          "$ref": "#/definitions/Decimal"
         }
       }
     },
@@ -3630,6 +5483,83 @@
         },
         "name": {
           "type": "string"
+        }
+      }
+    },
+    "Host": {
+      "type": "object",
+      "required": [
+        "machineType",
+        "cpuModel",
+        "vcpuPerCpuThread",
+        "gpuModel",
+        "createTime",
+        "updateTime",
+        "vmCount",
+        "vcpuFree",
+        "vcpuUsed",
+        "memoryGibFree",
+        "memoryGibUsed",
+        "gpuFree",
+        "gpuUsed",
+        "online",
+        "name"
+      ],
+      "properties": {
+        "cpuModel": {
+          "type": "string"
+        },
+        "createTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "gpuFree": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "gpuModel": {
+          "type": "string"
+        },
+        "gpuUsed": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "machineType": {
+          "type": "string"
+        },
+        "memoryGibFree": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "memoryGibUsed": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        },
+        "online": {
+          "type": "boolean"
+        },
+        "updateTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "vcpuFree": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "vcpuPerCpuThread": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "vcpuUsed": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "vmCount": {
+          "type": "integer",
+          "format": "int32"
         }
       }
     },
@@ -3752,6 +5682,77 @@
         }
       }
     },
+    "Interval": {
+      "type": "string",
+      "default": "INTERVAL_UNKNOWN",
+      "enum": [
+        "INTERVAL_UNKNOWN",
+        "INTERVAL_DAY",
+        "INTERVAL_WEEK",
+        "INTERVAL_MONTH"
+      ]
+    },
+    "Invoice": {
+      "type": "object",
+      "properties": {
+        "amountDue": {
+          "type": "string",
+          "format": "int64"
+        },
+        "amountPaid": {
+          "type": "string",
+          "format": "int64"
+        },
+        "amountRemaining": {
+          "type": "string",
+          "format": "int64"
+        },
+        "autoAdvance": {
+          "type": "boolean"
+        },
+        "billingReason": {
+          "type": "string"
+        },
+        "created": {
+          "type": "string",
+          "format": "int64"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "dueDate": {
+          "type": "string",
+          "format": "int64"
+        },
+        "hostedInvoiceUrl": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "number": {
+          "type": "string"
+        },
+        "paidDate": {
+          "type": "string",
+          "format": "int64"
+        },
+        "periodEnd": {
+          "type": "string",
+          "format": "int64"
+        },
+        "periodStart": {
+          "type": "string",
+          "format": "int64"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
     "ListApiKeysResponse": {
       "type": "object",
       "required": [
@@ -3779,6 +5780,69 @@
         "totalCount": {
           "type": "integer",
           "format": "int32"
+        }
+      }
+    },
+    "ListBillingAccountsResponse": {
+      "type": "object",
+      "required": [
+        "billingAccounts",
+        "pageToken",
+        "pageSize"
+      ],
+      "properties": {
+        "billingAccounts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/BillingAccount"
+          }
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pageToken": {
+          "type": "string"
+        }
+      }
+    },
+    "ListClustersResponse": {
+      "type": "object",
+      "required": [
+        "clusters"
+      ],
+      "properties": {
+        "clusters": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/Cluster"
+          }
+        }
+      }
+    },
+    "ListDataCentersResponse": {
+      "type": "object",
+      "required": [
+        "dataCenters",
+        "pageToken",
+        "pageSize"
+      ],
+      "properties": {
+        "dataCenters": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/DataCenter"
+          }
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pageToken": {
+          "type": "string"
         }
       }
     },
@@ -3823,6 +5887,36 @@
         "totalCount": {
           "type": "integer",
           "format": "int32"
+        }
+      }
+    },
+    "ListHostsResponse": {
+      "type": "object",
+      "required": [
+        "hosts"
+      ],
+      "properties": {
+        "hosts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/Host"
+          }
+        }
+      }
+    },
+    "ListMachineTypesResponse": {
+      "type": "object",
+      "required": [
+        "machineTypes"
+      ],
+      "properties": {
+        "machineTypes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/MachineType"
+          }
         }
       }
     },
@@ -3942,6 +6036,21 @@
           "items": {
             "type": "object",
             "$ref": "#/definitions/ObjectStorageUser"
+          }
+        }
+      }
+    },
+    "ListOutstandingStripeInvoicesResponse": {
+      "type": "object",
+      "required": [
+        "invoices"
+      ],
+      "properties": {
+        "invoices": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/Invoice"
           }
         }
       }
@@ -4309,6 +6418,37 @@
         }
       }
     },
+    "MachineType": {
+      "type": "object",
+      "required": [
+        "machineType",
+        "countClusters",
+        "countHosts",
+        "countHostsActive",
+        "countHostsInactive"
+      ],
+      "properties": {
+        "countClusters": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "countHosts": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "countHostsActive": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "countHostsInactive": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "machineType": {
+          "type": "string"
+        }
+      }
+    },
     "MonitorVMResponse": {
       "type": "object",
       "required": [
@@ -4351,6 +6491,9 @@
         "ipRange": {
           "type": "string"
         },
+        "networkState": {
+          "$ref": "#/definitions/NetworkState"
+        },
         "priceHr": {
           "$ref": "#/definitions/Decimal"
         },
@@ -4372,6 +6515,31 @@
           "$ref": "#/definitions/VRouterSize"
         }
       }
+    },
+    "NetworkState": {
+      "type": "string",
+      "default": "CLONING",
+      "enum": [
+        "CLONING",
+        "CREATING_SNAPSHOT",
+        "DELETED",
+        "DELETING",
+        "DELETING_SNAPSHOT",
+        "FAILED",
+        "HOTPLUGGING",
+        "MIGRATING",
+        "RECREATING",
+        "REVERTING_SNAPSHOT",
+        "RESIZING",
+        "RESIZING_DISK",
+        "ACTIVE",
+        "STARTING",
+        "STOPPED",
+        "STOPPING",
+        "SUSPENDED",
+        "SUSPENDING",
+        "UNKNOWN"
+      ]
     },
     "ObjectStorageBucket": {
       "type": "object",
@@ -4442,6 +6610,55 @@
         }
       }
     },
+    "PaymentMethodCard": {
+      "type": "object",
+      "properties": {
+        "brand": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "expMonth": {
+          "type": "string",
+          "format": "int64"
+        },
+        "expYear": {
+          "type": "string",
+          "format": "int64"
+        },
+        "fingerprint": {
+          "type": "string"
+        },
+        "last4": {
+          "type": "string"
+        }
+      }
+    },
+    "PaymentMethodPaypal": {
+      "type": "object",
+      "properties": {
+        "payerEmail": {
+          "type": "string"
+        },
+        "payerId": {
+          "type": "string"
+        }
+      }
+    },
+    "Point": {
+      "type": "object",
+      "properties": {
+        "lat": {
+          "type": "number",
+          "format": "double"
+        },
+        "lng": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
     "Profile": {
       "type": "object",
       "properties": {
@@ -4506,6 +6723,21 @@
           "type": "string"
         },
         "name": {
+          "type": "string"
+        }
+      }
+    },
+    "RemoveBillingAccountPaymentMethodResponse": {
+      "type": "object",
+      "required": [
+        "id",
+        "paymentMethodId"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "paymentMethodId": {
           "type": "string"
         }
       }
@@ -4622,6 +6854,21 @@
         }
       }
     },
+    "SetBillingAccountDefaultPaymentMethodResponse": {
+      "type": "object",
+      "required": [
+        "id",
+        "paymentMethodId"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "paymentMethodId": {
+          "type": "string"
+        }
+      }
+    },
     "Snapshot": {
       "type": "object",
       "properties": {
@@ -4714,8 +6961,49 @@
     "StopVMResponse": {
       "type": "object"
     },
+    "StripeCustomer": {
+      "type": "object",
+      "properties": {
+        "balance": {
+          "$ref": "#/definitions/Decimal"
+        },
+        "email": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "TaxId": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "readOnly": true
+        },
+        "type": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
     "TerminateVMResponse": {
       "type": "object"
+    },
+    "Unit": {
+      "type": "string",
+      "default": "UNIT_UNKNOWN",
+      "enum": [
+        "UNIT_UNKNOWN",
+        "UNIT_GIB_HOUR",
+        "UNIT_HOUR"
+      ]
     },
     "UpdatePrivateVMImageResponse": {
       "type": "object"
@@ -4728,6 +7016,17 @@
       "properties": {
         "securityGroup": {
           "$ref": "#/definitions/SecurityGroup"
+        }
+      }
+    },
+    "UpdateVMMetadataResponse": {
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
         }
       }
     },
@@ -4886,6 +7185,9 @@
         "vcpus": {
           "type": "integer",
           "format": "int64"
+        },
+        "vmState": {
+          "$ref": "#/definitions/VmState"
         }
       }
     },
@@ -5009,6 +7311,31 @@
         "VROUTER_INSTANCE_SMALL",
         "VROUTER_INSTANCE_MEDIUM",
         "VROUTER_INSTANCE_LARGE"
+      ]
+    },
+    "VmState": {
+      "type": "string",
+      "default": "CLONING",
+      "enum": [
+        "CLONING",
+        "CREATING_SNAPSHOT",
+        "DELETED",
+        "DELETING",
+        "DELETING_SNAPSHOT",
+        "FAILED",
+        "HOTPLUGGING",
+        "MIGRATING",
+        "RECREATING",
+        "REVERTING_SNAPSHOT",
+        "RESIZING",
+        "RESIZING_DISK",
+        "ACTIVE",
+        "STARTING",
+        "STOPPED",
+        "STOPPING",
+        "SUSPENDED",
+        "SUSPENDING",
+        "UNKNOWN"
       ]
     },
     "v1.PrivateImage": {

@@ -33,125 +33,72 @@ class Body(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'data_center_id': 'str',
-        'project_id': 'str',
-        'role': 'Role',
-        'user_email': 'str'
+        'billing_account': 'V1billingaccountsbillingAccountIdBillingAccount',
+        'update_mask': 'str'
     }
 
     attribute_map = {
-        'data_center_id': 'dataCenterId',
-        'project_id': 'projectId',
-        'role': 'role',
-        'user_email': 'userEmail'
+        'billing_account': 'billingAccount',
+        'update_mask': 'updateMask'
     }
 
-    def __init__(self, data_center_id=None, project_id=None, role=None, user_email=None, _configuration=None):  # noqa: E501
+    def __init__(self, billing_account=None, update_mask=None, _configuration=None):  # noqa: E501
         """Body - a model defined in Swagger"""  # noqa: E501
         if _configuration is None:
             _configuration = Configuration()
         self._configuration = _configuration
 
-        self._data_center_id = None
-        self._project_id = None
-        self._role = None
-        self._user_email = None
+        self._billing_account = None
+        self._update_mask = None
         self.discriminator = None
 
-        if data_center_id is not None:
-            self.data_center_id = data_center_id
-        if project_id is not None:
-            self.project_id = project_id
-        self.role = role
-        self.user_email = user_email
+        if billing_account is not None:
+            self.billing_account = billing_account
+        self.update_mask = update_mask
 
     @property
-    def data_center_id(self):
-        """Gets the data_center_id of this Body.  # noqa: E501
+    def billing_account(self):
+        """Gets the billing_account of this Body.  # noqa: E501
 
 
-        :return: The data_center_id of this Body.  # noqa: E501
+        :return: The billing_account of this Body.  # noqa: E501
+        :rtype: V1billingaccountsbillingAccountIdBillingAccount
+        """
+        return self._billing_account
+
+    @billing_account.setter
+    def billing_account(self, billing_account):
+        """Sets the billing_account of this Body.
+
+
+        :param billing_account: The billing_account of this Body.  # noqa: E501
+        :type: V1billingaccountsbillingAccountIdBillingAccount
+        """
+
+        self._billing_account = billing_account
+
+    @property
+    def update_mask(self):
+        """Gets the update_mask of this Body.  # noqa: E501
+
+
+        :return: The update_mask of this Body.  # noqa: E501
         :rtype: str
         """
-        return self._data_center_id
+        return self._update_mask
 
-    @data_center_id.setter
-    def data_center_id(self, data_center_id):
-        """Sets the data_center_id of this Body.
+    @update_mask.setter
+    def update_mask(self, update_mask):
+        """Sets the update_mask of this Body.
 
 
-        :param data_center_id: The data_center_id of this Body.  # noqa: E501
+        :param update_mask: The update_mask of this Body.  # noqa: E501
         :type: str
         """
+        if self._configuration.client_side_validation and update_mask is None:
+            raise ValueError("Invalid value for `update_mask`, must not be `None`")  # noqa: E501
 
-        self._data_center_id = data_center_id
-
-    @property
-    def project_id(self):
-        """Gets the project_id of this Body.  # noqa: E501
-
-
-        :return: The project_id of this Body.  # noqa: E501
-        :rtype: str
-        """
-        return self._project_id
-
-    @project_id.setter
-    def project_id(self, project_id):
-        """Sets the project_id of this Body.
-
-
-        :param project_id: The project_id of this Body.  # noqa: E501
-        :type: str
-        """
-
-        self._project_id = project_id
-
-    @property
-    def role(self):
-        """Gets the role of this Body.  # noqa: E501
-
-
-        :return: The role of this Body.  # noqa: E501
-        :rtype: Role
-        """
-        return self._role
-
-    @role.setter
-    def role(self, role):
-        """Sets the role of this Body.
-
-
-        :param role: The role of this Body.  # noqa: E501
-        :type: Role
-        """
-        if self._configuration.client_side_validation and role is None:
-            raise ValueError("Invalid value for `role`, must not be `None`")  # noqa: E501
-
-        self._role = role
-
-    @property
-    def user_email(self):
-        """Gets the user_email of this Body.  # noqa: E501
-
-
-        :return: The user_email of this Body.  # noqa: E501
-        :rtype: str
-        """
-        return self._user_email
-
-    @user_email.setter
-    def user_email(self, user_email):
-        """Sets the user_email of this Body.
-
-
-        :param user_email: The user_email of this Body.  # noqa: E501
-        :type: str
-        """
-        if self._configuration.client_side_validation and user_email is None:
-            raise ValueError("Invalid value for `user_email`, must not be `None`")  # noqa: E501
-
-        self._user_email = user_email
+        self._update_mask = update_mask
 
     def to_dict(self):
         """Returns the model properties as a dict"""

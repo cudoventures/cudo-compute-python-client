@@ -33,24 +33,63 @@ class Body8(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'data_center_id': 'str'
+        'cidr_prefix': 'str',
+        'data_center_id': 'str',
+        'id': 'str',
+        'network_id': 'str',
+        'vrouter_size': 'VRouterSize'
     }
 
     attribute_map = {
-        'data_center_id': 'dataCenterId'
+        'cidr_prefix': 'cidrPrefix',
+        'data_center_id': 'dataCenterId',
+        'id': 'id',
+        'network_id': 'networkId',
+        'vrouter_size': 'vrouterSize'
     }
 
-    def __init__(self, data_center_id=None, _configuration=None):  # noqa: E501
+    def __init__(self, cidr_prefix=None, data_center_id=None, id=None, network_id=None, vrouter_size=None, _configuration=None):  # noqa: E501
         """Body8 - a model defined in Swagger"""  # noqa: E501
         if _configuration is None:
             _configuration = Configuration()
         self._configuration = _configuration
 
+        self._cidr_prefix = None
         self._data_center_id = None
+        self._id = None
+        self._network_id = None
+        self._vrouter_size = None
         self.discriminator = None
 
-        if data_center_id is not None:
-            self.data_center_id = data_center_id
+        self.cidr_prefix = cidr_prefix
+        self.data_center_id = data_center_id
+        self.id = id
+        self.network_id = network_id
+        if vrouter_size is not None:
+            self.vrouter_size = vrouter_size
+
+    @property
+    def cidr_prefix(self):
+        """Gets the cidr_prefix of this Body8.  # noqa: E501
+
+
+        :return: The cidr_prefix of this Body8.  # noqa: E501
+        :rtype: str
+        """
+        return self._cidr_prefix
+
+    @cidr_prefix.setter
+    def cidr_prefix(self, cidr_prefix):
+        """Sets the cidr_prefix of this Body8.
+
+
+        :param cidr_prefix: The cidr_prefix of this Body8.  # noqa: E501
+        :type: str
+        """
+        if self._configuration.client_side_validation and cidr_prefix is None:
+            raise ValueError("Invalid value for `cidr_prefix`, must not be `None`")  # noqa: E501
+
+        self._cidr_prefix = cidr_prefix
 
     @property
     def data_center_id(self):
@@ -70,8 +109,77 @@ class Body8(object):
         :param data_center_id: The data_center_id of this Body8.  # noqa: E501
         :type: str
         """
+        if self._configuration.client_side_validation and data_center_id is None:
+            raise ValueError("Invalid value for `data_center_id`, must not be `None`")  # noqa: E501
 
         self._data_center_id = data_center_id
+
+    @property
+    def id(self):
+        """Gets the id of this Body8.  # noqa: E501
+
+
+        :return: The id of this Body8.  # noqa: E501
+        :rtype: str
+        """
+        return self._id
+
+    @id.setter
+    def id(self, id):
+        """Sets the id of this Body8.
+
+
+        :param id: The id of this Body8.  # noqa: E501
+        :type: str
+        """
+        if self._configuration.client_side_validation and id is None:
+            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
+
+        self._id = id
+
+    @property
+    def network_id(self):
+        """Gets the network_id of this Body8.  # noqa: E501
+
+
+        :return: The network_id of this Body8.  # noqa: E501
+        :rtype: str
+        """
+        return self._network_id
+
+    @network_id.setter
+    def network_id(self, network_id):
+        """Sets the network_id of this Body8.
+
+
+        :param network_id: The network_id of this Body8.  # noqa: E501
+        :type: str
+        """
+        if self._configuration.client_side_validation and network_id is None:
+            raise ValueError("Invalid value for `network_id`, must not be `None`")  # noqa: E501
+
+        self._network_id = network_id
+
+    @property
+    def vrouter_size(self):
+        """Gets the vrouter_size of this Body8.  # noqa: E501
+
+
+        :return: The vrouter_size of this Body8.  # noqa: E501
+        :rtype: VRouterSize
+        """
+        return self._vrouter_size
+
+    @vrouter_size.setter
+    def vrouter_size(self, vrouter_size):
+        """Sets the vrouter_size of this Body8.
+
+
+        :param vrouter_size: The vrouter_size of this Body8.  # noqa: E501
+        :type: VRouterSize
+        """
+
+        self._vrouter_size = vrouter_size
 
     def to_dict(self):
         """Returns the model properties as a dict"""

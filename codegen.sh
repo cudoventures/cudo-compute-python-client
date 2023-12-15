@@ -7,9 +7,10 @@ cd swagger-codegen
 ./run-in-docker.sh generate -i public.swagger.json \
     -l python -o /gen/out -DpackageName=src.cudo_compute
 cd ..
-cp -r swagger-codegen/out/docs docs
+cp swagger-codegen/out/README.md docs
+cp -r swagger-codegen/out/docs/ docs
 cp -r swagger-codegen/out/src/ docs
-rm -rf swagger-codegen
+#rm -rf swagger-codegen
 
 cp helpers/* docs/src/cudo_compute
 echo "import src.cudo_compute.auth_config as AuthConfig" >> src/cudo_compute/__init__.py

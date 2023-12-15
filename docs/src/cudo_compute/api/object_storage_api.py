@@ -43,7 +43,7 @@ class ObjectStorageApi(object):
 
         :param async_req bool
         :param str project_id: (required)
-        :param Body8 body: (required)
+        :param Body9 body: (required)
         :return: object
                  If the method is called asynchronously,
                  returns the request thread.
@@ -65,7 +65,7 @@ class ObjectStorageApi(object):
 
         :param async_req bool
         :param str project_id: (required)
-        :param Body8 body: (required)
+        :param Body9 body: (required)
         :return: object
                  If the method is called asynchronously,
                  returns the request thread.
@@ -148,7 +148,7 @@ class ObjectStorageApi(object):
 
         :param async_req bool
         :param str project_id: (required)
-        :param Body9 body: (required)
+        :param Body10 body: (required)
         :return: ObjectStorageUser
                  If the method is called asynchronously,
                  returns the request thread.
@@ -170,7 +170,7 @@ class ObjectStorageApi(object):
 
         :param async_req bool
         :param str project_id: (required)
-        :param Body9 body: (required)
+        :param Body10 body: (required)
         :return: ObjectStorageUser
                  If the method is called asynchronously,
                  returns the request thread.

@@ -33,29 +33,58 @@ class Body5(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'billing_account_id': 'str',
         'data_center_id': 'str',
-        'disk': 'Disk'
+        'role': 'Role',
+        'user_email': 'str'
     }
 
     attribute_map = {
+        'billing_account_id': 'billingAccountId',
         'data_center_id': 'dataCenterId',
-        'disk': 'disk'
+        'role': 'role',
+        'user_email': 'userEmail'
     }
 
-    def __init__(self, data_center_id=None, disk=None, _configuration=None):  # noqa: E501
+    def __init__(self, billing_account_id=None, data_center_id=None, role=None, user_email=None, _configuration=None):  # noqa: E501
         """Body5 - a model defined in Swagger"""  # noqa: E501
         if _configuration is None:
             _configuration = Configuration()
         self._configuration = _configuration
 
+        self._billing_account_id = None
         self._data_center_id = None
-        self._disk = None
+        self._role = None
+        self._user_email = None
         self.discriminator = None
 
+        if billing_account_id is not None:
+            self.billing_account_id = billing_account_id
         if data_center_id is not None:
             self.data_center_id = data_center_id
-        if disk is not None:
-            self.disk = disk
+        self.role = role
+        self.user_email = user_email
+
+    @property
+    def billing_account_id(self):
+        """Gets the billing_account_id of this Body5.  # noqa: E501
+
+
+        :return: The billing_account_id of this Body5.  # noqa: E501
+        :rtype: str
+        """
+        return self._billing_account_id
+
+    @billing_account_id.setter
+    def billing_account_id(self, billing_account_id):
+        """Sets the billing_account_id of this Body5.
+
+
+        :param billing_account_id: The billing_account_id of this Body5.  # noqa: E501
+        :type: str
+        """
+
+        self._billing_account_id = billing_account_id
 
     @property
     def data_center_id(self):
@@ -79,25 +108,50 @@ class Body5(object):
         self._data_center_id = data_center_id
 
     @property
-    def disk(self):
-        """Gets the disk of this Body5.  # noqa: E501
+    def role(self):
+        """Gets the role of this Body5.  # noqa: E501
 
 
-        :return: The disk of this Body5.  # noqa: E501
-        :rtype: Disk
+        :return: The role of this Body5.  # noqa: E501
+        :rtype: Role
         """
-        return self._disk
+        return self._role
 
-    @disk.setter
-    def disk(self, disk):
-        """Sets the disk of this Body5.
+    @role.setter
+    def role(self, role):
+        """Sets the role of this Body5.
 
 
-        :param disk: The disk of this Body5.  # noqa: E501
-        :type: Disk
+        :param role: The role of this Body5.  # noqa: E501
+        :type: Role
         """
+        if self._configuration.client_side_validation and role is None:
+            raise ValueError("Invalid value for `role`, must not be `None`")  # noqa: E501
 
-        self._disk = disk
+        self._role = role
+
+    @property
+    def user_email(self):
+        """Gets the user_email of this Body5.  # noqa: E501
+
+
+        :return: The user_email of this Body5.  # noqa: E501
+        :rtype: str
+        """
+        return self._user_email
+
+    @user_email.setter
+    def user_email(self, user_email):
+        """Sets the user_email of this Body5.
+
+
+        :param user_email: The user_email of this Body5.  # noqa: E501
+        :type: str
+        """
+        if self._configuration.client_side_validation and user_email is None:
+            raise ValueError("Invalid value for `user_email`, must not be `None`")  # noqa: E501
+
+        self._user_email = user_email
 
     def to_dict(self):
         """Returns the model properties as a dict"""

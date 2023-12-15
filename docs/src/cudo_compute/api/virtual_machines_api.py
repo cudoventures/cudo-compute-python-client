@@ -33,6 +33,115 @@ class VirtualMachinesApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
+    def attach_security_group(self, project_id, id, **kwargs):  # noqa: E501
+        """Attach security group to VM  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.attach_security_group(project_id, id, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param str project_id: (required)
+        :param str id: (required)
+        :param str security_group_id:
+        :return: AttachSecurityGroupResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.attach_security_group_with_http_info(project_id, id, **kwargs)  # noqa: E501
+        else:
+            (data) = self.attach_security_group_with_http_info(project_id, id, **kwargs)  # noqa: E501
+            return data
+
+    def attach_security_group_with_http_info(self, project_id, id, **kwargs):  # noqa: E501
+        """Attach security group to VM  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.attach_security_group_with_http_info(project_id, id, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param str project_id: (required)
+        :param str id: (required)
+        :param str security_group_id:
+        :return: AttachSecurityGroupResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['project_id', 'id', 'security_group_id']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method attach_security_group" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'project_id' is set
+        if self.api_client.client_side_validation and ('project_id' not in params or
+                                                       params['project_id'] is None):  # noqa: E501
+            raise ValueError("Missing the required parameter `project_id` when calling `attach_security_group`")  # noqa: E501
+        # verify the required parameter 'id' is set
+        if self.api_client.client_side_validation and ('id' not in params or
+                                                       params['id'] is None):  # noqa: E501
+            raise ValueError("Missing the required parameter `id` when calling `attach_security_group`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'project_id' in params:
+            path_params['projectId'] = params['project_id']  # noqa: E501
+        if 'id' in params:
+            path_params['id'] = params['id']  # noqa: E501
+
+        query_params = []
+        if 'security_group_id' in params:
+            query_params.append(('securityGroupId', params['security_group_id']))  # noqa: E501
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = []  # noqa: E501
+
+        return self.api_client.call_api(
+            '/v1/projects/{projectId}/vm/{id}/security-group/attach', 'PATCH',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='AttachSecurityGroupResponse',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
     def connect_vm(self, project_id, id, **kwargs):  # noqa: E501
         """Connect via VNC  # noqa: E501
 
@@ -366,7 +475,7 @@ class VirtualMachinesApi(object):
 
         :param async_req bool
         :param str project_id: (required)
-        :param Body11 body: (required)
+        :param Body12 body: (required)
         :return: CreateVMResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -388,7 +497,7 @@ class VirtualMachinesApi(object):
 
         :param async_req bool
         :param str project_id: (required)
-        :param Body11 body: (required)
+        :param Body12 body: (required)
         :return: CreateVMResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -559,6 +668,115 @@ class VirtualMachinesApi(object):
             post_params=form_params,
             files=local_var_files,
             response_type='DeletePrivateVMImageResponse',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def detach_security_group(self, project_id, id, **kwargs):  # noqa: E501
+        """Attach security group to VM  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.detach_security_group(project_id, id, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param str project_id: (required)
+        :param str id: (required)
+        :param str security_group_id:
+        :return: DetachSecurityGroupResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.detach_security_group_with_http_info(project_id, id, **kwargs)  # noqa: E501
+        else:
+            (data) = self.detach_security_group_with_http_info(project_id, id, **kwargs)  # noqa: E501
+            return data
+
+    def detach_security_group_with_http_info(self, project_id, id, **kwargs):  # noqa: E501
+        """Attach security group to VM  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.detach_security_group_with_http_info(project_id, id, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param str project_id: (required)
+        :param str id: (required)
+        :param str security_group_id:
+        :return: DetachSecurityGroupResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['project_id', 'id', 'security_group_id']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method detach_security_group" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'project_id' is set
+        if self.api_client.client_side_validation and ('project_id' not in params or
+                                                       params['project_id'] is None):  # noqa: E501
+            raise ValueError("Missing the required parameter `project_id` when calling `detach_security_group`")  # noqa: E501
+        # verify the required parameter 'id' is set
+        if self.api_client.client_side_validation and ('id' not in params or
+                                                       params['id'] is None):  # noqa: E501
+            raise ValueError("Missing the required parameter `id` when calling `detach_security_group`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'project_id' in params:
+            path_params['projectId'] = params['project_id']  # noqa: E501
+        if 'id' in params:
+            path_params['id'] = params['id']  # noqa: E501
+
+        query_params = []
+        if 'security_group_id' in params:
+            query_params.append(('securityGroupId', params['security_group_id']))  # noqa: E501
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = []  # noqa: E501
+
+        return self.api_client.call_api(
+            '/v1/projects/{projectId}/vm/{id}/security-group/detach', 'PATCH',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='DetachSecurityGroupResponse',  # noqa: E501
             auth_settings=auth_settings,
             async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
@@ -2272,6 +2490,119 @@ class VirtualMachinesApi(object):
             post_params=form_params,
             files=local_var_files,
             response_type='UpdatePrivateVMImageResponse',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def update_vm_metadata(self, project_id, id, **kwargs):  # noqa: E501
+        """Update VM metadata  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.update_vm_metadata(project_id, id, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param str project_id: (required)
+        :param str id: (required)
+        :param str metadata: This is a request variable of the map type. The query format is \"map_name[key]=value\", e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\"bob\"]=18
+        :param bool merge:
+        :return: UpdateVMMetadataResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.update_vm_metadata_with_http_info(project_id, id, **kwargs)  # noqa: E501
+        else:
+            (data) = self.update_vm_metadata_with_http_info(project_id, id, **kwargs)  # noqa: E501
+            return data
+
+    def update_vm_metadata_with_http_info(self, project_id, id, **kwargs):  # noqa: E501
+        """Update VM metadata  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.update_vm_metadata_with_http_info(project_id, id, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param str project_id: (required)
+        :param str id: (required)
+        :param str metadata: This is a request variable of the map type. The query format is \"map_name[key]=value\", e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\"bob\"]=18
+        :param bool merge:
+        :return: UpdateVMMetadataResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['project_id', 'id', 'metadata', 'merge']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method update_vm_metadata" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'project_id' is set
+        if self.api_client.client_side_validation and ('project_id' not in params or
+                                                       params['project_id'] is None):  # noqa: E501
+            raise ValueError("Missing the required parameter `project_id` when calling `update_vm_metadata`")  # noqa: E501
+        # verify the required parameter 'id' is set
+        if self.api_client.client_side_validation and ('id' not in params or
+                                                       params['id'] is None):  # noqa: E501
+            raise ValueError("Missing the required parameter `id` when calling `update_vm_metadata`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'project_id' in params:
+            path_params['projectId'] = params['project_id']  # noqa: E501
+        if 'id' in params:
+            path_params['id'] = params['id']  # noqa: E501
+
+        query_params = []
+        if 'metadata' in params:
+            query_params.append(('metadata', params['metadata']))  # noqa: E501
+        if 'merge' in params:
+            query_params.append(('merge', params['merge']))  # noqa: E501
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = []  # noqa: E501
+
+        return self.api_client.call_api(
+            '/v1/projects/{projectId}/vm/{id}/metadata', 'POST',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='UpdateVMMetadataResponse',  # noqa: E501
             auth_settings=auth_settings,
             async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),

@@ -33,153 +33,73 @@ class Body7(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'cidr_prefix': 'str',
-        'data_center_id': 'str',
-        'id': 'str',
-        'network_id': 'str',
-        'vrouter_size': 'VRouterSize'
+        'snapshot_id': 'str',
+        'vm_id': 'str'
     }
 
     attribute_map = {
-        'cidr_prefix': 'cidrPrefix',
-        'data_center_id': 'dataCenterId',
-        'id': 'id',
-        'network_id': 'networkId',
-        'vrouter_size': 'vrouterSize'
+        'snapshot_id': 'snapshotId',
+        'vm_id': 'vmId'
     }
 
-    def __init__(self, cidr_prefix=None, data_center_id=None, id=None, network_id=None, vrouter_size=None, _configuration=None):  # noqa: E501
+    def __init__(self, snapshot_id=None, vm_id=None, _configuration=None):  # noqa: E501
         """Body7 - a model defined in Swagger"""  # noqa: E501
         if _configuration is None:
             _configuration = Configuration()
         self._configuration = _configuration
 
-        self._cidr_prefix = None
-        self._data_center_id = None
-        self._id = None
-        self._network_id = None
-        self._vrouter_size = None
+        self._snapshot_id = None
+        self._vm_id = None
         self.discriminator = None
 
-        self.cidr_prefix = cidr_prefix
-        self.data_center_id = data_center_id
-        self.id = id
-        self.network_id = network_id
-        if vrouter_size is not None:
-            self.vrouter_size = vrouter_size
+        self.snapshot_id = snapshot_id
+        self.vm_id = vm_id
 
     @property
-    def cidr_prefix(self):
-        """Gets the cidr_prefix of this Body7.  # noqa: E501
+    def snapshot_id(self):
+        """Gets the snapshot_id of this Body7.  # noqa: E501
 
 
-        :return: The cidr_prefix of this Body7.  # noqa: E501
+        :return: The snapshot_id of this Body7.  # noqa: E501
         :rtype: str
         """
-        return self._cidr_prefix
+        return self._snapshot_id
 
-    @cidr_prefix.setter
-    def cidr_prefix(self, cidr_prefix):
-        """Sets the cidr_prefix of this Body7.
+    @snapshot_id.setter
+    def snapshot_id(self, snapshot_id):
+        """Sets the snapshot_id of this Body7.
 
 
-        :param cidr_prefix: The cidr_prefix of this Body7.  # noqa: E501
+        :param snapshot_id: The snapshot_id of this Body7.  # noqa: E501
         :type: str
         """
-        if self._configuration.client_side_validation and cidr_prefix is None:
-            raise ValueError("Invalid value for `cidr_prefix`, must not be `None`")  # noqa: E501
+        if self._configuration.client_side_validation and snapshot_id is None:
+            raise ValueError("Invalid value for `snapshot_id`, must not be `None`")  # noqa: E501
 
-        self._cidr_prefix = cidr_prefix
+        self._snapshot_id = snapshot_id
 
     @property
-    def data_center_id(self):
-        """Gets the data_center_id of this Body7.  # noqa: E501
+    def vm_id(self):
+        """Gets the vm_id of this Body7.  # noqa: E501
 
 
-        :return: The data_center_id of this Body7.  # noqa: E501
+        :return: The vm_id of this Body7.  # noqa: E501
         :rtype: str
         """
-        return self._data_center_id
+        return self._vm_id
 
-    @data_center_id.setter
-    def data_center_id(self, data_center_id):
-        """Sets the data_center_id of this Body7.
+    @vm_id.setter
+    def vm_id(self, vm_id):
+        """Sets the vm_id of this Body7.
 
 
-        :param data_center_id: The data_center_id of this Body7.  # noqa: E501
+        :param vm_id: The vm_id of this Body7.  # noqa: E501
         :type: str
         """
-        if self._configuration.client_side_validation and data_center_id is None:
-            raise ValueError("Invalid value for `data_center_id`, must not be `None`")  # noqa: E501
+        if self._configuration.client_side_validation and vm_id is None:
+            raise ValueError("Invalid value for `vm_id`, must not be `None`")  # noqa: E501
 
-        self._data_center_id = data_center_id
-
-    @property
-    def id(self):
-        """Gets the id of this Body7.  # noqa: E501
-
-
-        :return: The id of this Body7.  # noqa: E501
-        :rtype: str
-        """
-        return self._id
-
-    @id.setter
-    def id(self, id):
-        """Sets the id of this Body7.
-
-
-        :param id: The id of this Body7.  # noqa: E501
-        :type: str
-        """
-        if self._configuration.client_side_validation and id is None:
-            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
-
-        self._id = id
-
-    @property
-    def network_id(self):
-        """Gets the network_id of this Body7.  # noqa: E501
-
-
-        :return: The network_id of this Body7.  # noqa: E501
-        :rtype: str
-        """
-        return self._network_id
-
-    @network_id.setter
-    def network_id(self, network_id):
-        """Sets the network_id of this Body7.
-
-
-        :param network_id: The network_id of this Body7.  # noqa: E501
-        :type: str
-        """
-        if self._configuration.client_side_validation and network_id is None:
-            raise ValueError("Invalid value for `network_id`, must not be `None`")  # noqa: E501
-
-        self._network_id = network_id
-
-    @property
-    def vrouter_size(self):
-        """Gets the vrouter_size of this Body7.  # noqa: E501
-
-
-        :return: The vrouter_size of this Body7.  # noqa: E501
-        :rtype: VRouterSize
-        """
-        return self._vrouter_size
-
-    @vrouter_size.setter
-    def vrouter_size(self, vrouter_size):
-        """Sets the vrouter_size of this Body7.
-
-
-        :param vrouter_size: The vrouter_size of this Body7.  # noqa: E501
-        :type: VRouterSize
-        """
-
-        self._vrouter_size = vrouter_size
+        self._vm_id = vm_id
 
     def to_dict(self):
         """Returns the model properties as a dict"""

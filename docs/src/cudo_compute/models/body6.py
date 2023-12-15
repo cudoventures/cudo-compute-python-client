@@ -33,73 +33,71 @@ class Body6(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'snapshot_id': 'str',
-        'vm_id': 'str'
+        'data_center_id': 'str',
+        'disk': 'Disk'
     }
 
     attribute_map = {
-        'snapshot_id': 'snapshotId',
-        'vm_id': 'vmId'
+        'data_center_id': 'dataCenterId',
+        'disk': 'disk'
     }
 
-    def __init__(self, snapshot_id=None, vm_id=None, _configuration=None):  # noqa: E501
+    def __init__(self, data_center_id=None, disk=None, _configuration=None):  # noqa: E501
         """Body6 - a model defined in Swagger"""  # noqa: E501
         if _configuration is None:
             _configuration = Configuration()
         self._configuration = _configuration
 
-        self._snapshot_id = None
-        self._vm_id = None
+        self._data_center_id = None
+        self._disk = None
         self.discriminator = None
 
-        self.snapshot_id = snapshot_id
-        self.vm_id = vm_id
+        if data_center_id is not None:
+            self.data_center_id = data_center_id
+        if disk is not None:
+            self.disk = disk
 
     @property
-    def snapshot_id(self):
-        """Gets the snapshot_id of this Body6.  # noqa: E501
+    def data_center_id(self):
+        """Gets the data_center_id of this Body6.  # noqa: E501
 
 
-        :return: The snapshot_id of this Body6.  # noqa: E501
+        :return: The data_center_id of this Body6.  # noqa: E501
         :rtype: str
         """
-        return self._snapshot_id
+        return self._data_center_id
 
-    @snapshot_id.setter
-    def snapshot_id(self, snapshot_id):
-        """Sets the snapshot_id of this Body6.
+    @data_center_id.setter
+    def data_center_id(self, data_center_id):
+        """Sets the data_center_id of this Body6.
 
 
-        :param snapshot_id: The snapshot_id of this Body6.  # noqa: E501
+        :param data_center_id: The data_center_id of this Body6.  # noqa: E501
         :type: str
         """
-        if self._configuration.client_side_validation and snapshot_id is None:
-            raise ValueError("Invalid value for `snapshot_id`, must not be `None`")  # noqa: E501
 
-        self._snapshot_id = snapshot_id
+        self._data_center_id = data_center_id
 
     @property
-    def vm_id(self):
-        """Gets the vm_id of this Body6.  # noqa: E501
+    def disk(self):
+        """Gets the disk of this Body6.  # noqa: E501
 
 
-        :return: The vm_id of this Body6.  # noqa: E501
-        :rtype: str
+        :return: The disk of this Body6.  # noqa: E501
+        :rtype: Disk
         """
-        return self._vm_id
+        return self._disk
 
-    @vm_id.setter
-    def vm_id(self, vm_id):
-        """Sets the vm_id of this Body6.
+    @disk.setter
+    def disk(self, disk):
+        """Sets the disk of this Body6.
 
 
-        :param vm_id: The vm_id of this Body6.  # noqa: E501
-        :type: str
+        :param disk: The disk of this Body6.  # noqa: E501
+        :type: Disk
         """
-        if self._configuration.client_side_validation and vm_id is None:
-            raise ValueError("Invalid value for `vm_id`, must not be `None`")  # noqa: E501
 
-        self._vm_id = vm_id
+        self._disk = disk
 
     def to_dict(self):
         """Returns the model properties as a dict"""

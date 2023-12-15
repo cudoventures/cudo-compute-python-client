@@ -43,7 +43,7 @@ class NetworksApi(object):
 
         :param async_req bool
         :param str project_id: (required)
-        :param Body7 body: (required)
+        :param Body8 body: (required)
         :return: CreateNetworkResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -65,7 +65,7 @@ class NetworksApi(object):
 
         :param async_req bool
         :param str project_id: (required)
-        :param Body7 body: (required)
+        :param Body8 body: (required)
         :return: CreateNetworkResponse
                  If the method is called asynchronously,
                  returns the request thread.

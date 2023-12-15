@@ -33,125 +33,45 @@ class Body10(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'billing_account_id': 'str',
-        'data_center_id': 'str',
-        'role': 'Role',
-        'user_id': 'str'
+        'id': 'str'
     }
 
     attribute_map = {
-        'billing_account_id': 'billingAccountId',
-        'data_center_id': 'dataCenterId',
-        'role': 'role',
-        'user_id': 'userId'
+        'id': 'id'
     }
 
-    def __init__(self, billing_account_id=None, data_center_id=None, role=None, user_id=None, _configuration=None):  # noqa: E501
+    def __init__(self, id=None, _configuration=None):  # noqa: E501
         """Body10 - a model defined in Swagger"""  # noqa: E501
         if _configuration is None:
             _configuration = Configuration()
         self._configuration = _configuration
 
-        self._billing_account_id = None
-        self._data_center_id = None
-        self._role = None
-        self._user_id = None
+        self._id = None
         self.discriminator = None
 
-        if billing_account_id is not None:
-            self.billing_account_id = billing_account_id
-        if data_center_id is not None:
-            self.data_center_id = data_center_id
-        self.role = role
-        self.user_id = user_id
+        if id is not None:
+            self.id = id
 
     @property
-    def billing_account_id(self):
-        """Gets the billing_account_id of this Body10.  # noqa: E501
+    def id(self):
+        """Gets the id of this Body10.  # noqa: E501
 
 
-        :return: The billing_account_id of this Body10.  # noqa: E501
+        :return: The id of this Body10.  # noqa: E501
         :rtype: str
         """
-        return self._billing_account_id
+        return self._id
 
-    @billing_account_id.setter
-    def billing_account_id(self, billing_account_id):
-        """Sets the billing_account_id of this Body10.
+    @id.setter
+    def id(self, id):
+        """Sets the id of this Body10.
 
 
-        :param billing_account_id: The billing_account_id of this Body10.  # noqa: E501
+        :param id: The id of this Body10.  # noqa: E501
         :type: str
         """
 
-        self._billing_account_id = billing_account_id
-
-    @property
-    def data_center_id(self):
-        """Gets the data_center_id of this Body10.  # noqa: E501
-
-
-        :return: The data_center_id of this Body10.  # noqa: E501
-        :rtype: str
-        """
-        return self._data_center_id
-
-    @data_center_id.setter
-    def data_center_id(self, data_center_id):
-        """Sets the data_center_id of this Body10.
-
-
-        :param data_center_id: The data_center_id of this Body10.  # noqa: E501
-        :type: str
-        """
-
-        self._data_center_id = data_center_id
-
-    @property
-    def role(self):
-        """Gets the role of this Body10.  # noqa: E501
-
-
-        :return: The role of this Body10.  # noqa: E501
-        :rtype: Role
-        """
-        return self._role
-
-    @role.setter
-    def role(self, role):
-        """Sets the role of this Body10.
-
-
-        :param role: The role of this Body10.  # noqa: E501
-        :type: Role
-        """
-        if self._configuration.client_side_validation and role is None:
-            raise ValueError("Invalid value for `role`, must not be `None`")  # noqa: E501
-
-        self._role = role
-
-    @property
-    def user_id(self):
-        """Gets the user_id of this Body10.  # noqa: E501
-
-
-        :return: The user_id of this Body10.  # noqa: E501
-        :rtype: str
-        """
-        return self._user_id
-
-    @user_id.setter
-    def user_id(self, user_id):
-        """Sets the user_id of this Body10.
-
-
-        :param user_id: The user_id of this Body10.  # noqa: E501
-        :type: str
-        """
-        if self._configuration.client_side_validation and user_id is None:
-            raise ValueError("Invalid value for `user_id`, must not be `None`")  # noqa: E501
-
-        self._user_id = user_id
+        self._id = id
 
     def to_dict(self):
         """Returns the model properties as a dict"""

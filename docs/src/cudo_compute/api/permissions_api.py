@@ -43,7 +43,7 @@ class PermissionsApi(object):
 
         :param async_req bool
         :param str billing_account_id: (required)
-        :param Body body: (required)
+        :param Body1 body: (required)
         :return: object
                  If the method is called asynchronously,
                  returns the request thread.
@@ -65,7 +65,7 @@ class PermissionsApi(object):
 
         :param async_req bool
         :param str billing_account_id: (required)
-        :param Body body: (required)
+        :param Body1 body: (required)
         :return: object
                  If the method is called asynchronously,
                  returns the request thread.
@@ -148,7 +148,7 @@ class PermissionsApi(object):
 
         :param async_req bool
         :param str data_center_id: (required)
-        :param Body2 body: (required)
+        :param Body3 body: (required)
         :return: object
                  If the method is called asynchronously,
                  returns the request thread.
@@ -170,7 +170,7 @@ class PermissionsApi(object):
 
         :param async_req bool
         :param str data_center_id: (required)
-        :param Body2 body: (required)
+        :param Body3 body: (required)
         :return: object
                  If the method is called asynchronously,
                  returns the request thread.
@@ -253,7 +253,7 @@ class PermissionsApi(object):
 
         :param async_req bool
         :param str project_id: (required)
-        :param Body4 body: (required)
+        :param Body5 body: (required)
         :return: object
                  If the method is called asynchronously,
                  returns the request thread.
@@ -275,7 +275,7 @@ class PermissionsApi(object):
 
         :param async_req bool
         :param str project_id: (required)
-        :param Body4 body: (required)
+        :param Body5 body: (required)
         :return: object
                  If the method is called asynchronously,
                  returns the request thread.
@@ -459,7 +459,7 @@ class PermissionsApi(object):
 
         :param async_req bool
         :param str billing_account_id: (required)
-        :param Body1 body: (required)
+        :param Body2 body: (required)
         :return: object
                  If the method is called asynchronously,
                  returns the request thread.
@@ -481,7 +481,7 @@ class PermissionsApi(object):
 
         :param async_req bool
         :param str billing_account_id: (required)
-        :param Body1 body: (required)
+        :param Body2 body: (required)
         :return: object
                  If the method is called asynchronously,
                  returns the request thread.
@@ -564,7 +564,7 @@ class PermissionsApi(object):
 
         :param async_req bool
         :param str data_center_id: (required)
-        :param Body3 body: (required)
+        :param Body4 body: (required)
         :return: object
                  If the method is called asynchronously,
                  returns the request thread.
@@ -586,7 +586,7 @@ class PermissionsApi(object):
 
         :param async_req bool
         :param str data_center_id: (required)
-        :param Body3 body: (required)
+        :param Body4 body: (required)
         :return: object
                  If the method is called asynchronously,
                  returns the request thread.
@@ -669,7 +669,7 @@ class PermissionsApi(object):
 
         :param async_req bool
         :param str project_id: (required)
-        :param Body10 body: (required)
+        :param Body11 body: (required)
         :return: object
                  If the method is called asynchronously,
                  returns the request thread.
@@ -691,7 +691,7 @@ class PermissionsApi(object):
 
         :param async_req bool
         :param str project_id: (required)
-        :param Body10 body: (required)
+        :param Body11 body: (required)
         :return: object
                  If the method is called asynchronously,
                  returns the request thread.

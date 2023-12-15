@@ -65,7 +65,8 @@ class VM(object):
         'security_group_ids': 'list[str]',
         'short_state': 'str',
         'storage_disks': 'list[Disk]',
-        'vcpus': 'int'
+        'vcpus': 'int',
+        'vm_state': 'VmState'
     }
 
     attribute_map = {
@@ -101,10 +102,11 @@ class VM(object):
         'security_group_ids': 'securityGroupIds',
         'short_state': 'shortState',
         'storage_disks': 'storageDisks',
-        'vcpus': 'vcpus'
+        'vcpus': 'vcpus',
+        'vm_state': 'vmState'
     }
 
-    def __init__(self, active_state=None, boot_disk=None, boot_disk_size_gib=None, cpu_model=None, create_by=None, datacenter_id=None, external_ip_address=None, gpu_model=None, gpu_quantity=None, id=None, image_id=None, image_name=None, init_state=None, internal_ip_address=None, lcm_state=None, machine_type=None, memory=None, metadata=None, nics=None, one_state=None, price_hr=None, private_image_id=None, public_image_id=None, public_image_name=None, public_ip_address=None, region_id=None, region_name=None, renewable_energy=None, rules=None, security_group_ids=None, short_state=None, storage_disks=None, vcpus=None, _configuration=None):  # noqa: E501
+    def __init__(self, active_state=None, boot_disk=None, boot_disk_size_gib=None, cpu_model=None, create_by=None, datacenter_id=None, external_ip_address=None, gpu_model=None, gpu_quantity=None, id=None, image_id=None, image_name=None, init_state=None, internal_ip_address=None, lcm_state=None, machine_type=None, memory=None, metadata=None, nics=None, one_state=None, price_hr=None, private_image_id=None, public_image_id=None, public_image_name=None, public_ip_address=None, region_id=None, region_name=None, renewable_energy=None, rules=None, security_group_ids=None, short_state=None, storage_disks=None, vcpus=None, vm_state=None, _configuration=None):  # noqa: E501
         """VM - a model defined in Swagger"""  # noqa: E501
         if _configuration is None:
             _configuration = Configuration()
@@ -143,6 +145,7 @@ class VM(object):
         self._short_state = None
         self._storage_disks = None
         self._vcpus = None
+        self._vm_state = None
         self.discriminator = None
 
         if active_state is not None:
@@ -211,6 +214,8 @@ class VM(object):
             self.storage_disks = storage_disks
         if vcpus is not None:
             self.vcpus = vcpus
+        if vm_state is not None:
+            self.vm_state = vm_state
 
     @property
     def active_state(self):
@@ -904,6 +909,27 @@ class VM(object):
         """
 
         self._vcpus = vcpus
+
+    @property
+    def vm_state(self):
+        """Gets the vm_state of this VM.  # noqa: E501
+
+
+        :return: The vm_state of this VM.  # noqa: E501
+        :rtype: VmState
+        """
+        return self._vm_state
+
+    @vm_state.setter
+    def vm_state(self, vm_state):
+        """Sets the vm_state of this VM.
+
+
+        :param vm_state: The vm_state of this VM.  # noqa: E501
+        :type: VmState
+        """
+
+        self._vm_state = vm_state
 
     def to_dict(self):
         """Returns the model properties as a dict"""

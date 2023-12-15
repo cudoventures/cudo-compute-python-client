@@ -41,8 +41,7 @@ class Network(object):
         'init_state': 'str',
         'internal_ip_address': 'str',
         'ip_range': 'str',
-        'one_lcm_state': 'str',
-        'one_state': 'str',
+        'network_state': 'NetworkState',
         'price_hr': 'Decimal',
         'short_state': 'str',
         'size': 'VRouterSize'
@@ -57,14 +56,13 @@ class Network(object):
         'init_state': 'initState',
         'internal_ip_address': 'internalIpAddress',
         'ip_range': 'ipRange',
-        'one_lcm_state': 'oneLcmState',
-        'one_state': 'oneState',
+        'network_state': 'networkState',
         'price_hr': 'priceHr',
         'short_state': 'shortState',
         'size': 'size'
     }
 
-    def __init__(self, active_state=None, data_center_id=None, external_ip_address=None, gateway=None, id=None, init_state=None, internal_ip_address=None, ip_range=None, one_lcm_state=None, one_state=None, price_hr=None, short_state=None, size=None, _configuration=None):  # noqa: E501
+    def __init__(self, active_state=None, data_center_id=None, external_ip_address=None, gateway=None, id=None, init_state=None, internal_ip_address=None, ip_range=None, network_state=None, price_hr=None, short_state=None, size=None, _configuration=None):  # noqa: E501
         """Network - a model defined in Swagger"""  # noqa: E501
         if _configuration is None:
             _configuration = Configuration()
@@ -78,8 +76,7 @@ class Network(object):
         self._init_state = None
         self._internal_ip_address = None
         self._ip_range = None
-        self._one_lcm_state = None
-        self._one_state = None
+        self._network_state = None
         self._price_hr = None
         self._short_state = None
         self._size = None
@@ -101,10 +98,8 @@ class Network(object):
             self.internal_ip_address = internal_ip_address
         if ip_range is not None:
             self.ip_range = ip_range
-        if one_lcm_state is not None:
-            self.one_lcm_state = one_lcm_state
-        if one_state is not None:
-            self.one_state = one_state
+        if network_state is not None:
+            self.network_state = network_state
         if price_hr is not None:
             self.price_hr = price_hr
         if short_state is not None:
@@ -281,46 +276,25 @@ class Network(object):
         self._ip_range = ip_range
 
     @property
-    def one_lcm_state(self):
-        """Gets the one_lcm_state of this Network.  # noqa: E501
+    def network_state(self):
+        """Gets the network_state of this Network.  # noqa: E501
 
 
-        :return: The one_lcm_state of this Network.  # noqa: E501
-        :rtype: str
+        :return: The network_state of this Network.  # noqa: E501
+        :rtype: NetworkState
         """
-        return self._one_lcm_state
+        return self._network_state
 
-    @one_lcm_state.setter
-    def one_lcm_state(self, one_lcm_state):
-        """Sets the one_lcm_state of this Network.
-
-
-        :param one_lcm_state: The one_lcm_state of this Network.  # noqa: E501
-        :type: str
-        """
-
-        self._one_lcm_state = one_lcm_state
-
-    @property
-    def one_state(self):
-        """Gets the one_state of this Network.  # noqa: E501
+    @network_state.setter
+    def network_state(self, network_state):
+        """Sets the network_state of this Network.
 
 
-        :return: The one_state of this Network.  # noqa: E501
-        :rtype: str
-        """
-        return self._one_state
-
-    @one_state.setter
-    def one_state(self, one_state):
-        """Sets the one_state of this Network.
-
-
-        :param one_state: The one_state of this Network.  # noqa: E501
-        :type: str
+        :param network_state: The network_state of this Network.  # noqa: E501
+        :type: NetworkState
         """
 
-        self._one_state = one_state
+        self._network_state = network_state
 
     @property
     def price_hr(self):

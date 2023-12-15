@@ -153,7 +153,7 @@ class DisksApi(object):
         :param async_req bool
         :param str project_id: (required)
         :param str id: (required)
-        :param Body6 body: (required)
+        :param Body7 body: (required)
         :return: CreateDiskSnapshotResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -176,7 +176,7 @@ class DisksApi(object):
         :param async_req bool
         :param str project_id: (required)
         :param str id: (required)
-        :param Body6 body: (required)
+        :param Body7 body: (required)
         :return: CreateDiskSnapshotResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -265,7 +265,7 @@ class DisksApi(object):
 
         :param async_req bool
         :param str project_id: (required)
-        :param Body5 body: (required)
+        :param Body6 body: (required)
         :return: CreateStorageDiskResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -287,7 +287,7 @@ class DisksApi(object):
 
         :param async_req bool
         :param str project_id: (required)
-        :param Body5 body: (required)
+        :param Body6 body: (required)
         :return: CreateStorageDiskResponse
                  If the method is called asynchronously,
                  returns the request thread.

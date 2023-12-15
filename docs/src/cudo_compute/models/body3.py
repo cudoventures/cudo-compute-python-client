@@ -36,17 +36,17 @@ class Body3(object):
         'billing_account_id': 'str',
         'project_id': 'str',
         'role': 'Role',
-        'user_id': 'str'
+        'user_email': 'str'
     }
 
     attribute_map = {
         'billing_account_id': 'billingAccountId',
         'project_id': 'projectId',
         'role': 'role',
-        'user_id': 'userId'
+        'user_email': 'userEmail'
     }
 
-    def __init__(self, billing_account_id=None, project_id=None, role=None, user_id=None, _configuration=None):  # noqa: E501
+    def __init__(self, billing_account_id=None, project_id=None, role=None, user_email=None, _configuration=None):  # noqa: E501
         """Body3 - a model defined in Swagger"""  # noqa: E501
         if _configuration is None:
             _configuration = Configuration()
@@ -55,7 +55,7 @@ class Body3(object):
         self._billing_account_id = None
         self._project_id = None
         self._role = None
-        self._user_id = None
+        self._user_email = None
         self.discriminator = None
 
         if billing_account_id is not None:
@@ -63,7 +63,7 @@ class Body3(object):
         if project_id is not None:
             self.project_id = project_id
         self.role = role
-        self.user_id = user_id
+        self.user_email = user_email
 
     @property
     def billing_account_id(self):
@@ -131,27 +131,27 @@ class Body3(object):
         self._role = role
 
     @property
-    def user_id(self):
-        """Gets the user_id of this Body3.  # noqa: E501
+    def user_email(self):
+        """Gets the user_email of this Body3.  # noqa: E501
 
 
-        :return: The user_id of this Body3.  # noqa: E501
+        :return: The user_email of this Body3.  # noqa: E501
         :rtype: str
         """
-        return self._user_id
+        return self._user_email
 
-    @user_id.setter
-    def user_id(self, user_id):
-        """Sets the user_id of this Body3.
+    @user_email.setter
+    def user_email(self, user_email):
+        """Sets the user_email of this Body3.
 
 
-        :param user_id: The user_id of this Body3.  # noqa: E501
+        :param user_email: The user_email of this Body3.  # noqa: E501
         :type: str
         """
-        if self._configuration.client_side_validation and user_id is None:
-            raise ValueError("Invalid value for `user_id`, must not be `None`")  # noqa: E501
+        if self._configuration.client_side_validation and user_email is None:
+            raise ValueError("Invalid value for `user_email`, must not be `None`")  # noqa: E501
 
-        self._user_id = user_id
+        self._user_email = user_email
 
     def to_dict(self):
         """Returns the model properties as a dict"""

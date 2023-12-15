@@ -33,45 +33,45 @@ class Body9(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'id': 'str'
+        'data_center_id': 'str'
     }
 
     attribute_map = {
-        'id': 'id'
+        'data_center_id': 'dataCenterId'
     }
 
-    def __init__(self, id=None, _configuration=None):  # noqa: E501
+    def __init__(self, data_center_id=None, _configuration=None):  # noqa: E501
         """Body9 - a model defined in Swagger"""  # noqa: E501
         if _configuration is None:
             _configuration = Configuration()
         self._configuration = _configuration
 
-        self._id = None
+        self._data_center_id = None
         self.discriminator = None
 
-        if id is not None:
-            self.id = id
+        if data_center_id is not None:
+            self.data_center_id = data_center_id
 
     @property
-    def id(self):
-        """Gets the id of this Body9.  # noqa: E501
+    def data_center_id(self):
+        """Gets the data_center_id of this Body9.  # noqa: E501
 
 
-        :return: The id of this Body9.  # noqa: E501
+        :return: The data_center_id of this Body9.  # noqa: E501
         :rtype: str
         """
-        return self._id
+        return self._data_center_id
 
-    @id.setter
-    def id(self, id):
-        """Sets the id of this Body9.
+    @data_center_id.setter
+    def data_center_id(self, data_center_id):
+        """Sets the data_center_id of this Body9.
 
 
-        :param id: The id of this Body9.  # noqa: E501
+        :param data_center_id: The data_center_id of this Body9.  # noqa: E501
         :type: str
         """
 
-        self._id = id
+        self._data_center_id = data_center_id
 
     def to_dict(self):
         """Returns the model properties as a dict"""
