@@ -20,7 +20,7 @@ Method | HTTP request | Description
 
 
 # **create_billing_account**
-> BillingAccount create_billing_account(body)
+> BillingAccount create_billing_account(create_billing_account_body)
 
 Create a billing account
 
@@ -34,11 +34,11 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = src.cudo_compute.BillingApi()
-body = src.cudo_compute.CreateBillingAccountRequest() # CreateBillingAccountRequest | 
+create_billing_account_body = src.cudo_compute.CreateBillingAccountRequest() # CreateBillingAccountRequest | 
 
 try:
     # Create a billing account
-    api_response = api_instance.create_billing_account(body)
+    api_response = api_instance.create_billing_account(create_billing_account_body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling BillingApi->create_billing_account: %s\n" % e)
@@ -48,7 +48,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CreateBillingAccountRequest**](CreateBillingAccountRequest.md)|  | 
+ **create_billing_account_body** | [**CreateBillingAccountRequest**](CreateBillingAccountRequest.md)|  | 
 
 ### Return type
 
@@ -584,7 +584,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_billing_account**
-> BillingAccount update_billing_account(billing_account_id, body)
+> BillingAccount update_billing_account(billing_account_id, update_billing_account_body)
 
 Update billing account
 
@@ -599,11 +599,11 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = src.cudo_compute.BillingApi()
 billing_account_id = 'billing_account_id_example' # str | 
-body = src.cudo_compute.Body() # Body | 
+update_billing_account_body = src.cudo_compute.UpdateBillingAccountBody() # UpdateBillingAccountBody | 
 
 try:
     # Update billing account
-    api_response = api_instance.update_billing_account(billing_account_id, body)
+    api_response = api_instance.update_billing_account(billing_account_id, update_billing_account_body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling BillingApi->update_billing_account: %s\n" % e)
@@ -614,7 +614,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **billing_account_id** | **str**|  | 
- **body** | [**Body**](Body.md)|  | 
+ **update_billing_account_body** | [**UpdateBillingAccountBody**](UpdateBillingAccountBody.md)|  | 
 
 ### Return type
 

@@ -67,7 +67,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_disk_snapshot**
-> CreateDiskSnapshotResponse create_disk_snapshot(project_id, id, body)
+> CreateDiskSnapshotResponse create_disk_snapshot(project_id, id, create_disk_snapshot_body)
 
 Create Disk Snapshot
 
@@ -83,11 +83,11 @@ from pprint import pprint
 api_instance = src.cudo_compute.DisksApi()
 project_id = 'project_id_example' # str | 
 id = 'id_example' # str | 
-body = src.cudo_compute.Body7() # Body7 | 
+create_disk_snapshot_body = src.cudo_compute.CreateDiskSnapshotBody() # CreateDiskSnapshotBody | 
 
 try:
     # Create Disk Snapshot
-    api_response = api_instance.create_disk_snapshot(project_id, id, body)
+    api_response = api_instance.create_disk_snapshot(project_id, id, create_disk_snapshot_body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DisksApi->create_disk_snapshot: %s\n" % e)
@@ -99,7 +99,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project_id** | **str**|  | 
  **id** | **str**|  | 
- **body** | [**Body7**](Body7.md)|  | 
+ **create_disk_snapshot_body** | [**CreateDiskSnapshotBody**](CreateDiskSnapshotBody.md)|  | 
 
 ### Return type
 
@@ -117,7 +117,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_storage_disk**
-> CreateStorageDiskResponse create_storage_disk(project_id, body)
+> CreateStorageDiskResponse create_storage_disk(project_id, create_storage_disk_body)
 
 Create storage disk
 
@@ -132,11 +132,11 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = src.cudo_compute.DisksApi()
 project_id = 'project_id_example' # str | 
-body = src.cudo_compute.Body6() # Body6 | 
+create_storage_disk_body = src.cudo_compute.CreateStorageDiskBody() # CreateStorageDiskBody | 
 
 try:
     # Create storage disk
-    api_response = api_instance.create_storage_disk(project_id, body)
+    api_response = api_instance.create_storage_disk(project_id, create_storage_disk_body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DisksApi->create_storage_disk: %s\n" % e)
@@ -147,7 +147,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project_id** | **str**|  | 
- **body** | [**Body6**](Body6.md)|  | 
+ **create_storage_disk_body** | [**CreateStorageDiskBody**](CreateStorageDiskBody.md)|  | 
 
 ### Return type
 

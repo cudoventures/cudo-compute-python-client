@@ -13,11 +13,13 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: "3.x"
+      - name: Gen Swagger File
+        run: python3 tools/swaggerfix.py
       - name: Run Swagger Codegen
         uses: ./.github/actions/swagger-codegen
         with:
           output: out
-          input: swagger/public.swagger.json
+          input: fix.swagger.json
           action: generate
       - name: Copy files
         run: |

@@ -229,7 +229,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_vm**
-> CreateVMResponse create_vm(project_id, body)
+> CreateVMResponse create_vm(project_id, create_vm_body)
 
 Create virtual machine
 
@@ -244,11 +244,11 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = src.cudo_compute.VirtualMachinesApi()
 project_id = 'project_id_example' # str | 
-body = src.cudo_compute.Body12() # Body12 | 
+create_vm_body = src.cudo_compute.CreateVMBody() # CreateVMBody | 
 
 try:
     # Create virtual machine
-    api_response = api_instance.create_vm(project_id, body)
+    api_response = api_instance.create_vm(project_id, create_vm_body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling VirtualMachinesApi->create_vm: %s\n" % e)
@@ -259,7 +259,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project_id** | **str**|  | 
- **body** | [**Body12**](Body12.md)|  | 
+ **create_vm_body** | [**CreateVMBody**](CreateVMBody.md)|  | 
 
 ### Return type
 

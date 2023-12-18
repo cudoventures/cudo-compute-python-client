@@ -142,47 +142,47 @@ class DisksApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def create_disk_snapshot(self, project_id, id, body, **kwargs):  # noqa: E501
+    def create_disk_snapshot(self, project_id, id, create_disk_snapshot_body, **kwargs):  # noqa: E501
         """Create Disk Snapshot  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.create_disk_snapshot(project_id, id, body, async_req=True)
+        >>> thread = api.create_disk_snapshot(project_id, id, create_disk_snapshot_body, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str project_id: (required)
         :param str id: (required)
-        :param Body7 body: (required)
+        :param CreateDiskSnapshotBody create_disk_snapshot_body: (required)
         :return: CreateDiskSnapshotResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.create_disk_snapshot_with_http_info(project_id, id, body, **kwargs)  # noqa: E501
+            return self.create_disk_snapshot_with_http_info(project_id, id, create_disk_snapshot_body, **kwargs)  # noqa: E501
         else:
-            (data) = self.create_disk_snapshot_with_http_info(project_id, id, body, **kwargs)  # noqa: E501
+            (data) = self.create_disk_snapshot_with_http_info(project_id, id, create_disk_snapshot_body, **kwargs)  # noqa: E501
             return data
 
-    def create_disk_snapshot_with_http_info(self, project_id, id, body, **kwargs):  # noqa: E501
+    def create_disk_snapshot_with_http_info(self, project_id, id, create_disk_snapshot_body, **kwargs):  # noqa: E501
         """Create Disk Snapshot  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.create_disk_snapshot_with_http_info(project_id, id, body, async_req=True)
+        >>> thread = api.create_disk_snapshot_with_http_info(project_id, id, create_disk_snapshot_body, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str project_id: (required)
         :param str id: (required)
-        :param Body7 body: (required)
+        :param CreateDiskSnapshotBody create_disk_snapshot_body: (required)
         :return: CreateDiskSnapshotResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['project_id', 'id', 'body']  # noqa: E501
+        all_params = ['project_id', 'id', 'create_disk_snapshot_body']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -205,10 +205,10 @@ class DisksApi(object):
         if self.api_client.client_side_validation and ('id' not in params or
                                                        params['id'] is None):  # noqa: E501
             raise ValueError("Missing the required parameter `id` when calling `create_disk_snapshot`")  # noqa: E501
-        # verify the required parameter 'body' is set
-        if self.api_client.client_side_validation and ('body' not in params or
-                                                       params['body'] is None):  # noqa: E501
-            raise ValueError("Missing the required parameter `body` when calling `create_disk_snapshot`")  # noqa: E501
+        # verify the required parameter 'create_disk_snapshot_body' is set
+        if self.api_client.client_side_validation and ('create_disk_snapshot_body' not in params or
+                                                       params['create_disk_snapshot_body'] is None):  # noqa: E501
+            raise ValueError("Missing the required parameter `create_disk_snapshot_body` when calling `create_disk_snapshot`")  # noqa: E501
 
         collection_formats = {}
 
@@ -226,8 +226,8 @@ class DisksApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if 'create_disk_snapshot_body' in params:
+            body_params = params['create_disk_snapshot_body']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -255,45 +255,45 @@ class DisksApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def create_storage_disk(self, project_id, body, **kwargs):  # noqa: E501
+    def create_storage_disk(self, project_id, create_storage_disk_body, **kwargs):  # noqa: E501
         """Create storage disk  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.create_storage_disk(project_id, body, async_req=True)
+        >>> thread = api.create_storage_disk(project_id, create_storage_disk_body, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str project_id: (required)
-        :param Body6 body: (required)
+        :param CreateStorageDiskBody create_storage_disk_body: (required)
         :return: CreateStorageDiskResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.create_storage_disk_with_http_info(project_id, body, **kwargs)  # noqa: E501
+            return self.create_storage_disk_with_http_info(project_id, create_storage_disk_body, **kwargs)  # noqa: E501
         else:
-            (data) = self.create_storage_disk_with_http_info(project_id, body, **kwargs)  # noqa: E501
+            (data) = self.create_storage_disk_with_http_info(project_id, create_storage_disk_body, **kwargs)  # noqa: E501
             return data
 
-    def create_storage_disk_with_http_info(self, project_id, body, **kwargs):  # noqa: E501
+    def create_storage_disk_with_http_info(self, project_id, create_storage_disk_body, **kwargs):  # noqa: E501
         """Create storage disk  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.create_storage_disk_with_http_info(project_id, body, async_req=True)
+        >>> thread = api.create_storage_disk_with_http_info(project_id, create_storage_disk_body, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str project_id: (required)
-        :param Body6 body: (required)
+        :param CreateStorageDiskBody create_storage_disk_body: (required)
         :return: CreateStorageDiskResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['project_id', 'body']  # noqa: E501
+        all_params = ['project_id', 'create_storage_disk_body']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -312,10 +312,10 @@ class DisksApi(object):
         if self.api_client.client_side_validation and ('project_id' not in params or
                                                        params['project_id'] is None):  # noqa: E501
             raise ValueError("Missing the required parameter `project_id` when calling `create_storage_disk`")  # noqa: E501
-        # verify the required parameter 'body' is set
-        if self.api_client.client_side_validation and ('body' not in params or
-                                                       params['body'] is None):  # noqa: E501
-            raise ValueError("Missing the required parameter `body` when calling `create_storage_disk`")  # noqa: E501
+        # verify the required parameter 'create_storage_disk_body' is set
+        if self.api_client.client_side_validation and ('create_storage_disk_body' not in params or
+                                                       params['create_storage_disk_body'] is None):  # noqa: E501
+            raise ValueError("Missing the required parameter `create_storage_disk_body` when calling `create_storage_disk`")  # noqa: E501
 
         collection_formats = {}
 
@@ -331,8 +331,8 @@ class DisksApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if 'create_storage_disk_body' in params:
+            body_params = params['create_storage_disk_body']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501

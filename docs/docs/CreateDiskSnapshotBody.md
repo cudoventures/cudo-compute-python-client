@@ -1,4 +1,4 @@
-# Body7
+# CreateDiskSnapshotBody
 
 ## Properties
 Name | Type | Description | Notes

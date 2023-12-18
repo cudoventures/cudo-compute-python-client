@@ -132,45 +132,45 @@ class APIKeysApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def generate_api_key(self, body, **kwargs):  # noqa: E501
+    def generate_api_key(self, generate_api_key_body, **kwargs):  # noqa: E501
         """Generate  # noqa: E501
 
         Creates a new API key for the requesting user. The API key is returned in the response, and this is the only time it can be viewed.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.generate_api_key(body, async_req=True)
+        >>> thread = api.generate_api_key(generate_api_key_body, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param GenerateApiKeyRequest body: (required)
+        :param GenerateApiKeyRequest generate_api_key_body: (required)
         :return: ApiKey
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.generate_api_key_with_http_info(body, **kwargs)  # noqa: E501
+            return self.generate_api_key_with_http_info(generate_api_key_body, **kwargs)  # noqa: E501
         else:
-            (data) = self.generate_api_key_with_http_info(body, **kwargs)  # noqa: E501
+            (data) = self.generate_api_key_with_http_info(generate_api_key_body, **kwargs)  # noqa: E501
             return data
 
-    def generate_api_key_with_http_info(self, body, **kwargs):  # noqa: E501
+    def generate_api_key_with_http_info(self, generate_api_key_body, **kwargs):  # noqa: E501
         """Generate  # noqa: E501
 
         Creates a new API key for the requesting user. The API key is returned in the response, and this is the only time it can be viewed.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.generate_api_key_with_http_info(body, async_req=True)
+        >>> thread = api.generate_api_key_with_http_info(generate_api_key_body, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param GenerateApiKeyRequest body: (required)
+        :param GenerateApiKeyRequest generate_api_key_body: (required)
         :return: ApiKey
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['body']  # noqa: E501
+        all_params = ['generate_api_key_body']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -185,10 +185,10 @@ class APIKeysApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'body' is set
-        if self.api_client.client_side_validation and ('body' not in params or
-                                                       params['body'] is None):  # noqa: E501
-            raise ValueError("Missing the required parameter `body` when calling `generate_api_key`")  # noqa: E501
+        # verify the required parameter 'generate_api_key_body' is set
+        if self.api_client.client_side_validation and ('generate_api_key_body' not in params or
+                                                       params['generate_api_key_body'] is None):  # noqa: E501
+            raise ValueError("Missing the required parameter `generate_api_key_body` when calling `generate_api_key`")  # noqa: E501
 
         collection_formats = {}
 
@@ -202,8 +202,8 @@ class APIKeysApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if 'generate_api_key_body' in params:
+            body_params = params['generate_api_key_body']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501

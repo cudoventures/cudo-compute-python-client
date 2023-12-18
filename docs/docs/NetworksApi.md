@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 
 # **create_network**
-> CreateNetworkResponse create_network(project_id, body)
+> CreateNetworkResponse create_network(project_id, create_network_body)
 
 Create network
 
@@ -33,11 +33,11 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = src.cudo_compute.NetworksApi()
 project_id = 'project_id_example' # str | 
-body = src.cudo_compute.Body8() # Body8 | 
+create_network_body = src.cudo_compute.CreateNetworkBody() # CreateNetworkBody | 
 
 try:
     # Create network
-    api_response = api_instance.create_network(project_id, body)
+    api_response = api_instance.create_network(project_id, create_network_body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling NetworksApi->create_network: %s\n" % e)
@@ -48,7 +48,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project_id** | **str**|  | 
- **body** | [**Body8**](Body8.md)|  | 
+ **create_network_body** | [**CreateNetworkBody**](CreateNetworkBody.md)|  | 
 
 ### Return type
 

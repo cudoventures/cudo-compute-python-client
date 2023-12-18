@@ -1,10 +1,10 @@
-# Body3
+# AddProjectUserPermissionBody
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **billing_account_id** | **str** |  | [optional] 
-**project_id** | **str** |  | [optional] 
+**data_center_id** | **str** |  | [optional] 
 **role** | [**Role**](Role.md) |  | 
 **user_email** | **str** |  | 
 

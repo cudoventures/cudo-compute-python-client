@@ -58,7 +58,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **generate_api_key**
-> ApiKey generate_api_key(body)
+> ApiKey generate_api_key(generate_api_key_body)
 
 Generate
 
@@ -74,11 +74,11 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = src.cudo_compute.APIKeysApi()
-body = src.cudo_compute.GenerateApiKeyRequest() # GenerateApiKeyRequest | 
+generate_api_key_body = src.cudo_compute.GenerateApiKeyRequest() # GenerateApiKeyRequest | 
 
 try:
     # Generate
-    api_response = api_instance.generate_api_key(body)
+    api_response = api_instance.generate_api_key(generate_api_key_body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling APIKeysApi->generate_api_key: %s\n" % e)
@@ -88,7 +88,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**GenerateApiKeyRequest**](GenerateApiKeyRequest.md)|  | 
+ **generate_api_key_body** | [**GenerateApiKeyRequest**](GenerateApiKeyRequest.md)|  | 
 
 ### Return type
 

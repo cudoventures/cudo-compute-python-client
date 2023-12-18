@@ -1,4 +1,4 @@
-# Body12
+# CreateVMBody
 
 ## Properties
 Name | Type | Description | Notes

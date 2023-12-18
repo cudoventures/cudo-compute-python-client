@@ -1,12 +1,9 @@
-# Body5
+# CreateObjectStorageUserBody
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**billing_account_id** | **str** |  | [optional] 
-**data_center_id** | **str** |  | [optional] 
-**role** | [**Role**](Role.md) |  | 
-**user_email** | **str** |  | 
+**id** | **str** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

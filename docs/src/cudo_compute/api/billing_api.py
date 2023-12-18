@@ -33,43 +33,43 @@ class BillingApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def create_billing_account(self, body, **kwargs):  # noqa: E501
+    def create_billing_account(self, create_billing_account_body, **kwargs):  # noqa: E501
         """Create a billing account  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.create_billing_account(body, async_req=True)
+        >>> thread = api.create_billing_account(create_billing_account_body, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param CreateBillingAccountRequest body: (required)
+        :param CreateBillingAccountRequest create_billing_account_body: (required)
         :return: BillingAccount
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.create_billing_account_with_http_info(body, **kwargs)  # noqa: E501
+            return self.create_billing_account_with_http_info(create_billing_account_body, **kwargs)  # noqa: E501
         else:
-            (data) = self.create_billing_account_with_http_info(body, **kwargs)  # noqa: E501
+            (data) = self.create_billing_account_with_http_info(create_billing_account_body, **kwargs)  # noqa: E501
             return data
 
-    def create_billing_account_with_http_info(self, body, **kwargs):  # noqa: E501
+    def create_billing_account_with_http_info(self, create_billing_account_body, **kwargs):  # noqa: E501
         """Create a billing account  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.create_billing_account_with_http_info(body, async_req=True)
+        >>> thread = api.create_billing_account_with_http_info(create_billing_account_body, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param CreateBillingAccountRequest body: (required)
+        :param CreateBillingAccountRequest create_billing_account_body: (required)
         :return: BillingAccount
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['body']  # noqa: E501
+        all_params = ['create_billing_account_body']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -84,10 +84,10 @@ class BillingApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'body' is set
-        if self.api_client.client_side_validation and ('body' not in params or
-                                                       params['body'] is None):  # noqa: E501
-            raise ValueError("Missing the required parameter `body` when calling `create_billing_account`")  # noqa: E501
+        # verify the required parameter 'create_billing_account_body' is set
+        if self.api_client.client_side_validation and ('create_billing_account_body' not in params or
+                                                       params['create_billing_account_body'] is None):  # noqa: E501
+            raise ValueError("Missing the required parameter `create_billing_account_body` when calling `create_billing_account`")  # noqa: E501
 
         collection_formats = {}
 
@@ -101,8 +101,8 @@ class BillingApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if 'create_billing_account_body' in params:
+            body_params = params['create_billing_account_body']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -1233,45 +1233,45 @@ class BillingApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def update_billing_account(self, billing_account_id, body, **kwargs):  # noqa: E501
+    def update_billing_account(self, billing_account_id, update_billing_account_body, **kwargs):  # noqa: E501
         """Update billing account  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.update_billing_account(billing_account_id, body, async_req=True)
+        >>> thread = api.update_billing_account(billing_account_id, update_billing_account_body, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str billing_account_id: (required)
-        :param Body body: (required)
+        :param UpdateBillingAccountBody update_billing_account_body: (required)
         :return: BillingAccount
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.update_billing_account_with_http_info(billing_account_id, body, **kwargs)  # noqa: E501
+            return self.update_billing_account_with_http_info(billing_account_id, update_billing_account_body, **kwargs)  # noqa: E501
         else:
-            (data) = self.update_billing_account_with_http_info(billing_account_id, body, **kwargs)  # noqa: E501
+            (data) = self.update_billing_account_with_http_info(billing_account_id, update_billing_account_body, **kwargs)  # noqa: E501
             return data
 
-    def update_billing_account_with_http_info(self, billing_account_id, body, **kwargs):  # noqa: E501
+    def update_billing_account_with_http_info(self, billing_account_id, update_billing_account_body, **kwargs):  # noqa: E501
         """Update billing account  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.update_billing_account_with_http_info(billing_account_id, body, async_req=True)
+        >>> thread = api.update_billing_account_with_http_info(billing_account_id, update_billing_account_body, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str billing_account_id: (required)
-        :param Body body: (required)
+        :param UpdateBillingAccountBody update_billing_account_body: (required)
         :return: BillingAccount
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['billing_account_id', 'body']  # noqa: E501
+        all_params = ['billing_account_id', 'update_billing_account_body']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -1290,10 +1290,10 @@ class BillingApi(object):
         if self.api_client.client_side_validation and ('billing_account_id' not in params or
                                                        params['billing_account_id'] is None):  # noqa: E501
             raise ValueError("Missing the required parameter `billing_account_id` when calling `update_billing_account`")  # noqa: E501
-        # verify the required parameter 'body' is set
-        if self.api_client.client_side_validation and ('body' not in params or
-                                                       params['body'] is None):  # noqa: E501
-            raise ValueError("Missing the required parameter `body` when calling `update_billing_account`")  # noqa: E501
+        # verify the required parameter 'update_billing_account_body' is set
+        if self.api_client.client_side_validation and ('update_billing_account_body' not in params or
+                                                       params['update_billing_account_body'] is None):  # noqa: E501
+            raise ValueError("Missing the required parameter `update_billing_account_body` when calling `update_billing_account`")  # noqa: E501
 
         collection_formats = {}
 
@@ -1309,8 +1309,8 @@ class BillingApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if 'update_billing_account_body' in params:
+            body_params = params['update_billing_account_body']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501

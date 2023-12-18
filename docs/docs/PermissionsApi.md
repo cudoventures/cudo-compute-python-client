@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 
 # **add_billing_account_user_permission**
-> object add_billing_account_user_permission(billing_account_id, body)
+> object add_billing_account_user_permission(billing_account_id, add_billing_account_user_permission_body)
 
 Add billing account user
 
@@ -29,11 +29,11 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = src.cudo_compute.PermissionsApi()
 billing_account_id = 'billing_account_id_example' # str | 
-body = src.cudo_compute.Body1() # Body1 | 
+add_billing_account_user_permission_body = src.cudo_compute.AddBillingAccountUserPermissionBody() # AddBillingAccountUserPermissionBody | 
 
 try:
     # Add billing account user
-    api_response = api_instance.add_billing_account_user_permission(billing_account_id, body)
+    api_response = api_instance.add_billing_account_user_permission(billing_account_id, add_billing_account_user_permission_body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling PermissionsApi->add_billing_account_user_permission: %s\n" % e)
@@ -44,7 +44,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **billing_account_id** | **str**|  | 
- **body** | [**Body1**](Body1.md)|  | 
+ **add_billing_account_user_permission_body** | [**AddBillingAccountUserPermissionBody**](AddBillingAccountUserPermissionBody.md)|  | 
 
 ### Return type
 
@@ -62,7 +62,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **add_data_center_user_permission**
-> object add_data_center_user_permission(data_center_id, body)
+> object add_data_center_user_permission(data_center_id, add_data_center_user_permission_body)
 
 Add data center user
 
@@ -77,11 +77,11 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = src.cudo_compute.PermissionsApi()
 data_center_id = 'data_center_id_example' # str | 
-body = src.cudo_compute.Body3() # Body3 | 
+add_data_center_user_permission_body = src.cudo_compute.AddDataCenterUserPermissionBody() # AddDataCenterUserPermissionBody | 
 
 try:
     # Add data center user
-    api_response = api_instance.add_data_center_user_permission(data_center_id, body)
+    api_response = api_instance.add_data_center_user_permission(data_center_id, add_data_center_user_permission_body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling PermissionsApi->add_data_center_user_permission: %s\n" % e)
@@ -92,7 +92,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **data_center_id** | **str**|  | 
- **body** | [**Body3**](Body3.md)|  | 
+ **add_data_center_user_permission_body** | [**AddDataCenterUserPermissionBody**](AddDataCenterUserPermissionBody.md)|  | 
 
 ### Return type
 
@@ -110,7 +110,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **add_project_user_permission**
-> object add_project_user_permission(project_id, body)
+> object add_project_user_permission(project_id, add_project_user_permission_body)
 
 Add project user
 
@@ -125,11 +125,11 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = src.cudo_compute.PermissionsApi()
 project_id = 'project_id_example' # str | 
-body = src.cudo_compute.Body5() # Body5 | 
+add_project_user_permission_body = src.cudo_compute.AddProjectUserPermissionBody() # AddProjectUserPermissionBody | 
 
 try:
     # Add project user
-    api_response = api_instance.add_project_user_permission(project_id, body)
+    api_response = api_instance.add_project_user_permission(project_id, add_project_user_permission_body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling PermissionsApi->add_project_user_permission: %s\n" % e)
@@ -140,7 +140,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project_id** | **str**|  | 
- **body** | [**Body5**](Body5.md)|  | 
+ **add_project_user_permission_body** | [**AddProjectUserPermissionBody**](AddProjectUserPermissionBody.md)|  | 
 
 ### Return type
 
@@ -208,7 +208,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **remove_billing_account_user_permission**
-> object remove_billing_account_user_permission(billing_account_id, body)
+> object remove_billing_account_user_permission(billing_account_id, remove_billing_account_user_permission_body)
 
 Remove billing account user
 
@@ -223,11 +223,11 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = src.cudo_compute.PermissionsApi()
 billing_account_id = 'billing_account_id_example' # str | 
-body = src.cudo_compute.Body2() # Body2 | 
+remove_billing_account_user_permission_body = src.cudo_compute.RemoveBillingAccountUserPermissionBody() # RemoveBillingAccountUserPermissionBody | 
 
 try:
     # Remove billing account user
-    api_response = api_instance.remove_billing_account_user_permission(billing_account_id, body)
+    api_response = api_instance.remove_billing_account_user_permission(billing_account_id, remove_billing_account_user_permission_body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling PermissionsApi->remove_billing_account_user_permission: %s\n" % e)
@@ -238,7 +238,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **billing_account_id** | **str**|  | 
- **body** | [**Body2**](Body2.md)|  | 
+ **remove_billing_account_user_permission_body** | [**RemoveBillingAccountUserPermissionBody**](RemoveBillingAccountUserPermissionBody.md)|  | 
 
 ### Return type
 
@@ -256,7 +256,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **remove_data_center_user_permission**
-> object remove_data_center_user_permission(data_center_id, body)
+> object remove_data_center_user_permission(data_center_id, remove_data_center_user_permission_body)
 
 Remove data center user
 
@@ -271,11 +271,11 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = src.cudo_compute.PermissionsApi()
 data_center_id = 'data_center_id_example' # str | 
-body = src.cudo_compute.Body4() # Body4 | 
+remove_data_center_user_permission_body = src.cudo_compute.RemoveDataCenterUserPermissionBody() # RemoveDataCenterUserPermissionBody | 
 
 try:
     # Remove data center user
-    api_response = api_instance.remove_data_center_user_permission(data_center_id, body)
+    api_response = api_instance.remove_data_center_user_permission(data_center_id, remove_data_center_user_permission_body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling PermissionsApi->remove_data_center_user_permission: %s\n" % e)
@@ -286,7 +286,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **data_center_id** | **str**|  | 
- **body** | [**Body4**](Body4.md)|  | 
+ **remove_data_center_user_permission_body** | [**RemoveDataCenterUserPermissionBody**](RemoveDataCenterUserPermissionBody.md)|  | 
 
 ### Return type
 
@@ -304,7 +304,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **remove_project_user_permission**
-> object remove_project_user_permission(project_id, body)
+> object remove_project_user_permission(project_id, remove_project_user_permission_body)
 
 Remove project user
 
@@ -319,11 +319,11 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = src.cudo_compute.PermissionsApi()
 project_id = 'project_id_example' # str | 
-body = src.cudo_compute.Body11() # Body11 | 
+remove_project_user_permission_body = src.cudo_compute.RemoveProjectUserPermissionBody() # RemoveProjectUserPermissionBody | 
 
 try:
     # Remove project user
-    api_response = api_instance.remove_project_user_permission(project_id, body)
+    api_response = api_instance.remove_project_user_permission(project_id, remove_project_user_permission_body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling PermissionsApi->remove_project_user_permission: %s\n" % e)
@@ -334,7 +334,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project_id** | **str**|  | 
- **body** | [**Body11**](Body11.md)|  | 
+ **remove_project_user_permission_body** | [**RemoveProjectUserPermissionBody**](RemoveProjectUserPermissionBody.md)|  | 
 
 ### Return type
 

@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 
 # **activate**
-> object activate(project_id, body)
+> object activate(project_id, activate_body)
 
 Allow the use of S3 compatible storage in a project
 
@@ -32,11 +32,11 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = src.cudo_compute.ObjectStorageApi()
 project_id = 'project_id_example' # str | 
-body = src.cudo_compute.Body9() # Body9 | 
+activate_body = src.cudo_compute.ActivateBody() # ActivateBody | 
 
 try:
     # Allow the use of S3 compatible storage in a project
-    api_response = api_instance.activate(project_id, body)
+    api_response = api_instance.activate(project_id, activate_body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ObjectStorageApi->activate: %s\n" % e)
@@ -47,7 +47,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project_id** | **str**|  | 
- **body** | [**Body9**](Body9.md)|  | 
+ **activate_body** | [**ActivateBody**](ActivateBody.md)|  | 
 
 ### Return type
 
@@ -65,7 +65,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_object_storage_user**
-> ObjectStorageUser create_object_storage_user(project_id, body)
+> ObjectStorageUser create_object_storage_user(project_id, create_object_storage_user_body)
 
 Create user that stores keys for storage buckets
 
@@ -80,11 +80,11 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = src.cudo_compute.ObjectStorageApi()
 project_id = 'project_id_example' # str | 
-body = src.cudo_compute.Body10() # Body10 | 
+create_object_storage_user_body = src.cudo_compute.CreateObjectStorageUserBody() # CreateObjectStorageUserBody | 
 
 try:
     # Create user that stores keys for storage buckets
-    api_response = api_instance.create_object_storage_user(project_id, body)
+    api_response = api_instance.create_object_storage_user(project_id, create_object_storage_user_body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ObjectStorageApi->create_object_storage_user: %s\n" % e)
@@ -95,7 +95,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project_id** | **str**|  | 
- **body** | [**Body10**](Body10.md)|  | 
+ **create_object_storage_user_body** | [**CreateObjectStorageUserBody**](CreateObjectStorageUserBody.md)|  | 
 
 ### Return type
 
@@ -211,7 +211,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **generate_object_storage_key**
-> ObjectStorageKey generate_object_storage_key(project_id, id, body)
+> ObjectStorageKey generate_object_storage_key(project_id, id, generate_object_storage_key_body)
 
 Generate access key for storage buckets
 
@@ -227,11 +227,11 @@ from pprint import pprint
 api_instance = src.cudo_compute.ObjectStorageApi()
 project_id = 'project_id_example' # str | 
 id = 'id_example' # str | 
-body = NULL # object | 
+generate_object_storage_key_body = NULL # object | 
 
 try:
     # Generate access key for storage buckets
-    api_response = api_instance.generate_object_storage_key(project_id, id, body)
+    api_response = api_instance.generate_object_storage_key(project_id, id, generate_object_storage_key_body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ObjectStorageApi->generate_object_storage_key: %s\n" % e)
@@ -243,7 +243,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project_id** | **str**|  | 
  **id** | **str**|  | 
- **body** | **object**|  | 
+ **generate_object_storage_key_body** | **object**|  | 
 
 ### Return type
 

@@ -33,45 +33,45 @@ class PermissionsApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def add_billing_account_user_permission(self, billing_account_id, body, **kwargs):  # noqa: E501
+    def add_billing_account_user_permission(self, billing_account_id, add_billing_account_user_permission_body, **kwargs):  # noqa: E501
         """Add billing account user  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.add_billing_account_user_permission(billing_account_id, body, async_req=True)
+        >>> thread = api.add_billing_account_user_permission(billing_account_id, add_billing_account_user_permission_body, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str billing_account_id: (required)
-        :param Body1 body: (required)
+        :param AddBillingAccountUserPermissionBody add_billing_account_user_permission_body: (required)
         :return: object
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.add_billing_account_user_permission_with_http_info(billing_account_id, body, **kwargs)  # noqa: E501
+            return self.add_billing_account_user_permission_with_http_info(billing_account_id, add_billing_account_user_permission_body, **kwargs)  # noqa: E501
         else:
-            (data) = self.add_billing_account_user_permission_with_http_info(billing_account_id, body, **kwargs)  # noqa: E501
+            (data) = self.add_billing_account_user_permission_with_http_info(billing_account_id, add_billing_account_user_permission_body, **kwargs)  # noqa: E501
             return data
 
-    def add_billing_account_user_permission_with_http_info(self, billing_account_id, body, **kwargs):  # noqa: E501
+    def add_billing_account_user_permission_with_http_info(self, billing_account_id, add_billing_account_user_permission_body, **kwargs):  # noqa: E501
         """Add billing account user  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.add_billing_account_user_permission_with_http_info(billing_account_id, body, async_req=True)
+        >>> thread = api.add_billing_account_user_permission_with_http_info(billing_account_id, add_billing_account_user_permission_body, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str billing_account_id: (required)
-        :param Body1 body: (required)
+        :param AddBillingAccountUserPermissionBody add_billing_account_user_permission_body: (required)
         :return: object
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['billing_account_id', 'body']  # noqa: E501
+        all_params = ['billing_account_id', 'add_billing_account_user_permission_body']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -90,10 +90,10 @@ class PermissionsApi(object):
         if self.api_client.client_side_validation and ('billing_account_id' not in params or
                                                        params['billing_account_id'] is None):  # noqa: E501
             raise ValueError("Missing the required parameter `billing_account_id` when calling `add_billing_account_user_permission`")  # noqa: E501
-        # verify the required parameter 'body' is set
-        if self.api_client.client_side_validation and ('body' not in params or
-                                                       params['body'] is None):  # noqa: E501
-            raise ValueError("Missing the required parameter `body` when calling `add_billing_account_user_permission`")  # noqa: E501
+        # verify the required parameter 'add_billing_account_user_permission_body' is set
+        if self.api_client.client_side_validation and ('add_billing_account_user_permission_body' not in params or
+                                                       params['add_billing_account_user_permission_body'] is None):  # noqa: E501
+            raise ValueError("Missing the required parameter `add_billing_account_user_permission_body` when calling `add_billing_account_user_permission`")  # noqa: E501
 
         collection_formats = {}
 
@@ -109,8 +109,8 @@ class PermissionsApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if 'add_billing_account_user_permission_body' in params:
+            body_params = params['add_billing_account_user_permission_body']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -138,45 +138,45 @@ class PermissionsApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def add_data_center_user_permission(self, data_center_id, body, **kwargs):  # noqa: E501
+    def add_data_center_user_permission(self, data_center_id, add_data_center_user_permission_body, **kwargs):  # noqa: E501
         """Add data center user  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.add_data_center_user_permission(data_center_id, body, async_req=True)
+        >>> thread = api.add_data_center_user_permission(data_center_id, add_data_center_user_permission_body, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str data_center_id: (required)
-        :param Body3 body: (required)
+        :param AddDataCenterUserPermissionBody add_data_center_user_permission_body: (required)
         :return: object
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.add_data_center_user_permission_with_http_info(data_center_id, body, **kwargs)  # noqa: E501
+            return self.add_data_center_user_permission_with_http_info(data_center_id, add_data_center_user_permission_body, **kwargs)  # noqa: E501
         else:
-            (data) = self.add_data_center_user_permission_with_http_info(data_center_id, body, **kwargs)  # noqa: E501
+            (data) = self.add_data_center_user_permission_with_http_info(data_center_id, add_data_center_user_permission_body, **kwargs)  # noqa: E501
             return data
 
-    def add_data_center_user_permission_with_http_info(self, data_center_id, body, **kwargs):  # noqa: E501
+    def add_data_center_user_permission_with_http_info(self, data_center_id, add_data_center_user_permission_body, **kwargs):  # noqa: E501
         """Add data center user  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.add_data_center_user_permission_with_http_info(data_center_id, body, async_req=True)
+        >>> thread = api.add_data_center_user_permission_with_http_info(data_center_id, add_data_center_user_permission_body, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str data_center_id: (required)
-        :param Body3 body: (required)
+        :param AddDataCenterUserPermissionBody add_data_center_user_permission_body: (required)
         :return: object
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['data_center_id', 'body']  # noqa: E501
+        all_params = ['data_center_id', 'add_data_center_user_permission_body']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -195,10 +195,10 @@ class PermissionsApi(object):
         if self.api_client.client_side_validation and ('data_center_id' not in params or
                                                        params['data_center_id'] is None):  # noqa: E501
             raise ValueError("Missing the required parameter `data_center_id` when calling `add_data_center_user_permission`")  # noqa: E501
-        # verify the required parameter 'body' is set
-        if self.api_client.client_side_validation and ('body' not in params or
-                                                       params['body'] is None):  # noqa: E501
-            raise ValueError("Missing the required parameter `body` when calling `add_data_center_user_permission`")  # noqa: E501
+        # verify the required parameter 'add_data_center_user_permission_body' is set
+        if self.api_client.client_side_validation and ('add_data_center_user_permission_body' not in params or
+                                                       params['add_data_center_user_permission_body'] is None):  # noqa: E501
+            raise ValueError("Missing the required parameter `add_data_center_user_permission_body` when calling `add_data_center_user_permission`")  # noqa: E501
 
         collection_formats = {}
 
@@ -214,8 +214,8 @@ class PermissionsApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if 'add_data_center_user_permission_body' in params:
+            body_params = params['add_data_center_user_permission_body']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -243,45 +243,45 @@ class PermissionsApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def add_project_user_permission(self, project_id, body, **kwargs):  # noqa: E501
+    def add_project_user_permission(self, project_id, add_project_user_permission_body, **kwargs):  # noqa: E501
         """Add project user  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.add_project_user_permission(project_id, body, async_req=True)
+        >>> thread = api.add_project_user_permission(project_id, add_project_user_permission_body, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str project_id: (required)
-        :param Body5 body: (required)
+        :param AddProjectUserPermissionBody add_project_user_permission_body: (required)
         :return: object
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.add_project_user_permission_with_http_info(project_id, body, **kwargs)  # noqa: E501
+            return self.add_project_user_permission_with_http_info(project_id, add_project_user_permission_body, **kwargs)  # noqa: E501
         else:
-            (data) = self.add_project_user_permission_with_http_info(project_id, body, **kwargs)  # noqa: E501
+            (data) = self.add_project_user_permission_with_http_info(project_id, add_project_user_permission_body, **kwargs)  # noqa: E501
             return data
 
-    def add_project_user_permission_with_http_info(self, project_id, body, **kwargs):  # noqa: E501
+    def add_project_user_permission_with_http_info(self, project_id, add_project_user_permission_body, **kwargs):  # noqa: E501
         """Add project user  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.add_project_user_permission_with_http_info(project_id, body, async_req=True)
+        >>> thread = api.add_project_user_permission_with_http_info(project_id, add_project_user_permission_body, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str project_id: (required)
-        :param Body5 body: (required)
+        :param AddProjectUserPermissionBody add_project_user_permission_body: (required)
         :return: object
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['project_id', 'body']  # noqa: E501
+        all_params = ['project_id', 'add_project_user_permission_body']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -300,10 +300,10 @@ class PermissionsApi(object):
         if self.api_client.client_side_validation and ('project_id' not in params or
                                                        params['project_id'] is None):  # noqa: E501
             raise ValueError("Missing the required parameter `project_id` when calling `add_project_user_permission`")  # noqa: E501
-        # verify the required parameter 'body' is set
-        if self.api_client.client_side_validation and ('body' not in params or
-                                                       params['body'] is None):  # noqa: E501
-            raise ValueError("Missing the required parameter `body` when calling `add_project_user_permission`")  # noqa: E501
+        # verify the required parameter 'add_project_user_permission_body' is set
+        if self.api_client.client_side_validation and ('add_project_user_permission_body' not in params or
+                                                       params['add_project_user_permission_body'] is None):  # noqa: E501
+            raise ValueError("Missing the required parameter `add_project_user_permission_body` when calling `add_project_user_permission`")  # noqa: E501
 
         collection_formats = {}
 
@@ -319,8 +319,8 @@ class PermissionsApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if 'add_project_user_permission_body' in params:
+            body_params = params['add_project_user_permission_body']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -449,45 +449,45 @@ class PermissionsApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def remove_billing_account_user_permission(self, billing_account_id, body, **kwargs):  # noqa: E501
+    def remove_billing_account_user_permission(self, billing_account_id, remove_billing_account_user_permission_body, **kwargs):  # noqa: E501
         """Remove billing account user  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.remove_billing_account_user_permission(billing_account_id, body, async_req=True)
+        >>> thread = api.remove_billing_account_user_permission(billing_account_id, remove_billing_account_user_permission_body, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str billing_account_id: (required)
-        :param Body2 body: (required)
+        :param RemoveBillingAccountUserPermissionBody remove_billing_account_user_permission_body: (required)
         :return: object
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.remove_billing_account_user_permission_with_http_info(billing_account_id, body, **kwargs)  # noqa: E501
+            return self.remove_billing_account_user_permission_with_http_info(billing_account_id, remove_billing_account_user_permission_body, **kwargs)  # noqa: E501
         else:
-            (data) = self.remove_billing_account_user_permission_with_http_info(billing_account_id, body, **kwargs)  # noqa: E501
+            (data) = self.remove_billing_account_user_permission_with_http_info(billing_account_id, remove_billing_account_user_permission_body, **kwargs)  # noqa: E501
             return data
 
-    def remove_billing_account_user_permission_with_http_info(self, billing_account_id, body, **kwargs):  # noqa: E501
+    def remove_billing_account_user_permission_with_http_info(self, billing_account_id, remove_billing_account_user_permission_body, **kwargs):  # noqa: E501
         """Remove billing account user  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.remove_billing_account_user_permission_with_http_info(billing_account_id, body, async_req=True)
+        >>> thread = api.remove_billing_account_user_permission_with_http_info(billing_account_id, remove_billing_account_user_permission_body, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str billing_account_id: (required)
-        :param Body2 body: (required)
+        :param RemoveBillingAccountUserPermissionBody remove_billing_account_user_permission_body: (required)
         :return: object
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['billing_account_id', 'body']  # noqa: E501
+        all_params = ['billing_account_id', 'remove_billing_account_user_permission_body']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -506,10 +506,10 @@ class PermissionsApi(object):
         if self.api_client.client_side_validation and ('billing_account_id' not in params or
                                                        params['billing_account_id'] is None):  # noqa: E501
             raise ValueError("Missing the required parameter `billing_account_id` when calling `remove_billing_account_user_permission`")  # noqa: E501
-        # verify the required parameter 'body' is set
-        if self.api_client.client_side_validation and ('body' not in params or
-                                                       params['body'] is None):  # noqa: E501
-            raise ValueError("Missing the required parameter `body` when calling `remove_billing_account_user_permission`")  # noqa: E501
+        # verify the required parameter 'remove_billing_account_user_permission_body' is set
+        if self.api_client.client_side_validation and ('remove_billing_account_user_permission_body' not in params or
+                                                       params['remove_billing_account_user_permission_body'] is None):  # noqa: E501
+            raise ValueError("Missing the required parameter `remove_billing_account_user_permission_body` when calling `remove_billing_account_user_permission`")  # noqa: E501
 
         collection_formats = {}
 
@@ -525,8 +525,8 @@ class PermissionsApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if 'remove_billing_account_user_permission_body' in params:
+            body_params = params['remove_billing_account_user_permission_body']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -554,45 +554,45 @@ class PermissionsApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def remove_data_center_user_permission(self, data_center_id, body, **kwargs):  # noqa: E501
+    def remove_data_center_user_permission(self, data_center_id, remove_data_center_user_permission_body, **kwargs):  # noqa: E501
         """Remove data center user  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.remove_data_center_user_permission(data_center_id, body, async_req=True)
+        >>> thread = api.remove_data_center_user_permission(data_center_id, remove_data_center_user_permission_body, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str data_center_id: (required)
-        :param Body4 body: (required)
+        :param RemoveDataCenterUserPermissionBody remove_data_center_user_permission_body: (required)
         :return: object
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.remove_data_center_user_permission_with_http_info(data_center_id, body, **kwargs)  # noqa: E501
+            return self.remove_data_center_user_permission_with_http_info(data_center_id, remove_data_center_user_permission_body, **kwargs)  # noqa: E501
         else:
-            (data) = self.remove_data_center_user_permission_with_http_info(data_center_id, body, **kwargs)  # noqa: E501
+            (data) = self.remove_data_center_user_permission_with_http_info(data_center_id, remove_data_center_user_permission_body, **kwargs)  # noqa: E501
             return data
 
-    def remove_data_center_user_permission_with_http_info(self, data_center_id, body, **kwargs):  # noqa: E501
+    def remove_data_center_user_permission_with_http_info(self, data_center_id, remove_data_center_user_permission_body, **kwargs):  # noqa: E501
         """Remove data center user  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.remove_data_center_user_permission_with_http_info(data_center_id, body, async_req=True)
+        >>> thread = api.remove_data_center_user_permission_with_http_info(data_center_id, remove_data_center_user_permission_body, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str data_center_id: (required)
-        :param Body4 body: (required)
+        :param RemoveDataCenterUserPermissionBody remove_data_center_user_permission_body: (required)
         :return: object
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['data_center_id', 'body']  # noqa: E501
+        all_params = ['data_center_id', 'remove_data_center_user_permission_body']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -611,10 +611,10 @@ class PermissionsApi(object):
         if self.api_client.client_side_validation and ('data_center_id' not in params or
                                                        params['data_center_id'] is None):  # noqa: E501
             raise ValueError("Missing the required parameter `data_center_id` when calling `remove_data_center_user_permission`")  # noqa: E501
-        # verify the required parameter 'body' is set
-        if self.api_client.client_side_validation and ('body' not in params or
-                                                       params['body'] is None):  # noqa: E501
-            raise ValueError("Missing the required parameter `body` when calling `remove_data_center_user_permission`")  # noqa: E501
+        # verify the required parameter 'remove_data_center_user_permission_body' is set
+        if self.api_client.client_side_validation and ('remove_data_center_user_permission_body' not in params or
+                                                       params['remove_data_center_user_permission_body'] is None):  # noqa: E501
+            raise ValueError("Missing the required parameter `remove_data_center_user_permission_body` when calling `remove_data_center_user_permission`")  # noqa: E501
 
         collection_formats = {}
 
@@ -630,8 +630,8 @@ class PermissionsApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if 'remove_data_center_user_permission_body' in params:
+            body_params = params['remove_data_center_user_permission_body']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -659,45 +659,45 @@ class PermissionsApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def remove_project_user_permission(self, project_id, body, **kwargs):  # noqa: E501
+    def remove_project_user_permission(self, project_id, remove_project_user_permission_body, **kwargs):  # noqa: E501
         """Remove project user  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.remove_project_user_permission(project_id, body, async_req=True)
+        >>> thread = api.remove_project_user_permission(project_id, remove_project_user_permission_body, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str project_id: (required)
-        :param Body11 body: (required)
+        :param RemoveProjectUserPermissionBody remove_project_user_permission_body: (required)
         :return: object
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.remove_project_user_permission_with_http_info(project_id, body, **kwargs)  # noqa: E501
+            return self.remove_project_user_permission_with_http_info(project_id, remove_project_user_permission_body, **kwargs)  # noqa: E501
         else:
-            (data) = self.remove_project_user_permission_with_http_info(project_id, body, **kwargs)  # noqa: E501
+            (data) = self.remove_project_user_permission_with_http_info(project_id, remove_project_user_permission_body, **kwargs)  # noqa: E501
             return data
 
-    def remove_project_user_permission_with_http_info(self, project_id, body, **kwargs):  # noqa: E501
+    def remove_project_user_permission_with_http_info(self, project_id, remove_project_user_permission_body, **kwargs):  # noqa: E501
         """Remove project user  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.remove_project_user_permission_with_http_info(project_id, body, async_req=True)
+        >>> thread = api.remove_project_user_permission_with_http_info(project_id, remove_project_user_permission_body, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str project_id: (required)
-        :param Body11 body: (required)
+        :param RemoveProjectUserPermissionBody remove_project_user_permission_body: (required)
         :return: object
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['project_id', 'body']  # noqa: E501
+        all_params = ['project_id', 'remove_project_user_permission_body']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -716,10 +716,10 @@ class PermissionsApi(object):
         if self.api_client.client_side_validation and ('project_id' not in params or
                                                        params['project_id'] is None):  # noqa: E501
             raise ValueError("Missing the required parameter `project_id` when calling `remove_project_user_permission`")  # noqa: E501
-        # verify the required parameter 'body' is set
-        if self.api_client.client_side_validation and ('body' not in params or
-                                                       params['body'] is None):  # noqa: E501
-            raise ValueError("Missing the required parameter `body` when calling `remove_project_user_permission`")  # noqa: E501
+        # verify the required parameter 'remove_project_user_permission_body' is set
+        if self.api_client.client_side_validation and ('remove_project_user_permission_body' not in params or
+                                                       params['remove_project_user_permission_body'] is None):  # noqa: E501
+            raise ValueError("Missing the required parameter `remove_project_user_permission_body` when calling `remove_project_user_permission`")  # noqa: E501
 
         collection_formats = {}
 
@@ -735,8 +735,8 @@ class PermissionsApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if 'remove_project_user_permission_body' in params:
+            body_params = params['remove_project_user_permission_body']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
