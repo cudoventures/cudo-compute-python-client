@@ -1169,7 +1169,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_vm_metadata**
-> UpdateVMMetadataResponse update_vm_metadata(project_id, id, metadata=metadata, merge=merge)
+> UpdateVMMetadataResponse update_vm_metadata(project_id, id, update_vm_metadata_body)
 
 Update VM metadata
 
@@ -1185,12 +1185,11 @@ from pprint import pprint
 api_instance = src.cudo_compute.VirtualMachinesApi()
 project_id = 'project_id_example' # str | 
 id = 'id_example' # str | 
-metadata = 'metadata_example' # str | This is a request variable of the map type. The query format is \"map_name[key]=value\", e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\"bob\"]=18 (optional)
-merge = true # bool |  (optional)
+update_vm_metadata_body = src.cudo_compute.UpdateVMMetadataBody() # UpdateVMMetadataBody | 
 
 try:
     # Update VM metadata
-    api_response = api_instance.update_vm_metadata(project_id, id, metadata=metadata, merge=merge)
+    api_response = api_instance.update_vm_metadata(project_id, id, update_vm_metadata_body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling VirtualMachinesApi->update_vm_metadata: %s\n" % e)
@@ -1202,8 +1201,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project_id** | **str**|  | 
  **id** | **str**|  | 
- **metadata** | **str**| This is a request variable of the map type. The query format is \&quot;map_name[key]&#x3D;value\&quot;, e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\&quot;bob\&quot;]&#x3D;18 | [optional] 
- **merge** | **bool**|  | [optional] 
+ **update_vm_metadata_body** | [**UpdateVMMetadataBody**](UpdateVMMetadataBody.md)|  | 
 
 ### Return type
 

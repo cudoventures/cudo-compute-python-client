@@ -324,6 +324,7 @@ Class | Method | HTTP request | Description
  - [UpdateBillingAccountBody](docs/UpdateBillingAccountBody.md)
  - [UpdatePrivateVMImageResponse](docs/UpdatePrivateVMImageResponse.md)
  - [UpdateSecurityGroupResponse](docs/UpdateSecurityGroupResponse.md)
+ - [UpdateVMMetadataBody](docs/UpdateVMMetadataBody.md)
  - [UpdateVMMetadataResponse](docs/UpdateVMMetadataResponse.md)
  - [UserPermission](docs/UserPermission.md)
  - [V1PrivateImage](docs/V1PrivateImage.md)
