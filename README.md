@@ -14,7 +14,7 @@ api = cudo_api.virtual_machines()
 vms = api.list_vms(cudo_api.project_id())
 ```
 
-A more complete example of various api calls can be seen in the example in ``examples/example.py`` demonstrates how to use it. 
+More examples of various api calls can be found in ``examples``. 
 
 
 
