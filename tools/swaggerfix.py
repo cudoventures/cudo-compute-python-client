@@ -25,5 +25,8 @@ instances = find_instances(json_data, "name", "body")
 for i in instances:
     json_data[i[0]][i[1]][i[2]][i[3]][i[4]]["name"] = json_data[i[0]][i[1]][i[2]]["operationId"] + "Body"
 
+# remove id required
+json_data['definitions']['Disk']['required'] = ['sizeGib']
+
 with open('fix.swagger.json', 'w') as file:
     json.dump(json_data, file, indent=2)

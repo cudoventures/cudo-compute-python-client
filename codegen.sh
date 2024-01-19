@@ -1,6 +1,7 @@
 python3 tools/swaggerfix.py
 
 rm -rf src
+mkdir src
 rm -rf swagger-codegen
 git clone https://github.com/swagger-api/swagger-codegen
 mv fix.swagger.json swagger-codegen
@@ -16,7 +17,7 @@ cp -r swagger-codegen/out/src/ docs
 #rm -rf swagger-codegen
 
 cp helpers/* docs/src/cudo_compute
-echo "import src.cudo_compute.auth_config as AuthConfig" >> src/cudo_compute/__init__.py
-echo "import cudo_compute.cudo_api as cudo_api" >> src/cudo_compute/__init__.py
+echo "import src.cudo_compute.auth_config as AuthConfig" >> docs/src/cudo_compute/__init__.py
+echo "import cudo_compute.cudo_api as cudo_api" >> docs/src/cudo_compute/__init__.py
 
-python3 tools/authfix.py
+#python3 tools/authfix.py

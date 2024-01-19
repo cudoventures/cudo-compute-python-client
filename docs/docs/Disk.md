@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **data_center_id** | **str** |  | [optional] 
 **disk_state** | [**DiskState**](DiskState.md) |  | [optional] 
 **disk_type** | [**DiskType**](DiskType.md) |  | [optional] 
-**id** | **str** |  | 
+**id** | **str** |  | [optional] 
 **private_image_id** | **str** |  | [optional] 
 **project_id** | **str** |  | [optional] 
 **public_image_id** | **str** |  | [optional] 
