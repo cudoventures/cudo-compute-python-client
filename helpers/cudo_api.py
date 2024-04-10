@@ -31,7 +31,10 @@ def get_api_key():
 def get_project_id():
     key_config, context_config, error = cudo.AuthConfig.load_config(home + '/.config/cudo/cudo.yml', "")
     if not error:
-        return context_config['project'], None
+        if 'project' in context_config:
+            return context_config['project'], None
+        else:
+            return None, Exception("No project set in configuration")
     else:
         return None, error
 
