@@ -34,7 +34,7 @@ def get_project_id():
         if 'project' in context_config:
             return context_config['project'], None
         else:
-            return None, Exception("No project set in configuration")
+            return None, Exception('No project set in configuration (cudo.yml)')
     else:
         return None, error
 
@@ -44,6 +44,14 @@ def project_id():
     if e is None:
         return p
     return ''
+
+
+def project_id_throwable():
+    p, e = get_project_id()
+    if e is None:
+        return p
+    else:
+        raise e
 
 
 # APIs
