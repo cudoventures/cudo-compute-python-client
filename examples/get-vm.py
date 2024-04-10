@@ -4,7 +4,7 @@ import json
 
 try:
     api = cudo_api.virtual_machines()
-    vm = api.get_vm(cudo_api.project_id(), 'my-vm-id')
+    vm = api.get_vm(cudo_api.project_id_throwable(), 'my-vm-id')
     print(vm.to_dict())
 except ApiException as e:
     print(e)

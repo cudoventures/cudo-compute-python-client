@@ -13,7 +13,7 @@ try:
                            memory_gib=16, vcpus=4, gpus=1, gpu_model="A4000", boot_disk=disk,
                            metadata={"group": "a"})
     api = cudo_api.virtual_machines()
-    vm = api.create_vm(cudo_api.project_id(), request)
+    vm = api.create_vm(cudo_api.project_id_throwable(), request)
 
     print(json.dumps(vm.to_dict(), indent=2))
 except ApiException as e:
