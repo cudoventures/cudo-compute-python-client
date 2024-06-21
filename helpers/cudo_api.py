@@ -25,7 +25,7 @@ def client():
     except:
         pass
 
-    client.user_agent('cudo-compute-python-client/'+version)
+    client.user_agent = 'cudo-compute-python-client/'+version
     return client, None
 
 
