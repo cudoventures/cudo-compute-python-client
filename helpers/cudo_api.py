@@ -1,5 +1,7 @@
 import cudo_compute as cudo
 import os
+import importlib.metadata
+
 
 home = os.path.expanduser("~")
 
@@ -17,6 +19,13 @@ def client():
     configuration.host = "https://rest.compute.cudo.org"
 
     client = cudo.ApiClient(configuration)
+    version = ''
+    try:
+        version = importlib.metadata.version('cudo-compute')
+    except:
+        pass
+
+    client.user_agent('cudo-compute-python-client/'+version)
     return client, None
 
 

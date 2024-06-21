@@ -1,5 +1,7 @@
 import cudo_compute as cudo
 import os
+import importlib.metadata
+
 
 home = os.path.expanduser("~")
 
@@ -17,6 +19,13 @@ def client():
     configuration.host = "https://rest.compute.cudo.org"
 
     client = cudo.ApiClient(configuration)
+    version = ''
+    try:
+        version = importlib.metadata.version('cudo-compute')
+    except:
+        pass
+
+    client.user_agent('cudo-compute-python-client/'+version)
     return client, None
 
 
@@ -31,7 +40,10 @@ def get_api_key():
 def get_project_id():
     key_config, context_config, error = cudo.AuthConfig.load_config(home + '/.config/cudo/cudo.yml', "")
     if not error:
-        return context_config['project'], None
+        if 'project' in context_config:
+            return context_config['project'], None
+        else:
+            return None, Exception('No project set in configuration (cudo.yml)')
     else:
         return None, error
 
@@ -41,6 +53,14 @@ def project_id():
     if e is None:
         return p
     return ''
+
+
+def project_id_throwable():
+    p, e = get_project_id()
+    if e is None:
+        return p
+    else:
+        raise e
 
 
 # APIs
