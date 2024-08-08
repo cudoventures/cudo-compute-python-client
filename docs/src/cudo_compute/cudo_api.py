@@ -2,7 +2,6 @@ import cudo_compute as cudo
 import os
 import importlib.metadata
 
-
 home = os.path.expanduser("~")
 
 
@@ -25,7 +24,7 @@ def client():
     except:
         pass
 
-    client.user_agent = 'cudo-compute-python-client/'+version
+    client.user_agent = 'cudo-compute-python-client/' + version
     return client, None
 
 

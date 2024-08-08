@@ -192,3 +192,5 @@ from src.cudo_compute.models.v_router_size import VRouterSize
 from src.cudo_compute.models.vm_state import VmState
 import src.cudo_compute.auth_config as AuthConfig
 import cudo_compute.cudo_api as cudo_api
+import src.cudo_compute.auth_config as AuthConfig
+import cudo_compute.cudo_api as cudo_api
