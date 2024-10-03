@@ -130,7 +130,7 @@ def user():
         raise Exception(err)
     return cudo.UserApi(c)
 
-class ExtendedVirtualMachinesApi(cudo.VirtualMachinesApi):
+class PooledVirtualMachinesApi(cudo.VirtualMachinesApi):
     def __init__(self, api_client=None):
         max_workers=2 #TODO make larger
         self.executor = ThreadPoolExecutor(max_workers=max_workers)
@@ -139,65 +139,65 @@ class ExtendedVirtualMachinesApi(cudo.VirtualMachinesApi):
         self.shutdown_event = threading.Event()
         self.workers_active = False
 
-        # Register the shutdown method to be called at exit
         atexit.register(self.shutdown)
-
         super().__init__(api_client)
-        # Additional initialization if needed
 
     def start_workers(self):
+
         if not self.workers_active:
             self.workers_active = True
             self.shutdown_event.clear()
             for _ in range(self.max_workers):
                 self.executor.submit(self.worker)
-            print("Workers started.") #TODO
 
     def stop_workers(self):
         if self.workers_active:
+            print("stopping workers") #TODO
             self.workers_active = False
             for _ in range(self.max_workers):
                 self.task_queue.put(None)
-            print("Workers stopped.") #TODO
+            print("workers stopped") #TODO
 
     def worker(self):
         while True:
+            print("worker getting tasks")
             req = self.task_queue.get()
             if req is None:
                 break
-            project, create_vm_body, kwargs = req
-            super().create_vm(project, create_vm_body)
+            print("worker processing task")
+            try:
+                project, create_vm_body = req
+                vm = super().create_vm(project, create_vm_body)
+                print(f"Created VM: {vm.to_dict()}")
+            except Exception as e:
+                print(f"Error creating VM: {create_vm_body.vm_id} {e}")
+
             self.task_queue.task_done()
 
-            # Check if the task queue is empty and call shutdown if it is
             if self.task_queue.empty():
                 self.shutdown()
 
     def create_vm(self, project_id, create_vm_body, **kwargs):
-        print("Adding VM...") #TODO
+        print("create vm") #TODO
         self.task_queue.put((project_id, create_vm_body))
         self.start_workers()
 
-        # Custom implementation or additional logic
-        print("Creating VM with custom logic")
-        # return
+        return {"id":create_vm_body.vm_id}
 
     def shutdown(self):
         if not self.shutdown_event.is_set():
-            self.shutdown_event.set()
-            # Wait for all tasks to be processed
-            self.task_queue.join()
-            print("All VMs added. Waiting for all tasks to complete...")
+            print("shutting down...") # TODO
 
-            # Stop worker threads
+            self.shutdown_event.set()
+            self.task_queue.join()
             self.stop_workers()
 
             self.executor.shutdown(wait=True)
-            print("Executor shutdown complete.")
+            print("shutdown") # TODO
 
 
 def virtual_machines():
     c, err = client()
     if err:
         raise Exception(err)
-    return ExtendedVirtualMachinesApi(c)
+    return PooledVirtualMachinesApi(c) #cudo.VirtualMachinesApi(c)
