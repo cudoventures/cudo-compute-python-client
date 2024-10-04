@@ -150,7 +150,6 @@ class PooledVirtualMachinesApi(cudo.VirtualMachinesApi):
                     print(f"Error creating VM: {e}")
 
             self.task_queue.task_done()
-            print("Task done")
 
     def start_queue(self):
         if not self.task_queue:
@@ -165,16 +164,15 @@ class PooledVirtualMachinesApi(cudo.VirtualMachinesApi):
                 self.executor.submit(self.worker)
 
     def stop_workers(self):
-        print("stop workers")
-        # if not self.shutdown_event.is_set():
-        #     try:
-        #         self.workers_active = False
-        #         self.shutdown_event.set()
-        #
-        #         self.executor.shutdown(wait=False)
-        #
-        #     except Exception as e:
-        #         print(f"Error shutting down: {e}")
+        if not self.shutdown_event.is_set():
+            try:
+                self.workers_active = False
+                self.shutdown_event.set()
+
+                self.executor.shutdown(wait=False)
+
+            except Exception as e:
+                print(f"Error shutting down: {e}")
 
 
 
