@@ -1,3 +1,5 @@
+from asyncio import timeout
+
 import cudo_compute as cudo
 import os
 from time import sleep
@@ -6,6 +8,9 @@ from concurrent.futures import ThreadPoolExecutor
 from queue import Queue
 import atexit
 import threading
+
+from cudo_compute.models.create_vm_response import CreateVMResponse
+from cudo_compute.models.vm import VM
 
 home = os.path.expanduser("~")
 
@@ -68,45 +73,31 @@ def project_id_throwable():
 
 
 # APIs
+c, err = client()
+if err:
+    raise Exception(err)
+
 def api_keys():
-    c, err = client()
-    if err:
-        raise Exception(err)
     return cudo.APIKeysApi(c)
 
 
 def disks():
-    c, err = client()
-    if err:
-        raise Exception(err)
     return cudo.DisksApi(c)
 
 
 def networks():
-    c, err = client()
-    if err:
-        raise Exception(err)
     return cudo.NetworksApi(c)
 
 
 def object_storage():
-    c, err = client()
-    if err:
-        raise Exception(err)
     return cudo.ObjectStorageApi(c)
 
 
 def permissions():
-    c, err = client()
-    if err:
-        raise Exception(err)
     return cudo.PermissionsApi(c)
 
 
 def projects():
-    c, err = client()
-    if err:
-        raise Exception(err)
     return cudo.ProjectsApi(c)
 
 
@@ -118,16 +109,10 @@ def ssh_keys():
 
 
 def search():
-    c, err = client()
-    if err:
-        raise Exception(err)
     return cudo.SearchApi(c)
 
 
 def user():
-    c, err = client()
-    if err:
-        raise Exception(err)
     return cudo.UserApi(c)
 
 
@@ -145,13 +130,14 @@ class PooledVirtualMachinesApi(cudo.VirtualMachinesApi):
         self.start_queue()
         self.task_queue.put((project_id, create_vm_body))
         self.start_workers()
-        return {"id": create_vm_body.vm_id}
+        return CreateVMResponse(id=create_vm_body.vm_id, vm=VM())
 
     def worker(self):
         while self.workers_active:
             if not self.task_queue:
                 break
-            req = self.task_queue.get() # block true, timeout none
+            req = self.task_queue.get(timeout=1)
+            print(req)
             create_vm_body = None
             try:
                 project, create_vm_body = req
@@ -164,6 +150,7 @@ class PooledVirtualMachinesApi(cudo.VirtualMachinesApi):
                     print(f"Error creating VM: {e}")
 
             self.task_queue.task_done()
+            print("Task done")
 
     def start_queue(self):
         if not self.task_queue:
@@ -178,23 +165,20 @@ class PooledVirtualMachinesApi(cudo.VirtualMachinesApi):
                 self.executor.submit(self.worker)
 
     def stop_workers(self):
-        if not self.shutdown_event.is_set():
-            try:
-                self.workers_active = False
-                self.shutdown_event.set()
+        print("stop workers")
+        # if not self.shutdown_event.is_set():
+        #     try:
+        #         self.workers_active = False
+        #         self.shutdown_event.set()
+        #
+        #         self.executor.shutdown(wait=False)
+        #
+        #     except Exception as e:
+        #         print(f"Error shutting down: {e}")
 
-                if self.executor:
-                    self.executor.shutdown(wait=False)
-
-            except Exception as e:
-                print(f"Error shutting down: {e}")
 
 
-c, err = client()
-if err:
-    raise Exception(err)
 pool = PooledVirtualMachinesApi(c)
-
 
 def virtual_machines():
     return pool
