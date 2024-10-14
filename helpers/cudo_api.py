@@ -77,6 +77,7 @@ c, err = client()
 if err:
     raise Exception(err)
 
+
 def api_keys():
     return cudo.APIKeysApi(c)
 
@@ -116,10 +117,14 @@ def user():
     return cudo.UserApi(c)
 
 
+def legacy_virtual_machines():
+    return cudo.VirtualMachinesApi(c)
+
+
 class PooledVirtualMachinesApi(cudo.VirtualMachinesApi):
     def __init__(self, api_client=None):
         self.task_queue = None
-        self.max_workers = 2
+        self.max_workers = 5
         self.shutdown_event = threading.Event()
         self.workers_active = False
         self.executor = None
@@ -137,12 +142,19 @@ class PooledVirtualMachinesApi(cudo.VirtualMachinesApi):
             if not self.task_queue:
                 break
             req = self.task_queue.get(timeout=1)
-            print(req)
             create_vm_body = None
             try:
                 project, create_vm_body = req
                 vm = super().create_vm(project, create_vm_body)
                 print(f"Created VM: {vm.to_dict()}")
+                wait = True
+                while wait:
+                    res = self.get_vm(project, create_vm_body.vm_id)
+                    if (res.vm.state == 'ACTIVE' or res.vm.state == 'FAILED' or res.vm.state == 'STOPPED'
+                            or res.vm.state == 'SUSPENDED' or res.vm.state == 'DELETED'):
+                        wait = False
+                    else:
+                        sleep(5)
             except Exception as e:
                 if create_vm_body:
                     print(f"Error creating VM: {create_vm_body.vm_id} {e}")
@@ -173,8 +185,6 @@ class PooledVirtualMachinesApi(cudo.VirtualMachinesApi):
 
             except Exception as e:
                 print(f"Error shutting down: {e}")
-
-
 
 pool = PooledVirtualMachinesApi(c)
 
