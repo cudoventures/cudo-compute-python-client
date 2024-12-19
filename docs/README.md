@@ -74,15 +74,18 @@ Class | Method | HTTP request | Description
 *APIKeysApi* | [**generate_api_key**](docs/APIKeysApi.md#generate_api_key) | **POST** /v1/api-keys | Generate
 *APIKeysApi* | [**list_api_keys**](docs/APIKeysApi.md#list_api_keys) | **GET** /v1/api-keys | List
 *BillingApi* | [**create_billing_account**](docs/BillingApi.md#create_billing_account) | **POST** /v1/billing-accounts | Create a billing account
+*BillingApi* | [**create_billing_account_credit_payment**](docs/BillingApi.md#create_billing_account_credit_payment) | **POST** /v1/billing-accounts/{id}/credit | Add credit to billing account
 *BillingApi* | [**delete_billing_account**](docs/BillingApi.md#delete_billing_account) | **DELETE** /v1/billing-accounts/{id} | Delete billing account
 *BillingApi* | [**get_billing_account**](docs/BillingApi.md#get_billing_account) | **GET** /v1/billing-accounts/{id} | Get a billing account
 *BillingApi* | [**get_billing_account_details**](docs/BillingApi.md#get_billing_account_details) | **GET** /v1/billing-accounts/{id}/details | Get billing account details
 *BillingApi* | [**get_billing_account_payment_methods**](docs/BillingApi.md#get_billing_account_payment_methods) | **GET** /v1/billing-accounts/{id}/payment-methods | Get payment methods
 *BillingApi* | [**get_billing_account_setup_intent**](docs/BillingApi.md#get_billing_account_setup_intent) | **GET** /v1/billing-accounts/{id}/setup-intent | Get setup intent
 *BillingApi* | [**get_billing_account_spend_details**](docs/BillingApi.md#get_billing_account_spend_details) | **GET** /v1/billing-accounts/{billingAccountId}/spend/details | Get spend details
-*BillingApi* | [**get_billing_account_stripe_invoices**](docs/BillingApi.md#get_billing_account_stripe_invoices) | **GET** /v1/billing-accounts/invoices | Get invoices
+*BillingApi* | [**list_billing_account_credit_balance_transactions**](docs/BillingApi.md#list_billing_account_credit_balance_transactions) | **GET** /v1/billing-accounts/{id}/credit-balance-transactions | List credit balance transactions on a billing account
+*BillingApi* | [**list_billing_account_invoices**](docs/BillingApi.md#list_billing_account_invoices) | **GET** /v1/billing-accounts/invoices | List invoices
+*BillingApi* | [**list_billing_account_transactions**](docs/BillingApi.md#list_billing_account_transactions) | **GET** /v1/billing-accounts/{id}/transactions | List transactions on a billing account
 *BillingApi* | [**list_billing_accounts**](docs/BillingApi.md#list_billing_accounts) | **GET** /v1/billing-accounts | List billing accounts
-*BillingApi* | [**list_outstanding_stripe_invoices**](docs/BillingApi.md#list_outstanding_stripe_invoices) | **GET** /v1/billing-accounts/invoices/outstanding | Get outstanding invoices
+*BillingApi* | [**list_outstanding_invoices**](docs/BillingApi.md#list_outstanding_invoices) | **GET** /v1/billing-accounts/invoices/outstanding | Get outstanding invoices
 *BillingApi* | [**remove_billing_account_payment_method**](docs/BillingApi.md#remove_billing_account_payment_method) | **DELETE** /v1/billing-accounts/{id}/payment-methods/{paymentMethodId} | Remove payment method
 *BillingApi* | [**set_billing_account_default_payment_method**](docs/BillingApi.md#set_billing_account_default_payment_method) | **POST** /v1/billing-accounts/{id}/payment-methods/{paymentMethodId}/set-default | Set default payment method
 *BillingApi* | [**update_billing_account**](docs/BillingApi.md#update_billing_account) | **PATCH** /v1/billing-accounts/{billingAccount.id} | Update billing account
@@ -107,9 +110,9 @@ Class | Method | HTTP request | Description
 *DisksApi* | [**list_disk_snapshots**](docs/DisksApi.md#list_disk_snapshots) | **GET** /v1/projects/{projectId}/disks/{id}/snapshots | List Disk Snapshots
 *DisksApi* | [**list_disks**](docs/DisksApi.md#list_disks) | **GET** /v1/projects/{projectId}/disks | List disks
 *DisksApi* | [**revert_disk**](docs/DisksApi.md#revert_disk) | **POST** /v1/projects/{projectId}/disks/{id}/revert | Revert Disk to Snapshot
-*MachineTypesApi* | [**get_machine_type**](docs/MachineTypesApi.md#get_machine_type) | **GET** /v1/data-centers/{dataCenterId}/machine-types/{machineType} | Get
-*MachineTypesApi* | [**get_machine_type_live_utilization**](docs/MachineTypesApi.md#get_machine_type_live_utilization) | **GET** /v1/data-centers/{dataCenterId}/machine-types/{machineType}/live-utilization | Get
-*MachineTypesApi* | [**list_machine_types**](docs/MachineTypesApi.md#list_machine_types) | **GET** /v1/data-centers/{dataCenterId}/machine-types | Get
+*MachineTypesApi* | [**get_machine_type**](docs/MachineTypesApi.md#get_machine_type) | **GET** /v1/data-centers/{dataCenterId}/machine-types/{machineType} | Get a machine type in a data center
+*MachineTypesApi* | [**get_machine_type_live_utilization**](docs/MachineTypesApi.md#get_machine_type_live_utilization) | **GET** /v1/data-centers/{dataCenterId}/machine-types/{machineType}/live-utilization | Get the utilization for a machine type in a data center
+*MachineTypesApi* | [**list_machine_types**](docs/MachineTypesApi.md#list_machine_types) | **GET** /v1/data-centers/{dataCenterId}/machine-types | List machine types for a data center
 *NetworksApi* | [**create_network**](docs/NetworksApi.md#create_network) | **POST** /v1/projects/{projectId}/networks | Create network
 *NetworksApi* | [**create_security_group**](docs/NetworksApi.md#create_security_group) | **POST** /v1/projects/{securityGroup.projectId}/networks/security-groups | Create security group
 *NetworksApi* | [**delete_network**](docs/NetworksApi.md#delete_network) | **DELETE** /v1/projects/{projectId}/networks/{id} | Delete network
@@ -121,15 +124,15 @@ Class | Method | HTTP request | Description
 *NetworksApi* | [**start_network**](docs/NetworksApi.md#start_network) | **POST** /v1/projects/{projectId}/networks/{id}/start | Start network
 *NetworksApi* | [**stop_network**](docs/NetworksApi.md#stop_network) | **POST** /v1/projects/{projectId}/networks/{id}/stop | Stop network
 *NetworksApi* | [**update_security_group**](docs/NetworksApi.md#update_security_group) | **PATCH** /v1/projects/{securityGroup.projectId}/networks/security-groups/{securityGroup.id} | Update security group
-*ObjectStorageApi* | [**activate**](docs/ObjectStorageApi.md#activate) | **POST** /v1/projects/{projectId}/object-storage/activate | Allow the use of S3 compatible storage in a project
-*ObjectStorageApi* | [**create_object_storage_user**](docs/ObjectStorageApi.md#create_object_storage_user) | **POST** /v1/projects/{projectId}/object-storage/users | Create user that stores keys for storage buckets
-*ObjectStorageApi* | [**delete_object_storage_key**](docs/ObjectStorageApi.md#delete_object_storage_key) | **POST** /v1/projects/{projectId}/object-storage/users/{id}/keys | Delete object storage user
-*ObjectStorageApi* | [**delete_object_storage_user**](docs/ObjectStorageApi.md#delete_object_storage_user) | **DELETE** /v1/projects/{projectId}/object-storage/users/{id} | Delete object storage user
-*ObjectStorageApi* | [**generate_object_storage_key**](docs/ObjectStorageApi.md#generate_object_storage_key) | **POST** /v1/projects/{projectId}/object-storage/users/{id} | Generate access key for storage buckets
-*ObjectStorageApi* | [**get_object_storage_bucket**](docs/ObjectStorageApi.md#get_object_storage_bucket) | **GET** /v1/projects/{projectId}/object-storage/buckets/{id} | Get details for a bucket
-*ObjectStorageApi* | [**get_object_storage_session_key**](docs/ObjectStorageApi.md#get_object_storage_session_key) | **GET** /v1/projects/{projectId}/object-storage/session-key | Generate temporary key for storage bucket access
+*ObjectStorageApi* | [**activate**](docs/ObjectStorageApi.md#activate) | **POST** /v1/projects/{projectId}/object-storage/activate/{dataCenterId} | Allow the use of S3 compatible storage in a project
+*ObjectStorageApi* | [**create_object_storage_user**](docs/ObjectStorageApi.md#create_object_storage_user) | **POST** /v1/projects/{projectId}/object-storage/users/{dataCenterId} | Create user that stores keys for storage buckets
+*ObjectStorageApi* | [**delete_object_storage_key**](docs/ObjectStorageApi.md#delete_object_storage_key) | **DELETE** /v1/projects/{projectId}/object-storage/users/{dataCenterId}/{id}/keys/{accessKey} | Delete object storage user key
+*ObjectStorageApi* | [**delete_object_storage_user**](docs/ObjectStorageApi.md#delete_object_storage_user) | **DELETE** /v1/projects/{projectId}/object-storage/users/{dataCenterId}/{id} | Delete object storage user
+*ObjectStorageApi* | [**generate_object_storage_key**](docs/ObjectStorageApi.md#generate_object_storage_key) | **POST** /v1/projects/{projectId}/object-storage/users/{dataCenterId}/{id} | Generate access key for storage buckets
+*ObjectStorageApi* | [**get_object_storage_bucket**](docs/ObjectStorageApi.md#get_object_storage_bucket) | **GET** /v1/projects/{projectId}/object-storage/buckets/{dataCenterId}/{id} | Get details for a bucket
+*ObjectStorageApi* | [**get_object_storage_session_key**](docs/ObjectStorageApi.md#get_object_storage_session_key) | **GET** /v1/projects/{projectId}/object-storage/session-key/{dataCenterId} | Generate temporary key for storage bucket access
+*ObjectStorageApi* | [**get_object_storage_user**](docs/ObjectStorageApi.md#get_object_storage_user) | **GET** /v1/projects/{projectId}/object-storage/users/{dataCenterId}/{userId} | Get details about an object storage user
 *ObjectStorageApi* | [**list_object_storage_buckets**](docs/ObjectStorageApi.md#list_object_storage_buckets) | **GET** /v1/projects/{projectId}/object-storage/buckets | List buckets
-*ObjectStorageApi* | [**list_object_storage_keys**](docs/ObjectStorageApi.md#list_object_storage_keys) | **GET** /v1/projects/{projectId}/object-storage/users/{id}/keys | List storage user keys
 *ObjectStorageApi* | [**list_object_storage_users**](docs/ObjectStorageApi.md#list_object_storage_users) | **GET** /v1/projects/{projectId}/object-storage/users | List storage users
 *PermissionsApi* | [**add_billing_account_user_permission**](docs/PermissionsApi.md#add_billing_account_user_permission) | **POST** /v1/billing-accounts/{billingAccountId}/add-user-permission | Add billing account user
 *PermissionsApi* | [**add_data_center_user_permission**](docs/PermissionsApi.md#add_data_center_user_permission) | **POST** /v1/data-centers/{dataCenterId}/add-user-permission | Add data center user
@@ -165,7 +168,8 @@ Class | Method | HTTP request | Description
 *VirtualMachinesApi* | [**list_public_vm_images**](docs/VirtualMachinesApi.md#list_public_vm_images) | **GET** /v1/vms/public-images | List public VM images
 *VirtualMachinesApi* | [**list_vm_data_centers**](docs/VirtualMachinesApi.md#list_vm_data_centers) | **GET** /v1/vms/data-centers | List data centers
 *VirtualMachinesApi* | [**list_vm_disks**](docs/VirtualMachinesApi.md#list_vm_disks) | **GET** /v1/projects/{projectId}/vms/{id}/disks | List disks attached to VM
-*VirtualMachinesApi* | [**list_vm_machine_types**](docs/VirtualMachinesApi.md#list_vm_machine_types) | **GET** /v1/vms/machine-types | List machine types
+*VirtualMachinesApi* | [**list_vm_gpu_models**](docs/VirtualMachinesApi.md#list_vm_gpu_models) | **GET** /v1/vms/gpu-models | List GPU models
+*VirtualMachinesApi* | [**list_vm_machine_types2**](docs/VirtualMachinesApi.md#list_vm_machine_types2) | **GET** /v1/vms/machine-types-2 | List machine types v2
 *VirtualMachinesApi* | [**list_vms**](docs/VirtualMachinesApi.md#list_vms) | **GET** /v1/projects/{projectId}/vms | List
 *VirtualMachinesApi* | [**monitor_vm**](docs/VirtualMachinesApi.md#monitor_vm) | **GET** /v1/projects/{projectId}/vms/{id}/monitor | Monitor
 *VirtualMachinesApi* | [**reboot_vm**](docs/VirtualMachinesApi.md#reboot_vm) | **POST** /v1/projects/{projectId}/vms/{id}/reboot | Reboot
@@ -176,6 +180,15 @@ Class | Method | HTTP request | Description
 *VirtualMachinesApi* | [**terminate_vm**](docs/VirtualMachinesApi.md#terminate_vm) | **POST** /v1/projects/{projectId}/vms/{id}/terminate | Terminate
 *VirtualMachinesApi* | [**update_private_vm_image**](docs/VirtualMachinesApi.md#update_private_vm_image) | **POST** /v1/projects/{projectId}/images/{id} | Update private VM image
 *VirtualMachinesApi* | [**update_vm_metadata**](docs/VirtualMachinesApi.md#update_vm_metadata) | **POST** /v1/projects/{projectId}/vm/{id}/metadata | Update VM metadata
+*DefaultApi* | [**get_data_center_commitment_schedule**](docs/DefaultApi.md#get_data_center_commitment_schedule) | **GET** /v1/data-centers/{dataCenterId}/commitment-schedule | 
+*DefaultApi* | [**get_data_center_commitment_time_series**](docs/DefaultApi.md#get_data_center_commitment_time_series) | **GET** /v1/data-centers/{dataCenterId}/commitment-time-series | 
+*DefaultApi* | [**list_billing_account_projects**](docs/DefaultApi.md#list_billing_account_projects) | **GET** /v1/billing-accounts/{id}/projects | 
+*DefaultApi* | [**list_data_center_machine_type_prices**](docs/DefaultApi.md#list_data_center_machine_type_prices) | **GET** /v1/data-centers/{dataCenterId}/machine-type-prices | 
+*DefaultApi* | [**list_vm_machine_types**](docs/DefaultApi.md#list_vm_machine_types) | **GET** /v1/vms/machine-types | 
+*DefaultApi* | [**search_resources**](docs/DefaultApi.md#search_resources) | **GET** /v1/resources/search | 
+*DefaultApi* | [**track**](docs/DefaultApi.md#track) | **POST** /v1/auth/track | 
+*DefaultApi* | [**update_vm_expire_time**](docs/DefaultApi.md#update_vm_expire_time) | **POST** /v1/projects/{projectId}/vm/{id}/expire-time | 
+*DefaultApi* | [**update_vm_password**](docs/DefaultApi.md#update_vm_password) | **POST** /v1/projects/{projectId}/vm/{id}/password | 
 
 
 ## Documentation For Models
@@ -184,20 +197,26 @@ Class | Method | HTTP request | Description
  - [AddBillingAccountUserPermissionBody](docs/AddBillingAccountUserPermissionBody.md)
  - [AddDataCenterUserPermissionBody](docs/AddDataCenterUserPermissionBody.md)
  - [AddProjectUserPermissionBody](docs/AddProjectUserPermissionBody.md)
- - [Any](docs/Any.md)
  - [ApiKey](docs/ApiKey.md)
  - [AttachSecurityGroupResponse](docs/AttachSecurityGroupResponse.md)
  - [AttachStorageDiskResponse](docs/AttachStorageDiskResponse.md)
  - [BillingAccount](docs/BillingAccount.md)
  - [BillingAccountPaymentMethod](docs/BillingAccountPaymentMethod.md)
  - [BillingAccountPaymentMethods](docs/BillingAccountPaymentMethods.md)
+ - [BillingAccountProject](docs/BillingAccountProject.md)
+ - [BillingAccountResult](docs/BillingAccountResult.md)
  - [BillingAccountSetupIntent](docs/BillingAccountSetupIntent.md)
  - [BillingAccountSpendRow](docs/BillingAccountSpendRow.md)
+ - [BillingAccountState](docs/BillingAccountState.md)
+ - [BillingAddress](docs/BillingAddress.md)
+ - [Charge](docs/Charge.md)
  - [Cluster](docs/Cluster.md)
+ - [CommitmentTerm](docs/CommitmentTerm.md)
  - [ConnectVMResponse](docs/ConnectVMResponse.md)
  - [CountHostsResponse](docs/CountHostsResponse.md)
  - [CountVMsResponse](docs/CountVMsResponse.md)
- - [CpuModelCategory](docs/CpuModelCategory.md)
+ - [CpuTopology](docs/CpuTopology.md)
+ - [CreateBillingAccountCreditPaymentResponse](docs/CreateBillingAccountCreditPaymentResponse.md)
  - [CreateBillingAccountRequest](docs/CreateBillingAccountRequest.md)
  - [CreateDiskSnapshotBody](docs/CreateDiskSnapshotBody.md)
  - [CreateDiskSnapshotResponse](docs/CreateDiskSnapshotResponse.md)
@@ -211,21 +230,23 @@ Class | Method | HTTP request | Description
  - [CreateVMBody](docs/CreateVMBody.md)
  - [CreateVMRequestNIC](docs/CreateVMRequestNIC.md)
  - [CreateVMResponse](docs/CreateVMResponse.md)
- - [DataCenter](docs/DataCenter.md)
- - [DataCenterCategory](docs/DataCenterCategory.md)
+ - [CreditBalanceRecharge](docs/CreditBalanceRecharge.md)
+ - [CreditBalanceTransaction](docs/CreditBalanceTransaction.md)
+ - [DataCenterCommitment](docs/DataCenterCommitment.md)
+ - [DataCenterCommitmentInterval](docs/DataCenterCommitmentInterval.md)
+ - [DataCenterMachineType](docs/DataCenterMachineType.md)
  - [DataCenterRevenueResource](docs/DataCenterRevenueResource.md)
  - [DataCenterTimeRevenue](docs/DataCenterTimeRevenue.md)
  - [Decimal](docs/Decimal.md)
  - [DeleteDiskSnapshotResponse](docs/DeleteDiskSnapshotResponse.md)
  - [DeleteNetworkResponse](docs/DeleteNetworkResponse.md)
- - [DeleteObjectStorageKeyResponse](docs/DeleteObjectStorageKeyResponse.md)
- - [DeleteObjectStorageUserResponse](docs/DeleteObjectStorageUserResponse.md)
  - [DeletePrivateVMImageResponse](docs/DeletePrivateVMImageResponse.md)
  - [DeleteSecurityGroupResponse](docs/DeleteSecurityGroupResponse.md)
  - [DeleteStorageDiskResponse](docs/DeleteStorageDiskResponse.md)
  - [DetachSecurityGroupResponse](docs/DetachSecurityGroupResponse.md)
  - [DetachStorageDiskResponse](docs/DetachStorageDiskResponse.md)
  - [Disk](docs/Disk.md)
+ - [DiskResult](docs/DiskResult.md)
  - [DiskState](docs/DiskState.md)
  - [DiskStorageClass](docs/DiskStorageClass.md)
  - [DiskStoragePriceHr](docs/DiskStoragePriceHr.md)
@@ -233,9 +254,12 @@ Class | Method | HTTP request | Description
  - [GenerateApiKeyRequest](docs/GenerateApiKeyRequest.md)
  - [GetBillingAccountDetailsResponse](docs/GetBillingAccountDetailsResponse.md)
  - [GetBillingAccountSpendDetailsResponse](docs/GetBillingAccountSpendDetailsResponse.md)
- - [GetBillingAccountStripeInvoicesResponse](docs/GetBillingAccountStripeInvoicesResponse.md)
+ - [GetDataCenterCommitmentScheduleResponse](docs/GetDataCenterCommitmentScheduleResponse.md)
+ - [GetDataCenterCommitmentTimeSeriesRequestInterval](docs/GetDataCenterCommitmentTimeSeriesRequestInterval.md)
+ - [GetDataCenterCommitmentTimeSeriesResponse](docs/GetDataCenterCommitmentTimeSeriesResponse.md)
  - [GetDataCenterLiveUtilizationResponse](docs/GetDataCenterLiveUtilizationResponse.md)
  - [GetDataCenterRevenueByResourceResponse](docs/GetDataCenterRevenueByResourceResponse.md)
+ - [GetDataCenterRevenueTimeSeriesRequestInterval](docs/GetDataCenterRevenueTimeSeriesRequestInterval.md)
  - [GetDataCenterRevenueTimeSeriesResponse](docs/GetDataCenterRevenueTimeSeriesResponse.md)
  - [GetDiskResponse](docs/GetDiskResponse.md)
  - [GetMachineTypeLiveUtilizationResponse](docs/GetMachineTypeLiveUtilizationResponse.md)
@@ -243,18 +267,25 @@ Class | Method | HTTP request | Description
  - [GetNetworkResponse](docs/GetNetworkResponse.md)
  - [GetObjectStorageSessionKeyResponse](docs/GetObjectStorageSessionKeyResponse.md)
  - [GetPrivateVMImageResponse](docs/GetPrivateVMImageResponse.md)
+ - [GetResponse](docs/GetResponse.md)
  - [GetSecurityGroupResponse](docs/GetSecurityGroupResponse.md)
  - [GetVMResponse](docs/GetVMResponse.md)
- - [GpuModelCategory](docs/GpuModelCategory.md)
+ - [GpuModel](docs/GpuModel.md)
  - [Host](docs/Host.md)
- - [HostConfigCategory](docs/HostConfigCategory.md)
  - [IdentityVerificationSession](docs/IdentityVerificationSession.md)
  - [Image](docs/Image.md)
- - [Interval](docs/Interval.md)
+ - [ImageResult](docs/ImageResult.md)
  - [Invoice](docs/Invoice.md)
+ - [LastPaymentError](docs/LastPaymentError.md)
  - [ListApiKeysResponse](docs/ListApiKeysResponse.md)
+ - [ListBillingAccountCreditBalanceTransactionsResponse](docs/ListBillingAccountCreditBalanceTransactionsResponse.md)
+ - [ListBillingAccountInvoicesResponse](docs/ListBillingAccountInvoicesResponse.md)
+ - [ListBillingAccountProjectsResponse](docs/ListBillingAccountProjectsResponse.md)
+ - [ListBillingAccountTransactionsResponse](docs/ListBillingAccountTransactionsResponse.md)
  - [ListBillingAccountsResponse](docs/ListBillingAccountsResponse.md)
  - [ListClustersResponse](docs/ListClustersResponse.md)
+ - [ListDataCenterMachineTypePricesResponse](docs/ListDataCenterMachineTypePricesResponse.md)
+ - [ListDataCenterMachineTypePricesResponseMachineTypePrice](docs/ListDataCenterMachineTypePricesResponseMachineTypePrice.md)
  - [ListDataCentersResponse](docs/ListDataCentersResponse.md)
  - [ListDiskSnapshotsResponse](docs/ListDiskSnapshotsResponse.md)
  - [ListDisksResponse](docs/ListDisksResponse.md)
@@ -262,11 +293,9 @@ Class | Method | HTTP request | Description
  - [ListMachineTypesResponse](docs/ListMachineTypesResponse.md)
  - [ListNetworksResponse](docs/ListNetworksResponse.md)
  - [ListObjectStorageBucketsResponse](docs/ListObjectStorageBucketsResponse.md)
- - [ListObjectStorageKeysResponse](docs/ListObjectStorageKeysResponse.md)
  - [ListObjectStorageUsersResponse](docs/ListObjectStorageUsersResponse.md)
- - [ListOutstandingStripeInvoicesResponse](docs/ListOutstandingStripeInvoicesResponse.md)
+ - [ListOutstandingInvoicesResponse](docs/ListOutstandingInvoicesResponse.md)
  - [ListPrivateVMImagesResponse](docs/ListPrivateVMImagesResponse.md)
- - [ListPrivateVMImagesResponsePrivateImage](docs/ListPrivateVMImagesResponsePrivateImage.md)
  - [ListProjectSshKeysResponse](docs/ListProjectSshKeysResponse.md)
  - [ListProjectsResponse](docs/ListProjectsResponse.md)
  - [ListPublicVMImagesResponse](docs/ListPublicVMImagesResponse.md)
@@ -276,38 +305,52 @@ Class | Method | HTTP request | Description
  - [ListUserPermissionsResponse](docs/ListUserPermissionsResponse.md)
  - [ListVMDataCentersResponse](docs/ListVMDataCentersResponse.md)
  - [ListVMDisksResponse](docs/ListVMDisksResponse.md)
- - [ListVMMachineTypesRequest](docs/ListVMMachineTypesRequest.md)
+ - [ListVMGpuModelsResponse](docs/ListVMGpuModelsResponse.md)
+ - [ListVMMachineTypes2Response](docs/ListVMMachineTypes2Response.md)
+ - [ListVMMachineTypes2ResponseVMMachineType](docs/ListVMMachineTypes2ResponseVMMachineType.md)
  - [ListVMMachineTypesResponse](docs/ListVMMachineTypesResponse.md)
+ - [ListVMMachineTypesResponseVMMachineType](docs/ListVMMachineTypesResponseVMMachineType.md)
  - [ListVMsResponse](docs/ListVMsResponse.md)
- - [MachineType](docs/MachineType.md)
  - [MonitorVMResponse](docs/MonitorVMResponse.md)
  - [Network](docs/Network.md)
  - [NetworkPriceHr](docs/NetworkPriceHr.md)
+ - [NetworkResult](docs/NetworkResult.md)
  - [NetworkState](docs/NetworkState.md)
  - [ObjectStorageBucket](docs/ObjectStorageBucket.md)
  - [ObjectStorageKey](docs/ObjectStorageKey.md)
  - [ObjectStorageUser](docs/ObjectStorageUser.md)
+ - [Package](docs/Package.md)
+ - [PaymentIntent](docs/PaymentIntent.md)
  - [PaymentMethodCard](docs/PaymentMethodCard.md)
  - [PaymentMethodPaypal](docs/PaymentMethodPaypal.md)
+ - [PaymentTerms](docs/PaymentTerms.md)
  - [Point](docs/Point.md)
+ - [PrivateImage](docs/PrivateImage.md)
  - [Profile](docs/Profile.md)
  - [Project](docs/Project.md)
- - [Protocol](docs/Protocol.md)
+ - [ProjectResult](docs/ProjectResult.md)
+ - [ProtobufAny](docs/ProtobufAny.md)
  - [RebootVMResponse](docs/RebootVMResponse.md)
  - [Region](docs/Region.md)
+ - [RegionDataCenter](docs/RegionDataCenter.md)
  - [RemoveBillingAccountPaymentMethodResponse](docs/RemoveBillingAccountPaymentMethodResponse.md)
  - [RemoveBillingAccountUserPermissionBody](docs/RemoveBillingAccountUserPermissionBody.md)
  - [RemoveDataCenterUserPermissionBody](docs/RemoveDataCenterUserPermissionBody.md)
  - [RemoveProjectUserPermissionBody](docs/RemoveProjectUserPermissionBody.md)
  - [ResizeVMDiskResponse](docs/ResizeVMDiskResponse.md)
  - [ResizeVMResponse](docs/ResizeVMResponse.md)
+ - [Result](docs/Result.md)
  - [RevertDiskResponse](docs/RevertDiskResponse.md)
  - [Role](docs/Role.md)
  - [Rule](docs/Rule.md)
- - [RuleType](docs/RuleType.md)
+ - [RuleProtocol](docs/RuleProtocol.md)
+ - [RuleRuleType](docs/RuleRuleType.md)
+ - [SearchResourcesResponse](docs/SearchResourcesResponse.md)
  - [SecurityGroup](docs/SecurityGroup.md)
  - [SecurityGroup1](docs/SecurityGroup1.md)
  - [SecurityGroupRule](docs/SecurityGroupRule.md)
+ - [SecurityGroupRuleProtocol](docs/SecurityGroupRuleProtocol.md)
+ - [SecurityGroupRuleRuleType](docs/SecurityGroupRuleRuleType.md)
  - [SetBillingAccountDefaultPaymentMethodResponse](docs/SetBillingAccountDefaultPaymentMethodResponse.md)
  - [Snapshot](docs/Snapshot.md)
  - [SshKey](docs/SshKey.md)
@@ -318,23 +361,43 @@ Class | Method | HTTP request | Description
  - [StopNetworkResponse](docs/StopNetworkResponse.md)
  - [StopVMResponse](docs/StopVMResponse.md)
  - [StripeCustomer](docs/StripeCustomer.md)
+ - [SyncResponse](docs/SyncResponse.md)
+ - [Task](docs/Task.md)
  - [TaxId](docs/TaxId.md)
  - [TerminateVMResponse](docs/TerminateVMResponse.md)
+ - [TrackRequest](docs/TrackRequest.md)
+ - [Transaction](docs/Transaction.md)
  - [Unit](docs/Unit.md)
  - [UpdateBillingAccountBody](docs/UpdateBillingAccountBody.md)
+ - [UpdateBillingAccountBodyBillingAccount](docs/UpdateBillingAccountBodyBillingAccount.md)
+ - [UpdateDataCenterBody](docs/UpdateDataCenterBody.md)
+ - [UpdateDataCenterBodyDataCenter](docs/UpdateDataCenterBodyDataCenter.md)
+ - [UpdateHostResponse](docs/UpdateHostResponse.md)
+ - [UpdateImageResponse](docs/UpdateImageResponse.md)
+ - [UpdateNetResponse](docs/UpdateNetResponse.md)
  - [UpdatePrivateVMImageResponse](docs/UpdatePrivateVMImageResponse.md)
+ - [UpdateProjectBody](docs/UpdateProjectBody.md)
+ - [UpdateProjectBodyProject](docs/UpdateProjectBodyProject.md)
  - [UpdateSecurityGroupResponse](docs/UpdateSecurityGroupResponse.md)
+ - [UpdateVMExpireTimeBody](docs/UpdateVMExpireTimeBody.md)
+ - [UpdateVMExpireTimeResponse](docs/UpdateVMExpireTimeResponse.md)
  - [UpdateVMMetadataBody](docs/UpdateVMMetadataBody.md)
  - [UpdateVMMetadataResponse](docs/UpdateVMMetadataResponse.md)
+ - [UpdateVMPasswordBody](docs/UpdateVMPasswordBody.md)
+ - [UpdateVMPasswordResponse](docs/UpdateVMPasswordResponse.md)
+ - [UpdateVMResponse](docs/UpdateVMResponse.md)
  - [UserPermission](docs/UserPermission.md)
- - [V1PrivateImage](docs/V1PrivateImage.md)
- - [V1billingaccountsbillingAccountIdBillingAccount](docs/V1billingaccountsbillingAccountIdBillingAccount.md)
+ - [V1DataCenter](docs/V1DataCenter.md)
+ - [V1VRouterSize](docs/V1VRouterSize.md)
  - [VM](docs/VM.md)
  - [VMDataCenter](docs/VMDataCenter.md)
  - [VMDataCenterStorageClass](docs/VMDataCenterStorageClass.md)
+ - [VMDataCenterVRouterSize](docs/VMDataCenterVRouterSize.md)
+ - [VMMachineTypeMachineTypePrice](docs/VMMachineTypeMachineTypePrice.md)
  - [VMMonitoringItem](docs/VMMonitoringItem.md)
  - [VMNIC](docs/VMNIC.md)
- - [VRouterSize](docs/VRouterSize.md)
+ - [VMPrice](docs/VMPrice.md)
+ - [VirtualMachineResult](docs/VirtualMachineResult.md)
  - [VmState](docs/VmState.md)
 
 
