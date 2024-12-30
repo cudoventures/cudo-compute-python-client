@@ -1146,6 +1146,101 @@
         ]
       }
     },
+    "/v1/data-centers/{dataCenterId}/commitment-schedule": {
+      "get": {
+        "operationId": "GetDataCenterCommitmentSchedule",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetDataCenterCommitmentScheduleResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "dataCenterId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "startTime",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "endTime",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "format": "date-time"
+          }
+        ]
+      }
+    },
+    "/v1/data-centers/{dataCenterId}/commitment-time-series": {
+      "get": {
+        "operationId": "GetDataCenterCommitmentTimeSeries",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetDataCenterCommitmentTimeSeriesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "dataCenterId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "startTime",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "endTime",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "interval",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "INTERVAL_UNKNOWN",
+              "INTERVAL_DAY",
+              "INTERVAL_WEEK",
+              "INTERVAL_MONTH"
+            ],
+            "default": "INTERVAL_UNKNOWN"
+          }
+        ]
+      }
+    },
     "/v1/data-centers/{dataCenterId}/host-count": {
       "get": {
         "summary": "Get host count",
@@ -2825,7 +2920,7 @@
         ]
       }
     },
-    "/v1/projects/{projectId}/object-storage/activate": {
+    "/v1/projects/{projectId}/object-storage/activate/{dataCenterId}": {
       "post": {
         "summary": "Allow the use of S3 compatible storage in a project",
         "operationId": "Activate",
@@ -2847,6 +2942,12 @@
         "parameters": [
           {
             "name": "projectId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "dataCenterId",
             "in": "path",
             "required": true,
             "type": "string"
@@ -2910,7 +3011,7 @@
         ]
       }
     },
-    "/v1/projects/{projectId}/object-storage/buckets/{id}": {
+    "/v1/projects/{projectId}/object-storage/buckets/{dataCenterId}/{id}": {
       "get": {
         "summary": "Get details for a bucket",
         "operationId": "GetObjectStorageBucket",
@@ -2936,6 +3037,12 @@
             "type": "string"
           },
           {
+            "name": "dataCenterId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
             "name": "id",
             "in": "path",
             "required": true,
@@ -2947,7 +3054,7 @@
         ]
       }
     },
-    "/v1/projects/{projectId}/object-storage/session-key": {
+    "/v1/projects/{projectId}/object-storage/session-key/{dataCenterId}": {
       "get": {
         "summary": "Generate temporary key for storage bucket access",
         "operationId": "GetObjectStorageSessionKey",
@@ -2974,8 +3081,8 @@
           },
           {
             "name": "dataCenterId",
-            "in": "query",
-            "required": false,
+            "in": "path",
+            "required": true,
             "type": "string"
           }
         ],
@@ -3027,7 +3134,9 @@
         "tags": [
           "Object Storage"
         ]
-      },
+      }
+    },
+    "/v1/projects/{projectId}/object-storage/users/{dataCenterId}": {
       "post": {
         "summary": "Create user that stores keys for storage buckets",
         "operationId": "CreateObjectStorageUser",
@@ -3053,6 +3162,12 @@
             "type": "string"
           },
           {
+            "name": "dataCenterId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
             "name": "body",
             "in": "body",
             "required": true,
@@ -3066,7 +3181,7 @@
         ]
       }
     },
-    "/v1/projects/{projectId}/object-storage/users/{id}": {
+    "/v1/projects/{projectId}/object-storage/users/{dataCenterId}/{id}": {
       "delete": {
         "summary": "Delete object storage user",
         "operationId": "DeleteObjectStorageUser",
@@ -3074,7 +3189,8 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/DeleteObjectStorageUserResponse"
+              "type": "object",
+              "properties": {}
             }
           },
           "default": {
@@ -3087,6 +3203,12 @@
         "parameters": [
           {
             "name": "projectId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "dataCenterId",
             "in": "path",
             "required": true,
             "type": "string"
@@ -3127,6 +3249,12 @@
             "type": "string"
           },
           {
+            "name": "dataCenterId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
             "name": "id",
             "in": "path",
             "required": true,
@@ -3138,58 +3266,7 @@
         ]
       }
     },
-    "/v1/projects/{projectId}/object-storage/users/{id}/keys": {
-      "get": {
-        "summary": "List storage user keys",
-        "operationId": "ListObjectStorageKeys",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/ListObjectStorageKeysResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/Status"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "projectId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "pageNumber",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "pageSize",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          }
-        ],
-        "tags": [
-          "Object Storage"
-        ]
-      }
-    },
-    "/v1/projects/{projectId}/object-storage/users/{id}/keys/{accessKey}": {
+    "/v1/projects/{projectId}/object-storage/users/{dataCenterId}/{id}/keys/{accessKey}": {
       "delete": {
         "summary": "Delete object storage user key",
         "operationId": "DeleteObjectStorageKey",
@@ -3197,7 +3274,8 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/DeleteObjectStorageKeyResponse"
+              "type": "object",
+              "properties": {}
             }
           },
           "default": {
@@ -3210,6 +3288,12 @@
         "parameters": [
           {
             "name": "projectId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "dataCenterId",
             "in": "path",
             "required": true,
             "type": "string"
@@ -3222,6 +3306,49 @@
           },
           {
             "name": "accessKey",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Object Storage"
+        ]
+      }
+    },
+    "/v1/projects/{projectId}/object-storage/users/{dataCenterId}/{userId}": {
+      "get": {
+        "summary": "Get details about an object storage user",
+        "operationId": "GetObjectStorageUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ObjectStorageUser"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "dataCenterId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userId",
             "in": "path",
             "required": true,
             "type": "string"
@@ -3394,6 +3521,47 @@
         ],
         "tags": [
           "Virtual Machines"
+        ]
+      }
+    },
+    "/v1/projects/{projectId}/vm/{id}/password": {
+      "post": {
+        "operationId": "UpdateVMPassword",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UpdateVMPasswordResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateVMPasswordBody"
+            }
+          }
         ]
       }
     },
@@ -4290,6 +4458,25 @@
         ]
       }
     },
+    "/v1/vms/machine-types": {
+      "get": {
+        "operationId": "ListVMMachineTypes",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListVMMachineTypesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Status"
+            }
+          }
+        }
+      }
+    },
     "/v1/vms/machine-types-2": {
       "get": {
         "summary": "List machine types v2",
@@ -4339,12 +4526,7 @@
   },
   "definitions": {
     "ActivateBody": {
-      "type": "object",
-      "properties": {
-        "dataCenterId": {
-          "type": "string"
-        }
-      }
+      "type": "object"
     },
     "AddBillingAccountUserPermissionBody": {
       "type": "object",
@@ -4817,6 +4999,20 @@
         "minMemoryGib"
       ]
     },
+    "CommitmentTerm": {
+      "type": "string",
+      "enum": [
+        "COMMITMENT_TERM_NONE",
+        "COMMITMENT_TERM_1_MONTH",
+        "COMMITMENT_TERM_3_MONTHS",
+        "COMMITMENT_TERM_6_MONTHS",
+        "COMMITMENT_TERM_12_MONTHS",
+        "COMMITMENT_TERM_24_MONTHS",
+        "COMMITMENT_TERM_36_MONTHS",
+        "COMMITMENT_TERM_60_MONTHS"
+      ],
+      "default": "COMMITMENT_TERM_NONE"
+    },
     "ConnectVMResponse": {
       "type": "object",
       "properties": {
@@ -4960,7 +5156,10 @@
         "id": {
           "type": "string"
         }
-      }
+      },
+      "required": [
+        "id"
+      ]
     },
     "CreatePrivateVMImageResponse": {
       "type": "object",
@@ -5087,6 +5286,9 @@
         },
         "ttl": {
           "type": "string"
+        },
+        "commitmentTerm": {
+          "$ref": "#/definitions/CommitmentTerm"
         }
       },
       "required": [
@@ -5177,6 +5379,70 @@
         "createTime"
       ]
     },
+    "DataCenterCommitment": {
+      "type": "object",
+      "properties": {
+        "createTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "commitmentEndTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "vcpus": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "gpus": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "memoryGib": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "vcpuPriceHr": {
+          "$ref": "#/definitions/Decimal"
+        },
+        "gpuPriceHr": {
+          "$ref": "#/definitions/Decimal"
+        },
+        "memoryGibPriceHr": {
+          "$ref": "#/definitions/Decimal"
+        }
+      }
+    },
+    "DataCenterCommitmentInterval": {
+      "type": "object",
+      "properties": {
+        "time": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "vcpus": {
+          "type": "number",
+          "format": "double"
+        },
+        "vcpuRevenueUsd": {
+          "$ref": "#/definitions/Decimal"
+        },
+        "gpus": {
+          "type": "number",
+          "format": "double"
+        },
+        "gpuRevenueUsd": {
+          "$ref": "#/definitions/Decimal"
+        },
+        "memoryGib": {
+          "type": "number",
+          "format": "double"
+        },
+        "memoryRevenueUsd": {
+          "$ref": "#/definitions/Decimal"
+        }
+      }
+    },
     "DataCenterMachineType": {
       "type": "object",
       "properties": {
@@ -5265,12 +5531,6 @@
       "type": "object"
     },
     "DeleteNetworkResponse": {
-      "type": "object"
-    },
-    "DeleteObjectStorageKeyResponse": {
-      "type": "object"
-    },
-    "DeleteObjectStorageUserResponse": {
       "type": "object"
     },
     "DeletePrivateVMImageResponse": {
@@ -5462,6 +5722,46 @@
         "spend"
       ]
     },
+    "GetDataCenterCommitmentScheduleResponse": {
+      "type": "object",
+      "properties": {
+        "commitments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/DataCenterCommitment"
+          }
+        }
+      },
+      "required": [
+        "commitments"
+      ]
+    },
+    "GetDataCenterCommitmentTimeSeriesRequest.Interval": {
+      "type": "string",
+      "enum": [
+        "INTERVAL_UNKNOWN",
+        "INTERVAL_DAY",
+        "INTERVAL_WEEK",
+        "INTERVAL_MONTH"
+      ],
+      "default": "INTERVAL_UNKNOWN"
+    },
+    "GetDataCenterCommitmentTimeSeriesResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/DataCenterCommitmentInterval"
+          }
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
     "GetDataCenterLiveUtilizationResponse": {
       "type": "object",
       "properties": {
@@ -5588,6 +5888,16 @@
       "required": [
         "resources"
       ]
+    },
+    "GetDataCenterRevenueTimeSeriesRequest.Interval": {
+      "type": "string",
+      "enum": [
+        "INTERVAL_UNKNOWN",
+        "INTERVAL_DAY",
+        "INTERVAL_WEEK",
+        "INTERVAL_MONTH"
+      ],
+      "default": "INTERVAL_UNKNOWN"
     },
     "GetDataCenterRevenueTimeSeriesResponse": {
       "type": "object",
@@ -6088,16 +6398,6 @@
         }
       }
     },
-    "Interval": {
-      "type": "string",
-      "enum": [
-        "INTERVAL_UNKNOWN",
-        "INTERVAL_DAY",
-        "INTERVAL_WEEK",
-        "INTERVAL_MONTH"
-      ],
-      "default": "INTERVAL_UNKNOWN"
-    },
     "Invoice": {
       "type": "object",
       "properties": {
@@ -6343,12 +6643,43 @@
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/MachineTypePrice"
+            "$ref": "#/definitions/ListDataCenterMachineTypePricesResponse.MachineTypePrice"
           }
         }
       },
       "required": [
         "prices"
+      ]
+    },
+    "ListDataCenterMachineTypePricesResponse.MachineTypePrice": {
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string"
+        },
+        "machineType": {
+          "type": "string"
+        },
+        "commitmentTerm": {
+          "type": "string"
+        },
+        "gpuPriceHr": {
+          "$ref": "#/definitions/Decimal"
+        },
+        "vcpuPriceHr": {
+          "$ref": "#/definitions/Decimal"
+        },
+        "memoryGibPriceHr": {
+          "$ref": "#/definitions/Decimal"
+        }
+      },
+      "required": [
+        "uid",
+        "machineType",
+        "commitmentTerm",
+        "gpuPriceHr",
+        "vcpuPriceHr",
+        "memoryGibPriceHr"
       ]
     },
     "ListDataCentersResponse": {
@@ -6504,36 +6835,6 @@
       },
       "required": [
         "buckets",
-        "totalCount",
-        "pageNumber",
-        "pageSize"
-      ]
-    },
-    "ListObjectStorageKeysResponse": {
-      "type": "object",
-      "properties": {
-        "keys": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/ObjectStorageKey"
-          }
-        },
-        "totalCount": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "pageNumber": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "pageSize": {
-          "type": "integer",
-          "format": "int32"
-        }
-      },
-      "required": [
-        "keys",
         "totalCount",
         "pageNumber",
         "pageSize"
@@ -6819,12 +7120,277 @@
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/VMMachineType"
+            "$ref": "#/definitions/ListVMMachineTypes2Response.VMMachineType"
           }
         }
       },
       "required": [
         "machineTypes"
+      ]
+    },
+    "ListVMMachineTypes2Response.VMMachineType": {
+      "type": "object",
+      "properties": {
+        "dataCenterId": {
+          "type": "string"
+        },
+        "machineType": {
+          "type": "string"
+        },
+        "cpuModel": {
+          "type": "string"
+        },
+        "gpuModel": {
+          "type": "string"
+        },
+        "gpuModelId": {
+          "type": "string"
+        },
+        "minVcpuPerMemoryGib": {
+          "type": "number",
+          "format": "double"
+        },
+        "maxVcpuPerMemoryGib": {
+          "type": "number",
+          "format": "double"
+        },
+        "minVcpuPerGpu": {
+          "type": "number",
+          "format": "double"
+        },
+        "maxVcpuPerGpu": {
+          "type": "number",
+          "format": "double"
+        },
+        "vcpuPriceHr": {
+          "$ref": "#/definitions/Decimal"
+        },
+        "memoryGibPriceHr": {
+          "$ref": "#/definitions/Decimal"
+        },
+        "gpuPriceHr": {
+          "$ref": "#/definitions/Decimal"
+        },
+        "minStorageGibPriceHr": {
+          "$ref": "#/definitions/Decimal"
+        },
+        "ipv4PriceHr": {
+          "$ref": "#/definitions/Decimal"
+        },
+        "renewableEnergy": {
+          "type": "boolean"
+        },
+        "maxVcpuFree": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "totalVcpuFree": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "maxMemoryGibFree": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "totalMemoryGibFree": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "maxGpuFree": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "totalGpuFree": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "maxStorageGibFree": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "totalStorageGibFree": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "minVcpu": {
+          "type": "number",
+          "format": "double"
+        },
+        "minMemoryGib": {
+          "type": "number",
+          "format": "double"
+        }
+      },
+      "required": [
+        "dataCenterId",
+        "machineType",
+        "cpuModel",
+        "gpuModel",
+        "gpuModelId",
+        "minVcpuPerMemoryGib",
+        "maxVcpuPerMemoryGib",
+        "minVcpuPerGpu",
+        "maxVcpuPerGpu",
+        "vcpuPriceHr",
+        "memoryGibPriceHr",
+        "gpuPriceHr",
+        "minStorageGibPriceHr",
+        "ipv4PriceHr",
+        "renewableEnergy",
+        "maxVcpuFree",
+        "totalVcpuFree",
+        "maxMemoryGibFree",
+        "totalMemoryGibFree",
+        "maxGpuFree",
+        "totalGpuFree",
+        "maxStorageGibFree",
+        "totalStorageGibFree",
+        "minVcpu",
+        "minMemoryGib"
+      ]
+    },
+    "ListVMMachineTypesResponse": {
+      "type": "object",
+      "properties": {
+        "machineTypes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/ListVMMachineTypesResponse.VMMachineType"
+          }
+        }
+      },
+      "required": [
+        "machineTypes"
+      ]
+    },
+    "ListVMMachineTypesResponse.VMMachineType": {
+      "type": "object",
+      "properties": {
+        "dataCenterId": {
+          "type": "string"
+        },
+        "machineType": {
+          "type": "string"
+        },
+        "cpuModel": {
+          "type": "string"
+        },
+        "gpuModel": {
+          "type": "string"
+        },
+        "gpuModelId": {
+          "type": "string"
+        },
+        "minVcpuPerMemoryGib": {
+          "type": "number",
+          "format": "double"
+        },
+        "maxVcpuPerMemoryGib": {
+          "type": "number",
+          "format": "double"
+        },
+        "minVcpuPerGpu": {
+          "type": "number",
+          "format": "double"
+        },
+        "maxVcpuPerGpu": {
+          "type": "number",
+          "format": "double"
+        },
+        "vcpuPriceHr": {
+          "$ref": "#/definitions/Decimal"
+        },
+        "memoryGibPriceHr": {
+          "$ref": "#/definitions/Decimal"
+        },
+        "gpuPriceHr": {
+          "$ref": "#/definitions/Decimal"
+        },
+        "minStorageGibPriceHr": {
+          "$ref": "#/definitions/Decimal"
+        },
+        "ipv4PriceHr": {
+          "$ref": "#/definitions/Decimal"
+        },
+        "renewableEnergy": {
+          "type": "boolean"
+        },
+        "maxVcpuFree": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "totalVcpuFree": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "maxMemoryGibFree": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "totalMemoryGibFree": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "maxGpuFree": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "totalGpuFree": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "maxStorageGibFree": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "totalStorageGibFree": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "minVcpu": {
+          "type": "number",
+          "format": "double"
+        },
+        "minMemoryGib": {
+          "type": "number",
+          "format": "double"
+        },
+        "prices": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/VMMachineType.MachineTypePrice"
+          }
+        }
+      },
+      "required": [
+        "dataCenterId",
+        "machineType",
+        "cpuModel",
+        "gpuModel",
+        "gpuModelId",
+        "minVcpuPerMemoryGib",
+        "maxVcpuPerMemoryGib",
+        "minVcpuPerGpu",
+        "maxVcpuPerGpu",
+        "vcpuPriceHr",
+        "memoryGibPriceHr",
+        "gpuPriceHr",
+        "minStorageGibPriceHr",
+        "ipv4PriceHr",
+        "renewableEnergy",
+        "maxVcpuFree",
+        "totalVcpuFree",
+        "maxMemoryGibFree",
+        "totalMemoryGibFree",
+        "maxGpuFree",
+        "totalGpuFree",
+        "maxStorageGibFree",
+        "totalStorageGibFree",
+        "minVcpu",
+        "minMemoryGib",
+        "prices"
       ]
     },
     "ListVMsResponse": {
@@ -6838,45 +7404,6 @@
           }
         }
       }
-    },
-    "MachineTypePrice": {
-      "type": "object",
-      "properties": {
-        "uid": {
-          "type": "string"
-        },
-        "machineType": {
-          "type": "string"
-        },
-        "commitmentTerm": {
-          "type": "string"
-        },
-        "gpuPriceHr": {
-          "$ref": "#/definitions/Decimal"
-        },
-        "vcpuPriceHr": {
-          "$ref": "#/definitions/Decimal"
-        },
-        "memoryGibPriceHr": {
-          "$ref": "#/definitions/Decimal"
-        },
-        "bootDiskGibPriceHr": {
-          "$ref": "#/definitions/Decimal"
-        },
-        "ipv4PriceHr": {
-          "$ref": "#/definitions/Decimal"
-        }
-      },
-      "required": [
-        "uid",
-        "machineType",
-        "commitmentTerm",
-        "gpuPriceHr",
-        "vcpuPriceHr",
-        "memoryGibPriceHr",
-        "bootDiskGibPriceHr",
-        "ipv4PriceHr"
-      ]
     },
     "MonitorVMResponse": {
       "type": "object",
@@ -7021,59 +7548,71 @@
         "projectId": {
           "type": "string"
         },
-        "id": {
-          "type": "string"
-        },
         "dataCenterId": {
           "type": "string"
         },
-        "endpoint": {
+        "id": {
           "type": "string"
+        },
+        "endpoint": {
+          "type": "string",
+          "readOnly": true
         },
         "objectCount": {
           "type": "string",
-          "format": "int64"
+          "format": "int64",
+          "readOnly": true
         },
         "sizeBytes": {
           "type": "string",
-          "format": "int64"
+          "format": "int64",
+          "readOnly": true
         },
         "billableBytes": {
           "type": "string",
-          "format": "int64"
+          "format": "int64",
+          "readOnly": true
+        },
+        "storageGibPriceHr": {
+          "$ref": "#/definitions/Decimal",
+          "readOnly": true
         }
-      }
+      },
+      "required": [
+        "projectId",
+        "dataCenterId",
+        "id"
+      ]
     },
     "ObjectStorageKey": {
       "type": "object",
       "properties": {
-        "id": {
-          "type": "string"
-        },
         "accessKey": {
           "type": "string"
         },
         "secretKey": {
           "type": "string"
-        },
-        "createBy": {
-          "type": "string"
-        },
-        "createTime": {
-          "type": "string",
-          "format": "date-time"
         }
       }
     },
     "ObjectStorageUser": {
       "type": "object",
       "properties": {
+        "projectId": {
+          "type": "string"
+        },
+        "dataCenterId": {
+          "type": "string"
+        },
         "id": {
           "type": "string"
         },
-        "keyCount": {
-          "type": "integer",
-          "format": "int32"
+        "keys": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/ObjectStorageKey"
+          }
         },
         "createBy": {
           "type": "string"
@@ -7082,7 +7621,13 @@
           "type": "string",
           "format": "date-time"
         }
-      }
+      },
+      "required": [
+        "projectId",
+        "dataCenterId",
+        "id",
+        "keys"
+      ]
     },
     "Package": {
       "type": "object",
@@ -7981,6 +8526,20 @@
         }
       }
     },
+    "UpdateVMPasswordBody": {
+      "type": "object",
+      "properties": {
+        "password": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "password"
+      ]
+    },
+    "UpdateVMPasswordResponse": {
+      "type": "object"
+    },
     "UpdateVMResponse": {
       "type": "object"
     },
@@ -8066,10 +8625,6 @@
           "type": "integer",
           "format": "int64"
         },
-        "priceHr": {
-          "type": "number",
-          "format": "float"
-        },
         "renewableEnergy": {
           "type": "boolean"
         },
@@ -8143,8 +8698,25 @@
           "type": "string",
           "format": "date-time",
           "readOnly": true
+        },
+        "price": {
+          "$ref": "#/definitions/VMPrice",
+          "readOnly": true
+        },
+        "commitmentTerm": {
+          "$ref": "#/definitions/CommitmentTerm"
+        },
+        "commitmentEndTime": {
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
         }
-      }
+      },
+      "required": [
+        "price",
+        "commitmentTerm",
+        "commitmentEndTime"
+      ]
     },
     "VM.NIC": {
       "type": "object",
@@ -8233,40 +8805,9 @@
       ],
       "default": "VROUTER_INSTANCE_UNKNOWN"
     },
-    "VMMachineType": {
+    "VMMachineType.MachineTypePrice": {
       "type": "object",
       "properties": {
-        "dataCenterId": {
-          "type": "string"
-        },
-        "machineType": {
-          "type": "string"
-        },
-        "cpuModel": {
-          "type": "string"
-        },
-        "gpuModel": {
-          "type": "string"
-        },
-        "gpuModelId": {
-          "type": "string"
-        },
-        "minVcpuPerMemoryGib": {
-          "type": "number",
-          "format": "double"
-        },
-        "maxVcpuPerMemoryGib": {
-          "type": "number",
-          "format": "double"
-        },
-        "minVcpuPerGpu": {
-          "type": "number",
-          "format": "double"
-        },
-        "maxVcpuPerGpu": {
-          "type": "number",
-          "format": "double"
-        },
         "vcpuPriceHr": {
           "$ref": "#/definitions/Decimal"
         },
@@ -8276,82 +8817,15 @@
         "gpuPriceHr": {
           "$ref": "#/definitions/Decimal"
         },
-        "minStorageGibPriceHr": {
-          "$ref": "#/definitions/Decimal"
-        },
-        "ipv4PriceHr": {
-          "$ref": "#/definitions/Decimal"
-        },
-        "renewableEnergy": {
-          "type": "boolean"
-        },
-        "maxVcpuFree": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "totalVcpuFree": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "maxMemoryGibFree": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "totalMemoryGibFree": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "maxGpuFree": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "totalGpuFree": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "maxStorageGibFree": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "totalStorageGibFree": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "minVcpu": {
-          "type": "number",
-          "format": "double"
-        },
-        "minMemoryGib": {
-          "type": "number",
-          "format": "double"
+        "commitmentTerm": {
+          "$ref": "#/definitions/CommitmentTerm"
         }
       },
       "required": [
-        "dataCenterId",
-        "machineType",
-        "cpuModel",
-        "gpuModel",
-        "gpuModelId",
-        "minVcpuPerMemoryGib",
-        "maxVcpuPerMemoryGib",
-        "minVcpuPerGpu",
-        "maxVcpuPerGpu",
         "vcpuPriceHr",
         "memoryGibPriceHr",
         "gpuPriceHr",
-        "minStorageGibPriceHr",
-        "ipv4PriceHr",
-        "renewableEnergy",
-        "maxVcpuFree",
-        "totalVcpuFree",
-        "maxMemoryGibFree",
-        "totalMemoryGibFree",
-        "maxGpuFree",
-        "totalGpuFree",
-        "maxStorageGibFree",
-        "totalStorageGibFree",
-        "minVcpu",
-        "minMemoryGib"
+        "commitmentTerm"
       ]
     },
     "VMMonitoringItem": {
@@ -8394,6 +8868,53 @@
           "format": "int64"
         }
       }
+    },
+    "VMPrice": {
+      "type": "object",
+      "properties": {
+        "vcpuPriceHr": {
+          "$ref": "#/definitions/Decimal"
+        },
+        "totalVcpuPriceHr": {
+          "$ref": "#/definitions/Decimal"
+        },
+        "memoryGibPriceHr": {
+          "$ref": "#/definitions/Decimal"
+        },
+        "totalMemoryPriceHr": {
+          "$ref": "#/definitions/Decimal"
+        },
+        "gpuPriceHr": {
+          "$ref": "#/definitions/Decimal"
+        },
+        "totalGpuPriceHr": {
+          "$ref": "#/definitions/Decimal"
+        },
+        "storageGibPriceHr": {
+          "$ref": "#/definitions/Decimal"
+        },
+        "totalStoragePriceHr": {
+          "$ref": "#/definitions/Decimal"
+        },
+        "ipv4AddressPriceHr": {
+          "$ref": "#/definitions/Decimal"
+        },
+        "totalPriceHr": {
+          "$ref": "#/definitions/Decimal"
+        }
+      },
+      "required": [
+        "vcpuPriceHr",
+        "totalVcpuPriceHr",
+        "memoryGibPriceHr",
+        "totalMemoryPriceHr",
+        "gpuPriceHr",
+        "totalGpuPriceHr",
+        "storageGibPriceHr",
+        "totalStoragePriceHr",
+        "ipv4AddressPriceHr",
+        "totalPriceHr"
+      ]
     },
     "VirtualMachineResult": {
       "type": "object",

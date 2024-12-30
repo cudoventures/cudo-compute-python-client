@@ -15,7 +15,7 @@ def find_instances(obj, key, value, path=[]):
     return instances
 
 
-file_path = 'swagger/public.swagger.json'
+file_path = 'swagger/compute.swagger.json'
 with open(file_path, 'r') as file:
     json_data = json.load(file)
 
