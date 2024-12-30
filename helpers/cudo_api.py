@@ -181,7 +181,8 @@ class PooledVirtualMachinesApi(cudo.VirtualMachinesApi):
                 self.workers_active = False
                 self.shutdown_event.set()
 
-                self.executor.shutdown(wait=False)
+                if self.executor:
+                    self.executor.shutdown(wait=False)
 
             except Exception as e:
                 print(f"Error shutting down: {e}")
