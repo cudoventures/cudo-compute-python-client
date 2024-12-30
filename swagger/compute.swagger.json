@@ -8713,9 +8713,6 @@
         }
       },
       "required": [
-        "price",
-        "commitmentTerm",
-        "commitmentEndTime"
       ]
     },
     "VM.NIC": {
