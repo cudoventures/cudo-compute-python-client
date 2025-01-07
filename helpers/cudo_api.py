@@ -37,23 +37,6 @@ def client():
     client.user_agent = 'cudo-compute-python-client/' + version
     return client, None
 
-def local_client(key):
-    configuration = cudo.Configuration()
-    configuration.api_key['Authorization'] = key
-    # configuration.debug = True
-    configuration.api_key_prefix['Authorization'] = 'Bearer'
-    configuration.host = "https://rest.compute.cudo.org"
-
-    client = cudo.ApiClient(configuration)
-    version = ''
-    try:
-        version = importlib.metadata.version('cudo-compute')
-    except:
-        pass
-
-    client.user_agent = 'cudo-compute-python-client/' + version
-    return client
-
 
 def get_api_key():
     key_config, context_config, error = cudo.AuthConfig.load_config(home + '/.config/cudo/cudo.yml', "")
@@ -95,72 +78,54 @@ if err:
     raise Exception(err)
 
 
-def api_keys(key = None):
-    if key is None:
-        return cudo.APIKeysApi(c)
-    else:
-        return cudo.APIKeysApi(local_client(key))
+def api_keys():
+    return cudo.APIKeysApi(c)
+
+def billing():
+    return cudo.BillingApi(c)
+
+def data_centers():
+    return cudo.DataCentersApi(c)
+
+def disks():
+    return cudo.DisksApi(c)
+
+def machine_types():
+    return cudo.MachineTypesApi(c)
+
+def networks():
+    return cudo.NetworksApi(c)
 
 
-def disks(key = None):
-    if key is None:
-        return cudo.DisksApi(c)
-    else :
-        return cudo.DisksApi(local_client(key))
-
-def networks(key = None):
-    if key is None:
-        return cudo.NetworksApi(c)
-    else:
-        return cudo.NetworksApi(local_client(key))
-
-def object_storage(key = None):
-    if key is None:
-        return cudo.ObjectStorageApi(c)
-    else:
-        return cudo.ObjectStorageApi(local_client(key))
+def object_storage():
+    return cudo.ObjectStorageApi(c)
 
 
-def permissions(key = None):
-    if key is None:
-        return cudo.PermissionsApi(c)
-    else:
-        return cudo.PermissionsApi(local_client(key))
+def permissions():
+    return cudo.PermissionsApi(c)
 
 
-def projects(key = None):
-    if key is None:
-        return cudo.ProjectsApi(c)
-    else:
-        return cudo.ProjectsApi(local_client(key))
+def projects():
+    return cudo.ProjectsApi(c)
 
 
-def ssh_keys(key = None):
-    if key is None:
-        return cudo.SSHKeysApi(c)
-    else:
-        return cudo.SSHKeysApi(local_client(key))
+def ssh_keys():
+    c, err = client()
+    if err:
+        raise Exception(err)
+    return cudo.SSHKeysApi(c)
 
 
-def search(key = None):
-    if key is None:
-        return cudo.SearchApi(c)
-    else:
-        return cudo.SearchApi(local_client(key))
+def search():
+    return cudo.SearchApi(c)
 
 
-def user(key = None):
-    if key is None:
-        return cudo.UserApi(c)
-    else:
-        return cudo.UserApi(local_client(key))
+def user():
+    return cudo.UserApi(c)
 
 
-def legacy_virtual_machines(key = None):
-    if key is None:
-        return cudo.VirtualMachinesApi(c)
-    else:
-        return cudo.VirtualMachinesApi(local_client(key))
+def legacy_virtual_machines():
+    return cudo.VirtualMachinesApi(c)
 
 
 class PooledVirtualMachinesApi(cudo.VirtualMachinesApi):
@@ -223,15 +188,15 @@ class PooledVirtualMachinesApi(cudo.VirtualMachinesApi):
                 self.workers_active = False
                 self.shutdown_event.set()
 
-                if self.executor:
-                    self.executor.shutdown(wait=False)
+                self.executor.shutdown(wait=False)
 
             except Exception as e:
                 print(f"Error shutting down: {e}")
 
 pool = PooledVirtualMachinesApi(c)
 
-def virtual_machines(key = None):
-    if key is None:
-        return pool
-    return PooledVirtualMachinesApi(local_client(key))
+def virtual_machines():
+    return pool
+
+def default():
+    return cudo.DefaultApi(c)

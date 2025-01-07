@@ -81,10 +81,17 @@ if err:
 def api_keys():
     return cudo.APIKeysApi(c)
 
+def billing():
+    return cudo.BillingApi(c)
+
+def data_centers():
+    return cudo.DataCentersApi(c)
 
 def disks():
     return cudo.DisksApi(c)
 
+def machine_types():
+    return cudo.MachineTypesApi(c)
 
 def networks():
     return cudo.NetworksApi(c)
@@ -190,3 +197,6 @@ pool = PooledVirtualMachinesApi(c)
 
 def virtual_machines():
     return pool
+
+def default():
+    return cudo.DefaultApi(c)
