@@ -395,4 +395,9 @@ The code gets modified and the helpers get copied in from /helpers.
 
 ``./codegen.sh`` generates docs directory with source code and documentation.
 
-If you wish to customise how the API key or project is selected see the code in the helpers directory. 
+If you wish to customise how the API key or project is selected see the code in the helpers directory.
+
+Install the latest test version:
+```shell
+pip install --upgrade --index-url https://test.pypi.org/simple/ cudo-compute
+```

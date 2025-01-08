@@ -100,8 +100,8 @@ def disks(key=None):
     return cudo.DisksApi(find_client(key))
 
 
-def machine_types():
-    return cudo.MachineTypesApi(c)
+def machine_types(key=None):
+    return cudo.MachineTypesApi(find_client(key))
 
 
 def networks(key=None):
