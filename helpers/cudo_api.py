@@ -14,13 +14,16 @@ from cudo_compute.models.vm import VM
 
 home = os.path.expanduser("~")
 
+c = None
 
-def client():
+
+def make_client(key=None):
     configuration = cudo.Configuration()
-    key, err = get_api_key()
 
-    if err:
-        return None, err
+    if key is None:
+        key, err = get_api_key()
+        if err:
+            return None, err
 
     configuration.api_key['Authorization'] = key
     # configuration.debug = True
@@ -72,60 +75,65 @@ def project_id_throwable():
         raise e
 
 
-# APIs
-c, err = client()
-if err:
-    raise Exception(err)
+def find_client(key=None):
+    global c
+    if c is None:
+        c, err = make_client(key)
+        if err:
+            raise Exception(err)
+    return c
 
 
-def api_keys():
-    return cudo.APIKeysApi(c)
+def api_keys(key=None):
+    return cudo.APIKeysApi(find_client(key))
 
-def billing():
-    return cudo.BillingApi(c)
 
-def data_centers():
-    return cudo.DataCentersApi(c)
+def billing(key=None):
+    return cudo.BillingApi(find_client(key))
 
-def disks():
-    return cudo.DisksApi(c)
+
+def data_centers(key=None):
+    return cudo.DataCentersApi(find_client(key))
+
+
+def disks(key=None):
+    return cudo.DisksApi(find_client(key))
+
 
 def machine_types():
     return cudo.MachineTypesApi(c)
 
-def networks():
-    return cudo.NetworksApi(c)
+
+def networks(key=None):
+    return cudo.NetworksApi(find_client(key))
 
 
-def object_storage():
-    return cudo.ObjectStorageApi(c)
+def object_storage(key=None):
+    return cudo.ObjectStorageApi(find_client(key))
 
 
-def permissions():
-    return cudo.PermissionsApi(c)
+def permissions(key=None):
+    return cudo.PermissionsApi(find_client(key))
 
 
-def projects():
-    return cudo.ProjectsApi(c)
+def projects(key=None):
+    return cudo.ProjectsApi(find_client(key))
 
 
-def ssh_keys():
-    c, err = client()
-    if err:
-        raise Exception(err)
-    return cudo.SSHKeysApi(c)
+def ssh_keys(key=None):
+    return cudo.SSHKeysApi(find_client(key))
 
 
-def search():
-    return cudo.SearchApi(c)
+def search(key=None):
+    return cudo.SearchApi(find_client(key))
 
 
-def user():
-    return cudo.UserApi(c)
+def user(key=None):
+    return cudo.UserApi(find_client(key))
 
 
-def legacy_virtual_machines():
-    return cudo.VirtualMachinesApi(c)
+def legacy_virtual_machines(key=None):
+        return cudo.VirtualMachinesApi(find_client(key))
 
 
 class PooledVirtualMachinesApi(cudo.VirtualMachinesApi):
@@ -188,15 +196,22 @@ class PooledVirtualMachinesApi(cudo.VirtualMachinesApi):
                 self.workers_active = False
                 self.shutdown_event.set()
 
-                self.executor.shutdown(wait=False)
+                if self.executor:
+                    self.executor.shutdown(wait=False)
 
             except Exception as e:
                 print(f"Error shutting down: {e}")
 
-pool = PooledVirtualMachinesApi(c)
 
-def virtual_machines():
+pool = None
+
+
+def virtual_machines(key=None):
+    global pool
+    if pool is None:
+        pool = PooledVirtualMachinesApi(find_client(key))
     return pool
 
-def default():
-    return cudo.DefaultApi(c)
+
+def default(key = None):
+    return cudo.DefaultApi(find_client(key))

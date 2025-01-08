@@ -13,6 +13,7 @@ try:
     request = CreateVMBody(vm_id="my-vm-id", machine_type="epyc-rome-rtx-a4000",
                            data_center_id="no-luster-1", boot_disk_image_id='ubuntu-nvidia-docker',
                            memory_gib=16, vcpus=4, gpus=1, gpu_model="A4000", boot_disk=disk,
+                           ssh_key_source='SSH_KEY_SOURCE_PROJECT',
                            metadata={"group": "a"})
 
     vm = api.create_vm(project_id, request)

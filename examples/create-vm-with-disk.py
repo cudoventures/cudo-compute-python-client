@@ -43,7 +43,7 @@ try:
                 id="my-disk-id")
     request = CreateVMBody(vm_id=vm_id, machine_type="intel-broadwell",
                            data_center_id=data_center_id, boot_disk_image_id='ubuntu-2204-desktop',
-                           memory_gib=16, vcpus=4, boot_disk=disk, gpus=0) # gpu_model=""
+                           memory_gib=16, vcpus=4, boot_disk=disk, gpus=0, ssh_key_source='SSH_KEY_SOURCE_PROJECT') # gpu_model=""
     # create vm
     vm = vm_api.create_vm(project_id, request)
 
